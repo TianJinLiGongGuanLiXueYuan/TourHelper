@@ -29,11 +29,7 @@
 }
 
 - (IBAction)imageBtnClick:(id)sender {
-//    _detailViewController = [[DetailViewController alloc]init];
-////    _detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//    _detailViewController.titleText = self.locationNameLabel.text;
-    
-    self.imageViewClickBlock((UIButton *)sender,[NSString stringWithString:_locationNameLabel.text]);
+    self.imageViewClickBlock((UIButton *)sender,[NSString stringWithString:_locationNameLabel.text],[NSString stringWithString:_imgName],[NSString stringWithString:_cellText]);
     
 }
 
@@ -41,7 +37,8 @@
     self.currentLocation = location;
     [self.locationImage setImage:[UIImage imageNamed:location.locationImageName]];
     
-    
+    self.imgName = location.locationImageName;
+    self.cellText = location.locationText;
     self.locationNameLabel.text = self.currentLocation.locationName;
     self.distanceLabel.text = self.currentLocation.distance;
 }

@@ -14,7 +14,9 @@
 @property (nonatomic ,strong)NSString *voice;
 @property (nonatomic ,strong)NSString *locationImageName;
 @property (nonatomic ,strong)NSString *distance;
+@property (nonatomic ,strong)NSString *locationText;
 
-- (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance;
+
+- (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance locationText:(NSString*)locationText;
 
 @end

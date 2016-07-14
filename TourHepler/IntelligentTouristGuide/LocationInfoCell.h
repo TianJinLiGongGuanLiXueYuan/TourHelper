@@ -14,10 +14,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *locationImage;
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (nonatomic,strong) NSString *cellText;
+@property (nonatomic,strong) NSString *imgName;
 
 - (IBAction)imageBtnClick:(id)sender;
 - (void)setCellData:(Location*)location;
 
-@property (nonatomic, copy) void(^imageViewClickBlock)(UIButton *btn,NSString *str);
+@property (nonatomic, copy) void(^imageViewClickBlock)(UIButton *btn,NSString *locationName,NSString* img,NSString* locationText);
 
 @end

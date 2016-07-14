@@ -9,13 +9,15 @@
 #import "Location.h"
 
 @implementation Location
-- (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance{
+
+- (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance locationText:(NSString*)locationText{
     self = [super init];
     if (self) {
         self.locationName = locationName;
         self.voice = voice;
         self.locationImageName = locationImageName;
         self.distance = distance;
+        self.locationText = locationText;
     }
     return self;
 }

@@ -16,7 +16,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -27,6 +26,15 @@
     
     BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:homeVC];
     self.window.rootViewController = nav;
+    BMKMapManager* _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"在此处输入您的授权Key"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    // Add the navigation controller's view to the window and display.
+//    [self.window addSubview:navigationController.view];
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
