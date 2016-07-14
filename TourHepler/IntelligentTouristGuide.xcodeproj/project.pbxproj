@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		5F1C55491D37276D00B08D4D /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C55481D37276D00B08D4D /* MapViewController.m */; };
 		5F1C554F1D37339F00B08D4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C554E1D37339F00B08D4D /* DetailViewController.m */; };
-		5F6F50A71D370B4000A48B77 /* 箭竹海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F50A61D370B4000A48B77 /* 箭竹海.jpg */; };
-		5F6F50A91D370B4E00A48B77 /* 芦苇海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F50A81D370B4E00A48B77 /* 芦苇海.jpg */; };
-		5F6F50AB1D370B6100A48B77 /* 双龙海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F50AA1D370B6100A48B77 /* 双龙海.jpg */; };
-		5F6F50AD1D370B9B00A48B77 /* 卧龙海.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F50AC1D370B9B00A48B77 /* 卧龙海.jpeg */; };
+		5F6AE6B41D37582E00B9BAC1 /* 卧龙海.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */; };
+		5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */; };
+		5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */; };
+		5F6AE6BA1D37584500B9BAC1 /* 芦苇海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */; };
 		F11B67AE1D3619DB0065E7CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F11B67AD1D3619DB0065E7CD /* main.m */; };
 		F11B67B11D3619DB0065E7CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F11B67B01D3619DB0065E7CD /* AppDelegate.m */; };
 		F11B67B91D3619DB0065E7CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F11B67B81D3619DB0065E7CD /* Assets.xcassets */; };
@@ -34,10 +34,10 @@
 		5F1C55481D37276D00B08D4D /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		5F1C554D1D37339F00B08D4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		5F1C554E1D37339F00B08D4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		5F6F50A61D370B4000A48B77 /* 箭竹海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "箭竹海.jpg"; path = "../../../Downloads/箭竹海.jpg"; sourceTree = "<group>"; };
-		5F6F50A81D370B4E00A48B77 /* 芦苇海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "芦苇海.jpg"; path = "../../../Downloads/芦苇海.jpg"; sourceTree = "<group>"; };
-		5F6F50AA1D370B6100A48B77 /* 双龙海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "双龙海.jpg"; path = "../../../Downloads/双龙海.jpg"; sourceTree = "<group>"; };
-		5F6F50AC1D370B9B00A48B77 /* 卧龙海.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "卧龙海.jpeg"; path = "../../../Downloads/卧龙海.jpeg"; sourceTree = "<group>"; };
+		5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "卧龙海.jpeg"; sourceTree = "<group>"; };
+		5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "箭竹海.jpg"; sourceTree = "<group>"; };
+		5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海.jpg"; sourceTree = "<group>"; };
+		5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "芦苇海.jpg"; sourceTree = "<group>"; };
 		F11B67A91D3619DB0065E7CD /* IntelligentTouristGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntelligentTouristGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11B67AD1D3619DB0065E7CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F11B67AF1D3619DB0065E7CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -233,10 +233,10 @@
 		F11B67DE1D3641B50065E7CD /* image */ = {
 			isa = PBXGroup;
 			children = (
-				5F6F50AC1D370B9B00A48B77 /* 卧龙海.jpeg */,
-				5F6F50A61D370B4000A48B77 /* 箭竹海.jpg */,
-				5F6F50A81D370B4E00A48B77 /* 芦苇海.jpg */,
-				5F6F50AA1D370B6100A48B77 /* 双龙海.jpg */,
+				5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */,
+				5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */,
+				5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */,
+				5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */,
 				F11B67DC1D3631F70065E7CD /* LOGO.png */,
 				F11B67E51D3643800065E7CD /* homeNabigationLeftIcon.ico */,
 				F11B67E71D36444F0065E7CD /* homeNabigationRightIcon.ico */,
@@ -321,14 +321,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11B67E61D3643800065E7CD /* homeNabigationLeftIcon.ico in Resources */,
+				5F6AE6B41D37582E00B9BAC1 /* 卧龙海.jpeg in Resources */,
+				5F6AE6BA1D37584500B9BAC1 /* 芦苇海.jpg in Resources */,
 				F11B67DD1D3631F70065E7CD /* LOGO.png in Resources */,
-				5F6F50A91D370B4E00A48B77 /* 芦苇海.jpg in Resources */,
-				5F6F50AD1D370B9B00A48B77 /* 卧龙海.jpeg in Resources */,
+				5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */,
 				F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */,
 				F11B67E81D36444F0065E7CD /* homeNabigationRightIcon.ico in Resources */,
+				5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */,
 				F11B67BC1D3619DB0065E7CD /* LaunchScreen.storyboard in Resources */,
-				5F6F50AB1D370B6100A48B77 /* 双龙海.jpg in Resources */,
-				5F6F50A71D370B4000A48B77 /* 箭竹海.jpg in Resources */,
 				F11B67B91D3619DB0065E7CD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
