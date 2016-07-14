@@ -10,7 +10,10 @@
 #import "DetailViewController.h"
 
 @interface LocationInfoCell ()
-    @property (strong, nonatomic) Location*currentLocation;
+
+@property (strong, nonatomic) Location *currentLocation;
+@property (strong, nonatomic) DetailViewController *detailViewController;
+
 @end
 
 @implementation LocationInfoCell
@@ -26,6 +29,11 @@
 }
 
 - (IBAction)imageBtnClick:(id)sender {
+//    _detailViewController = [[DetailViewController alloc]init];
+////    _detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    _detailViewController.titleText = self.locationNameLabel.text;
+    
+    self.imageViewClickBlock((UIButton *)sender,[NSString stringWithString:_locationNameLabel.text]);
     
 }
 

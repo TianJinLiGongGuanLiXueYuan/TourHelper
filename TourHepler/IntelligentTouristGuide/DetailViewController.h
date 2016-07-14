@@ -10,4 +10,6 @@
 
 @interface DetailViewController : BaseViewController
 
+@property (nonatomic,strong) NSString* titleText;
+
 @end

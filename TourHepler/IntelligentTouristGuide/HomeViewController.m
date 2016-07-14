@@ -10,6 +10,7 @@
 #import "Location.h"
 #import "LocationInfoCell.h"
 #import "MapViewController.h"
+#import "DetailViewController.h"
 
 @interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic ,strong) NSArray *dataArr;
@@ -19,6 +20,7 @@
 
 @property (nonatomic ,strong) UITableView *mainTableView;
 @property (nonatomic ,strong) MapViewController *mapViewController;
+//@property (nonatomic ,strong) DetailViewController *deVC;
 
 @end
 
@@ -65,6 +67,13 @@
     if (cell == nil) {
         cell = [[NSBundle mainBundle]loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
         
+        [cell setImageViewClickBlock:^(UIButton *btn,NSString *str) {
+            DetailViewController *deVC = [[DetailViewController alloc]init];
+//            self.deVC = [[DetailViewController alloc]init];
+            deVC.titleText = str;
+            [self.navigationController pushViewController:deVC animated:YES];
+        }];
+        
 //        cell = [[NSBundle mainBundle] loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
         Location *currentLocation =self.dataArr[indexPath.row];
 //        CellFrameInfo *currentFrameInfo = [[CellFrameInfo alloc]initWithStudent:currentStudent];
@@ -79,6 +88,8 @@
 }
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DetailViewController *detailViewController = [[DetailViewController alloc]init];
+    [self.navigationController pushViewController:detailViewController animated:YES ];
     
 }
 

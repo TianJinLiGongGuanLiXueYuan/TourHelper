@@ -18,4 +18,6 @@
 - (IBAction)imageBtnClick:(id)sender;
 - (void)setCellData:(Location*)location;
 
+@property (nonatomic, copy) void(^imageViewClickBlock)(UIButton *btn,NSString *str);
+
 @end
