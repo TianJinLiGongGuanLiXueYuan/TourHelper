@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F1C55491D37276D00B08D4D /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C55481D37276D00B08D4D /* MapViewController.m */; };
+		5F1C55491D37276D00B08D4D /* MapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C55481D37276D00B08D4D /* MapViewController.mm */; };
 		5F1C554F1D37339F00B08D4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C554E1D37339F00B08D4D /* DetailViewController.m */; };
 		5F6AE6B41D37582E00B9BAC1 /* 卧龙海.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */; };
 		5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */; };
 		5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */; };
 		5F6AE6BA1D37584500B9BAC1 /* 芦苇海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */; };
 		F11B67AE1D3619DB0065E7CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F11B67AD1D3619DB0065E7CD /* main.m */; };
-		F11B67B11D3619DB0065E7CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F11B67B01D3619DB0065E7CD /* AppDelegate.m */; };
+		F11B67B11D3619DB0065E7CD /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = F11B67B01D3619DB0065E7CD /* AppDelegate.mm */; };
 		F11B67B91D3619DB0065E7CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F11B67B81D3619DB0065E7CD /* Assets.xcassets */; };
 		F11B67BC1D3619DB0065E7CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F11B67BA1D3619DB0065E7CD /* LaunchScreen.storyboard */; };
 		F11B67CF1D361B2C0065E7CD /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11B67CE1D361B2C0065E7CD /* BaseViewController.m */; };
@@ -24,6 +24,7 @@
 		F11B67DD1D3631F70065E7CD /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = F11B67DC1D3631F70065E7CD /* LOGO.png */; };
 		F11B67E61D3643800065E7CD /* homeNabigationLeftIcon.ico in Resources */ = {isa = PBXBuildFile; fileRef = F11B67E51D3643800065E7CD /* homeNabigationLeftIcon.ico */; };
 		F11B67E81D36444F0065E7CD /* homeNabigationRightIcon.ico in Resources */ = {isa = PBXBuildFile; fileRef = F11B67E71D36444F0065E7CD /* homeNabigationRightIcon.ico */; };
+		F17A93A31D39171B0076D6C2 /* test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F17A93A21D39171B0076D6C2 /* test.gpx */; settings = {ASSET_TAGS = (); }; };
 		F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A4181D3668F900F48A48 /* LocationInfoCell.m */; };
 		F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D5A4191D3668F900F48A48 /* LocationInfoCell.xib */; };
 		F1D5A41E1D366A3A00F48A48 /* Location.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A41D1D366A3A00F48A48 /* Location.mm */; };
@@ -50,11 +51,13 @@
 		F1DC9EB21D379BC900C1ADA8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DC9EB11D379BC900C1ADA8 /* CoreTelephony.framework */; };
 		F1DC9EB41D379BD400C1ADA8 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DC9EB31D379BD400C1ADA8 /* libstdc++.6.0.9.tbd */; };
 		F1DC9EB61D379DA600C1ADA8 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1DC9EB51D379DA600C1ADA8 /* mapapi.bundle */; settings = {ASSET_TAGS = (); }; };
+		F1E045CF1D38FEA400C15274 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E045CE1D38FEA400C15274 /* AddressBook.framework */; };
+		F1E045D11D38FEAC00C15274 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E045D01D38FEAC00C15274 /* AddressBookUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5F1C55471D37276D00B08D4D /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		5F1C55481D37276D00B08D4D /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		5F1C55481D37276D00B08D4D /* MapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MapViewController.mm; sourceTree = "<group>"; };
 		5F1C554D1D37339F00B08D4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		5F1C554E1D37339F00B08D4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "卧龙海.jpeg"; sourceTree = "<group>"; };
@@ -64,7 +67,7 @@
 		F11B67A91D3619DB0065E7CD /* IntelligentTouristGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntelligentTouristGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11B67AD1D3619DB0065E7CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F11B67AF1D3619DB0065E7CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		F11B67B01D3619DB0065E7CD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F11B67B01D3619DB0065E7CD /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		F11B67B81D3619DB0065E7CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F11B67BB1D3619DB0065E7CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F11B67BD1D3619DB0065E7CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		F11B67DC1D3631F70065E7CD /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
 		F11B67E51D3643800065E7CD /* homeNabigationLeftIcon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = homeNabigationLeftIcon.ico; sourceTree = "<group>"; };
 		F11B67E71D36444F0065E7CD /* homeNabigationRightIcon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = homeNabigationRightIcon.ico; sourceTree = "<group>"; };
+		F17A93A21D39171B0076D6C2 /* test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test.gpx; path = IntelligentTouristGuide/test.gpx; sourceTree = "<group>"; };
 		F1D5A4171D3668F900F48A48 /* LocationInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationInfoCell.h; sourceTree = "<group>"; };
 		F1D5A4181D3668F900F48A48 /* LocationInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationInfoCell.m; sourceTree = "<group>"; };
 		F1D5A4191D3668F900F48A48 /* LocationInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationInfoCell.xib; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 		F1DC9EB11D379BC900C1ADA8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		F1DC9EB31D379BD400C1ADA8 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		F1DC9EB51D379DA600C1ADA8 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
+		F1E045CE1D38FEA400C15274 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		F1E045D01D38FEAC00C15274 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,15 +125,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E045D11D38FEAC00C15274 /* AddressBookUI.framework in Frameworks */,
+				F1E045CF1D38FEA400C15274 /* AddressBook.framework in Frameworks */,
+				F1DC9EAE1D379BAC00C1ADA8 /* Security.framework in Frameworks */,
+				F1DC9EA61D379B7E00C1ADA8 /* QuartzCore.framework in Frameworks */,
+				F1DC9EA41D379B7400C1ADA8 /* CoreLocation.framework in Frameworks */,
 				F1DC9EB41D379BD400C1ADA8 /* libstdc++.6.0.9.tbd in Frameworks */,
 				F1DC9EB21D379BC900C1ADA8 /* CoreTelephony.framework in Frameworks */,
 				F1DC9EB01D379BBC00C1ADA8 /* libsqlite3.0.tbd in Frameworks */,
-				F1DC9EAE1D379BAC00C1ADA8 /* Security.framework in Frameworks */,
 				F1DC9EAC1D379BA200C1ADA8 /* CoreGraphics.framework in Frameworks */,
 				F1DC9EAA1D379B9800C1ADA8 /* SystemConfiguration.framework in Frameworks */,
 				F1DC9EA81D379B8800C1ADA8 /* OpenGLES.framework in Frameworks */,
-				F1DC9EA61D379B7E00C1ADA8 /* QuartzCore.framework in Frameworks */,
-				F1DC9EA41D379B7400C1ADA8 /* CoreLocation.framework in Frameworks */,
 				F1DC9E9D1D379B2600C1ADA8 /* BaiduMapAPI_Cloud.framework in Frameworks */,
 				F1DC9E9E1D379B2600C1ADA8 /* BaiduMapAPI_Location.framework in Frameworks */,
 				F1DC9E9F1D379B2600C1ADA8 /* BaiduMapAPI_Map.framework in Frameworks */,
@@ -159,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				5F1C55471D37276D00B08D4D /* MapViewController.h */,
-				5F1C55481D37276D00B08D4D /* MapViewController.m */,
+				5F1C55481D37276D00B08D4D /* MapViewController.mm */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 		F11B67A01D3619DB0065E7CD = {
 			isa = PBXGroup;
 			children = (
+				F17A93A21D39171B0076D6C2 /* test.gpx */,
 				F11B67AB1D3619DB0065E7CD /* IntelligentTouristGuide */,
 				F11B67AA1D3619DB0065E7CD /* Products */,
 			);
@@ -211,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				F11B67AF1D3619DB0065E7CD /* AppDelegate.h */,
-				F11B67B01D3619DB0065E7CD /* AppDelegate.m */,
+				F11B67B01D3619DB0065E7CD /* AppDelegate.mm */,
 				F11B67CA1D361ADE0065E7CD /* Other */,
 				F11B67C91D361AD40065E7CD /* Setting */,
 				F11B67C81D361AC60065E7CD /* Detail */,
@@ -295,6 +304,8 @@
 				F1DC9EB31D379BD400C1ADA8 /* libstdc++.6.0.9.tbd */,
 				F1DC9EB11D379BC900C1ADA8 /* CoreTelephony.framework */,
 				F1DC9EAF1D379BBC00C1ADA8 /* libsqlite3.0.tbd */,
+				F1E045CE1D38FEA400C15274 /* AddressBook.framework */,
+				F1E045D01D38FEAC00C15274 /* AddressBookUI.framework */,
 				F1DC9EAD1D379BAC00C1ADA8 /* Security.framework */,
 				F1DC9EAB1D379BA200C1ADA8 /* CoreGraphics.framework */,
 				F1DC9EA91D379B9800C1ADA8 /* SystemConfiguration.framework */,
@@ -446,6 +457,7 @@
 				F1DC9E941D378BBF00C1ADA8 /* 语音.ico in Resources */,
 				5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */,
 				F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */,
+				F17A93A31D39171B0076D6C2 /* test.gpx in Resources */,
 				F11B67E81D36444F0065E7CD /* homeNabigationRightIcon.ico in Resources */,
 				5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */,
 				F1DC9EB61D379DA600C1ADA8 /* mapapi.bundle in Resources */,
@@ -461,11 +473,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F11B67B11D3619DB0065E7CD /* AppDelegate.m in Sources */,
+				F11B67B11D3619DB0065E7CD /* AppDelegate.mm in Sources */,
 				F1DC9E861D37603800C1ADA8 /* DetailUIView.m in Sources */,
 				F11B67CF1D361B2C0065E7CD /* BaseViewController.m in Sources */,
 				F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */,
-				5F1C55491D37276D00B08D4D /* MapViewController.m in Sources */,
+				5F1C55491D37276D00B08D4D /* MapViewController.mm in Sources */,
 				F1DC9E8F1D3783CB00C1ADA8 /* SetingSubViewController.m in Sources */,
 				F11B67D81D361BE80065E7CD /* CustomNavigationBar.m in Sources */,
 				5F1C554F1D37339F00B08D4D /* DetailViewController.m in Sources */,

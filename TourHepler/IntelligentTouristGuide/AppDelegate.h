@@ -21,16 +21,17 @@
 
 #import <BaiduMapAPI_Radar/BMKRadarComponent.h>//引入周边雷达功能所有的头文件
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-@end
-@interface BaiduMapApiDemoAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-    UINavigationController *navigationController;
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
     BMKMapManager* _mapManager;
 }
+@property (strong, nonatomic) UIWindow *window;
+
+//@end
+//@interface BaiduMapApiDemoAppDelegate : NSObject <UIApplicationDelegate> {
+//    UIWindow *window;
+//    UINavigationController *navigationController;
+//    BMKMapManager* _mapManager;
+//}
 
 @end
 
