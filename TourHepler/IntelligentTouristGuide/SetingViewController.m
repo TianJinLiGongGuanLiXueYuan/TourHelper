@@ -18,7 +18,28 @@
 {
     self = [super init];
     if (self) {
+        [self.navigationController setNavigationBarHidden:YES];
+        self.navigationBar.titleLabel.text = @"个人设置";
+        [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
+        [self.navigationBar.rightBtn setHidden:YES];
         
+        UIButton *cleanBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64+100, 414, 40)];
+        [cleanBtn setTitle:@"清除缓存" forState:UIControlStateNormal];
+        cleanBtn.backgroundColor = [UIColor greenColor];
+        [self.view addSubview:cleanBtn];
+        
+        UIButton *subBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64+100+40+15, 414, 40)];
+        [subBtn setTitle:@"提出意见" forState:UIControlStateNormal];
+        subBtn.backgroundColor = [UIColor blueColor];
+        [subBtn addTarget:self action:@selector(subBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:subBtn];
+        
+        
+        UIButton *aboutBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64+100+40+15+40+15, 414, 40)];
+        [aboutBtn setTitle:@"关于我们" forState:UIControlStateNormal];
+        aboutBtn.backgroundColor = [UIColor redColor];
+        [aboutBtn addTarget:self action:@selector(aboutBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aboutBtn];
     }
     return self;
 }
@@ -26,28 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationController setNavigationBarHidden:YES];
-    self.navigationBar.titleLabel.text = @"个人设置";
-    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
-    [self.navigationBar.rightBtn setHidden:YES];
     
-    UIButton *cleanBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64+100, 414, 40)];
-    [cleanBtn setTitle:@"清除缓存" forState:UIControlStateNormal];
-    cleanBtn.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:cleanBtn];
-    
-    UIButton *subBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64+100+40+15, 414, 40)];
-    [subBtn setTitle:@"提出意见" forState:UIControlStateNormal];
-    subBtn.backgroundColor = [UIColor blueColor];
-    [subBtn addTarget:self action:@selector(subBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:subBtn];
-    
-    
-    UIButton *aboutBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64+100+40+15+40+15, 414, 40)];
-    [aboutBtn setTitle:@"关于我们" forState:UIControlStateNormal];
-    aboutBtn.backgroundColor = [UIColor redColor];
-    [aboutBtn addTarget:self action:@selector(aboutBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:aboutBtn];
     
     
 }

@@ -40,7 +40,7 @@
     _mapView.showMapScaleBar = YES;//显示比例尺
     _mapView.zoomLevel=17;//地图显示的级别
     
-    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(5, 64+10, screenWidth-10, 40)];
+    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(5, 64+10, screenWidth-10, 40)];
 //    searchBar.prompt = @"搜索";
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
@@ -50,7 +50,6 @@
     _mapView.showsUserLocation = YES;//显示定位图层
     
     _mapView.userTrackingMode = BMKUserTrackingModeNone;
-//    geoCodeSearch
     
     _geoCodeSearch = [[BMKGeoCodeSearch alloc] init];
     //编码服务的初始化(就是获取经纬度,或者获取地理位置服务)
@@ -68,8 +67,9 @@
 //    [mapView updateLocationData:_locService];
     
     [self.view addSubview:_mapView];
-    [self.view addSubview:searchBar];
-    
+    [self.view addSubview:_searchBar];
+    [self.view endEditing:YES];
+//    
 //    //初始化检索对象
 //    _searcher =[[BMKPoiSearch alloc]init];
 //    _searcher.delegate = self;
@@ -95,6 +95,12 @@
 //    }
 //    
 }
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.searchBar resignFirstResponder];
+}
+
+
 
 //点击地图上边的建筑物标记事件
 -(void)mapView:(BMKMapView *)mapView onClickedMapPoi:(BMKMapPoi *)mapPoi{
@@ -125,8 +131,8 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    [_mapView viewWillAppear];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
