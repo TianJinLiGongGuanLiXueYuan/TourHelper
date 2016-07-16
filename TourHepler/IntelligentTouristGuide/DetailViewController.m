@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#define w [UIScreen mainScreen].bounds.size.width
 
 
 @interface DetailViewController ()
@@ -52,6 +53,14 @@
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"homeNabigationRightIcon.ico"] forState:UIControlStateNormal];
     
+    
+    // 网络加载 --- 创建自定义图片的pageControlDot的图片轮播器
+    SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 500, w, 180) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder@2x.png"]];
+    cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot@2x.png"];
+    cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot@2x.png"];
+//    cycleScrollView3.imageURLStringsGroup = imagesURLStrings;
+    
+    [self.view addSubview:cycleScrollView3];
     
 }
 

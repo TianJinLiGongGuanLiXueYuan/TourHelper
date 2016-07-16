@@ -9,8 +9,9 @@
 #import "BaseViewController.h"
 #import "Detail.h"
 #import "DetailUIView.h"
+#import "SDCycleScrollView.h"
 
-@interface DetailViewController : BaseViewController
+@interface DetailViewController : BaseViewController<SDCycleScrollViewDelegate>
 
 
 @property (nonatomic,strong) NSString* titleText;
