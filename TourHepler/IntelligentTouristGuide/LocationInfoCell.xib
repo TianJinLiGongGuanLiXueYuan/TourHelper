@@ -32,16 +32,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PBo-VG-YC5">
-                        <rect key="frame" x="81" y="157" width="30" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="讲解"/>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bB3-yL-AL4">
                         <rect key="frame" x="0.0" y="-2" width="411" height="160"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <connections>
                             <action selector="imageBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xPt-AY-ZCF"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PBo-VG-YC5">
+                        <rect key="frame" x="81" y="157" width="30" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="讲解"/>
+                        <connections>
+                            <action selector="voiceBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4HC-dy-3oM"/>
                         </connections>
                     </button>
                 </subviews>
@@ -50,7 +53,6 @@
                 <outlet property="distanceLabel" destination="I5x-aU-Y2S" id="pC1-2k-ZdY"/>
                 <outlet property="locationImage" destination="J6D-M9-deJ" id="Bi3-CW-Rbh"/>
                 <outlet property="locationNameLabel" destination="2nb-IY-HeA" id="Cqb-sK-RDm"/>
-                <outlet property="voiceBtn" destination="PBo-VG-YC5" id="Kmi-Wx-kfm"/>
             </connections>
             <point key="canvasLocation" x="294.5" y="443.5"/>
         </tableViewCell>

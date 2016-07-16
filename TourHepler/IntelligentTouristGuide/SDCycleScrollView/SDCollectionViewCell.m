@@ -79,6 +79,8 @@
     UILabel *titleLabel = [[UILabel alloc] init];
     _titleLabel = titleLabel;
     _titleLabel.hidden = YES;
+    _titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+    _titleLabel.numberOfLines = 0;
     [self.contentView addSubview:titleLabel];
 }
 
@@ -86,6 +88,10 @@
 {
     _title = [title copy];
     _titleLabel.text = [NSString stringWithFormat:@"   %@", title];
+    //文字居中显示
+//    _titleLabel = UITextAlignmentCenter;
+    //自动折行设置
+//    _titleLabel = UILineBreakModeWordWrap;
     if (_titleLabel.hidden) {
         _titleLabel.hidden = NO;
     }

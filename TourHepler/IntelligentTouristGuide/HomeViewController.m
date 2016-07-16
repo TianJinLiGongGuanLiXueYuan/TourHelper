@@ -12,8 +12,12 @@
 #import "MapViewController.h"
 #import "DetailViewController.h"
 #import "SetingViewController.h"
+#import "DataSingleton.h"
 
-@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+
+@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,IFlySpeechSynthesizerDelegate>
+
 @property (nonatomic ,strong) NSArray *dataArr;
 @end
 
@@ -30,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+#pragma mark - 导航栏初始化
     [self loadDataFromWeb];
     [self.navigationController setNavigationBarHidden:YES];
     self.navigationBar.titleLabel.text = @"九寨沟";
@@ -44,6 +49,22 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:self.mainTableView];
+//    语音
+//    //1.创建合成对象
+//    _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
+//    self;
+//    
+//    //设置在线工作方式
+//    [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
+//                                  forKey:[IFlySpeechConstant ENGINE_TYPE]];
+//    //音量,取值范围 0~100
+//    [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
+//    [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
+//    //3.启动合成会话
+//    [_iFlySpeechSynthesizer startSpeaking: @"你好,我是科大讯飞的小燕"];
+    
+    
+    
 }
 
 - (void) loadDataFromWeb{
@@ -51,8 +72,19 @@
     Location *Location2 = [[Location alloc]initWithlocationName:@"箭竹海" voice:@""locationImageName:@"箭竹海.jpg" distance:@"1.3KM" locationText:@"箭竹(Arrow Bamboo)是大熊猫喜食的食物，箭竹海(Arrow Bamboo Lake)湖岸四周广有生长，是箭竹海最大的特点，因而得名。箭竹海湖面开阔而绵长，水色碧蓝。倒影历历，直叫人分不清究竟是山入水中还是水浸山上。"];
     Location *Location3 = [[Location alloc]initWithlocationName:@"芦苇海" voice:@""locationImageName:@"芦苇海.jpg" distance:@"1.4KM" locationText:@"“芦苇海”海拔2140米，全长2.2公里，是一个半沼泽湖泊。海中芦苇丛生，水鸟飞翔，清溪碧流，漾绿摇翠，蜿蜒空行，好一派泽国风光。“芦苇海”中，荡荡芦苇，一片青葱，微风徐来，绿浪起伏。飒飒之声，委婉抒情，使人心旷神怡。"];
     Location *Location4 = [[Location alloc]initWithlocationName:@"双龙海" voice:@""locationImageName:@"双龙海.jpg" distance:@"1.5KM" locationText:@"“双龙海”在火花海瀑布下的树丛中。海中有两条带状的生物钙华礁堤隐隐潜伏于海底，活像两条蛟龙藏于海中，蠕蠕欲动。还有一个黑龙与白龙打斗的传说。那条白龙本是双龙海的守护神，黑龙是天将，黑龙因触犯天条，被玉帝贬下界，在双龙海与白龙夺龙王大权……"];
+    DataSingleton* dataSL = [DataSingleton shareInstance];
+    dataSL.allDetail = @[Location1,Location2,Location3,Location4];
     self.dataArr = @[Location1,Location2,Location3,Location4];
 }
+
+//结束代理
+- (void) onCompleted:(IFlySpeechError *) error{}
+//合成开始
+- (void) onSpeakBegin{}
+//合成缓冲进度
+- (void) onBufferProgress:(int) progress message:(NSString *)msg{} //合成播放进度
+- (void) onSpeakProgress:(int) progress{}
+
 
 //控制行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -98,7 +130,7 @@
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
     NSLog(@"HOME leftBtnDidClick");
-
+    
     MapViewController *mapViewController;
     mapViewController = [[MapViewController alloc]init];
     mapViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

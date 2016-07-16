@@ -8,14 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "Location.h"
-@interface LocationInfoCell : UITableViewCell
+#import "iflyMSC/IFlySpeechConstant.h"
+#import "iflyMSC/IFlySpeechSynthesizer.h"
+#import "iflyMSC/IFlySpeechSynthesizerDelegate.h"
+@interface LocationInfoCell : UITableViewCell<IFlySpeechSynthesizerDelegate>{
+    IFlySpeechSynthesizer * _iFlySpeechSynthesizer;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *locationNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *locationImage;
-@property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
+
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (nonatomic,strong) NSString *cellText;
 @property (nonatomic,strong) NSString *imgName;
+- (IBAction)voiceBtnClick:(id)sender;
 
 - (IBAction)imageBtnClick:(id)sender;
 - (void)setCellData:(Location*)location;

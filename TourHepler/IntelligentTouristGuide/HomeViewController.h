@@ -7,9 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "iflyMSC/IFlySpeechConstant.h"
+#import "iflyMSC/IFlySpeechSynthesizer.h"
+#import "iflyMSC/IFlySpeechSynthesizerDelegate.h"
 
-@interface HomeViewController : BaseViewController
+@interface HomeViewController : BaseViewController<IFlySpeechSynthesizerDelegate>{
 
 
-
+    IFlySpeechSynthesizer * _iFlySpeechSynthesizer;
+}
 @end

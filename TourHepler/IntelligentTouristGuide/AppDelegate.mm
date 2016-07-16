@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "BaseNavigationViewController.h"
 #import "HomeViewController.h"
+//#import "IFlySpeechUtility.h"
+#define APPID_VALUE @"578a024b"
 
 @interface AppDelegate ()
 
@@ -32,6 +34,9 @@
     if (!ret) {
         NSLog(@"manager start failed!");
     }
+    //创建语音配置,appid必须要传入，仅执行一次则可
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",APPID_VALUE];
+    [IFlySpeechUtility createUtility:initString];
     // Add the navigation controller's view to the window and display.
 //    [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];

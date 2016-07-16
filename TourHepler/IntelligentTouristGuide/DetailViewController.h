@@ -10,8 +10,14 @@
 #import "Detail.h"
 #import "DetailUIView.h"
 #import "SDCycleScrollView.h"
+#import "iflyMSC/IFlySpeechConstant.h"
+#import "iflyMSC/IFlySpeechSynthesizer.h"
+#import "iflyMSC/IFlySpeechSynthesizerDelegate.h"
 
-@interface DetailViewController : BaseViewController<SDCycleScrollViewDelegate>
+@interface DetailViewController : BaseViewController<SDCycleScrollViewDelegate,IFlySpeechSynthesizerDelegate>{
+    IFlySpeechSynthesizer * _iFlySpeechSynthesizer;
+}
+
 
 
 @property (nonatomic,strong) NSString* titleText;
