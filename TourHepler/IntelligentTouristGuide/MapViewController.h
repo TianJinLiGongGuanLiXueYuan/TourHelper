@@ -25,7 +25,7 @@
 
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
 
-@interface MapViewController : BaseViewController<BMKLocationServiceDelegate,BMKPoiSearchDelegate,BMKGeoCodeSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate>
+@interface MapViewController : BaseViewController<BMKLocationServiceDelegate,BMKPoiSearchDelegate,BMKGeoCodeSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate,UISearchBarDelegate>
 
 @property (nonatomic,strong) NSString* titleText;
 @property (nonatomic,strong) BMKPoiSearch* searcher;

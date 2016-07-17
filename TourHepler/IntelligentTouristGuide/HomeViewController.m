@@ -48,7 +48,10 @@
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc]init];
+    
     [self.view addSubview:self.mainTableView];
+    
+    
 //    语音
 //    //1.创建合成对象
 //    _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
@@ -77,14 +80,14 @@
     self.dataArr = @[Location1,Location2,Location3,Location4];
 }
 
-//结束代理
-- (void) onCompleted:(IFlySpeechError *) error{}
-//合成开始
-- (void) onSpeakBegin{}
-//合成缓冲进度
-- (void) onBufferProgress:(int) progress message:(NSString *)msg{} //合成播放进度
-- (void) onSpeakProgress:(int) progress{}
-
+////结束代理
+//- (void) onCompleted:(IFlySpeechError *) error{}
+////合成开始
+//- (void) onSpeakBegin{}
+////合成缓冲进度
+//- (void) onBufferProgress:(int) progress message:(NSString *)msg{} //合成播放进度
+//- (void) onSpeakProgress:(int) progress{}
+//
 
 //控制行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

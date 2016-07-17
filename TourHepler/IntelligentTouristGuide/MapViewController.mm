@@ -40,8 +40,9 @@
     _mapView.showMapScaleBar = YES;//显示比例尺
     _mapView.zoomLevel=17;//地图显示的级别
     
-    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(5, 64+10, screenWidth-10, 40)];
-//    searchBar.prompt = @"搜索";
+    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 64+10, screenWidth-10*2, 35)];
+    _searchBar.showsCancelButton = YES;
+    //    searchBar.prompt = @"搜索";
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
     _locService.delegate = self;
@@ -68,7 +69,9 @@
     
     [self.view addSubview:_mapView];
     [self.view addSubview:_searchBar];
-    [self.view endEditing:YES];
+//    [self.view endEditing:YES];
+    //设置搜索栏委托对象为当前视图控制器
+    self.searchBar.delegate = self;
 //    
 //    //初始化检索对象
 //    _searcher =[[BMKPoiSearch alloc]init];
@@ -77,12 +80,12 @@
 //    BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
 //    option.pageIndex = 0;
 //    option.pageCapacity = 10;
-//    CLLocationCoordinate2D tem;
-//    tem.latitude = 39.915;
-//    tem.longitude = 116.404;
+////    CLLocationCoordinate2D tem = _geoCodeSearch.;
+////    tem.latitude = 39.915;
+////    tem.longitude = 116.404;
 //    
 //    option.location = tem;
-//    option.keyword = @"小吃";
+//    option.keyword = @"景点";
 //    BOOL flag = [_searcher poiSearchNearBy:option];
 ////    [option release];
 //    if(flag)
@@ -96,10 +99,49 @@
 //    
 }
 
+//实现PoiSearchDeleage处理回调结果
+- (void)onGetPoiResult:(BMKPoiSearch*)searcher result:(BMKPoiResult*)poiResultList errorCode:(BMKSearchErrorCode)error
+{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //在此处理正常结果
+        NSLog(@"结果为：%@",poiResultList.poiInfoList);
+        
+        for (BMKPoiInfo* obj in poiResultList.poiInfoList) {
+            NSLog(@"obj.name = %@ obj.address = %@ obj.city = %@ obj.phone = %@ obj.postcode = %@ obj.pt.latitude = %@ obj.pt.longitude = %d ",obj.name,obj.address,obj.city,obj.city,obj.phone,obj.postcode,obj.epoitype,obj.pt.latitude,obj.pt.longitude);
+        }
+        
+    }
+    else if (error == BMK_SEARCH_AMBIGUOUS_KEYWORD){
+        //当在设置城市未找到结果，但在其他城市找到结果时，回调建议检索城市列表
+        // result.cityList;
+        NSLog(@"起始点有歧义");
+    } else {
+        NSLog(@"抱歉，未找到结果");
+    }
+}
+
+//关闭键盘
+-(void)searchBarSearchButtonClicked:(UISearchBar*)searchBar{
+    self.searchBar.showsScopeBar = NO;
+//    [self.searchBar sizeToFit];
+    [self.searchBar resignFirstResponder];
+}
+
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.searchBar resignFirstResponder];
 }
 
+
+//点击搜索栏取消按钮
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+//    //查询所有
+//    [self filterContentForSearchText:self.searchBar.text scope:-1];
+    self.searchBar.showsScopeBar = NO;
+//    [self.searchBar sizeToFit];
+    [self.searchBar resignFirstResponder];
+}
 
 
 //点击地图上边的建筑物标记事件
@@ -153,6 +195,30 @@
 //    [self passLocationValue];
 //    [_mapView updateLocationData:userLocation];
     [_mapView updateLocationData:userLocation];
+    
+    //初始化检索对象
+    _searcher =[[BMKPoiSearch alloc]init];
+    _searcher.delegate = self;
+    //发起检索
+    BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
+    option.pageIndex = 0;
+    option.pageCapacity = 10;
+    //    CLLocationCoordinate2D tem = _geoCodeSearch.;
+    //    tem.latitude = 39.915;
+    //    tem.longitude = 116.404;
+    
+    option.location = userLocation.location.coordinate;
+    option.keyword = @"景点";
+    BOOL flag = [_searcher poiSearchNearBy:option];
+    //    [option release];
+    if(flag)
+    {
+        NSLog(@"周边检索发送成功");
+    }
+    else
+    {
+        NSLog(@"周边检索发送失败");
+    }
     
     _mapView.centerCoordinate = userLocation.location.coordinate;
     [_locService stopUserLocationService];//取消定位

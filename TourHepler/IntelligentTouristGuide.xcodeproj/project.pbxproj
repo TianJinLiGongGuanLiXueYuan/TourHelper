@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5F1C55491D37276D00B08D4D /* MapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C55481D37276D00B08D4D /* MapViewController.mm */; };
 		5F1C554F1D37339F00B08D4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C554E1D37339F00B08D4D /* DetailViewController.m */; };
+		5F5030F21D3B4D7200ACE15D /* PcmPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030ED1D3B4D7200ACE15D /* PcmPlayer.m */; };
+		5F5030F31D3B4D7200ACE15D /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030F01D3B4D7200ACE15D /* PopupView.m */; };
+		5F5030F91D3B4E9000ACE15D /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030F81D3B4E9000ACE15D /* AlertView.m */; };
 		5F6AE6B41D37582E00B9BAC1 /* 卧龙海.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */; };
 		5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */; };
 		5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */; };
@@ -64,7 +67,7 @@
 		F16C73B11D3A40710070EFD7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C73B01D3A40710070EFD7 /* AudioToolbox.framework */; };
 		F16C73B31D3A407C0070EFD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C73B21D3A407C0070EFD7 /* UIKit.framework */; };
 		F17A93A31D39171B0076D6C2 /* test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F17A93A21D39171B0076D6C2 /* test.gpx */; };
-		F1C97C201D3A1D790006B637 /* DataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C97C1F1D3A1D790006B637 /* DataSingleton.m */; settings = {ASSET_TAGS = (); }; };
+		F1C97C201D3A1D790006B637 /* DataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C97C1F1D3A1D790006B637 /* DataSingleton.m */; };
 		F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A4181D3668F900F48A48 /* LocationInfoCell.m */; };
 		F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D5A4191D3668F900F48A48 /* LocationInfoCell.xib */; };
 		F1D5A41E1D366A3A00F48A48 /* Location.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A41D1D366A3A00F48A48 /* Location.mm */; };
@@ -100,6 +103,13 @@
 		5F1C55481D37276D00B08D4D /* MapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MapViewController.mm; sourceTree = "<group>"; };
 		5F1C554D1D37339F00B08D4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		5F1C554E1D37339F00B08D4D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		5F5030EC1D3B4D7200ACE15D /* PcmPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PcmPlayer.h; sourceTree = "<group>"; };
+		5F5030ED1D3B4D7200ACE15D /* PcmPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PcmPlayer.m; sourceTree = "<group>"; };
+		5F5030EE1D3B4D7200ACE15D /* PcmPlayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PcmPlayerDelegate.h; sourceTree = "<group>"; };
+		5F5030EF1D3B4D7200ACE15D /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
+		5F5030F01D3B4D7200ACE15D /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
+		5F5030F71D3B4E9000ACE15D /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		5F5030F81D3B4E9000ACE15D /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "卧龙海.jpeg"; sourceTree = "<group>"; };
 		5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "箭竹海.jpg"; sourceTree = "<group>"; };
 		5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海.jpg"; sourceTree = "<group>"; };
@@ -429,12 +439,19 @@
 		F11B67C41D361A770065E7CD /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				5F5030EC1D3B4D7200ACE15D /* PcmPlayer.h */,
+				5F5030ED1D3B4D7200ACE15D /* PcmPlayer.m */,
+				5F5030EE1D3B4D7200ACE15D /* PcmPlayerDelegate.h */,
+				5F5030EF1D3B4D7200ACE15D /* PopupView.h */,
+				5F5030F01D3B4D7200ACE15D /* PopupView.m */,
 				F11B67CD1D361B2C0065E7CD /* BaseViewController.h */,
 				F11B67CE1D361B2C0065E7CD /* BaseViewController.m */,
 				F11B67D31D361B9D0065E7CD /* BaseNavigationViewController.h */,
 				F11B67D41D361B9D0065E7CD /* BaseNavigationViewController.m */,
 				F11B67D61D361BE80065E7CD /* CustomNavigationBar.h */,
 				F11B67D71D361BE80065E7CD /* CustomNavigationBar.m */,
+				5F5030F71D3B4E9000ACE15D /* AlertView.h */,
+				5F5030F81D3B4E9000ACE15D /* AlertView.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -692,11 +709,13 @@
 				F11B67CF1D361B2C0065E7CD /* BaseViewController.m in Sources */,
 				5FC174B11D39E0D700365D25 /* SDCycleScrollView.m in Sources */,
 				5FC174AA1D39DF0100365D25 /* UIImage+MultiFormat.m in Sources */,
+				5F5030F31D3B4D7200ACE15D /* PopupView.m in Sources */,
 				F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */,
 				5FC174A31D39DF0100365D25 /* SDWebImageDecoder.m in Sources */,
 				5F1C55491D37276D00B08D4D /* MapViewController.mm in Sources */,
 				5FC174AD1D39DF0100365D25 /* UIImageView+WebCache.m in Sources */,
 				F1C97C201D3A1D790006B637 /* DataSingleton.m in Sources */,
+				5F5030F91D3B4E9000ACE15D /* AlertView.m in Sources */,
 				5FC174631D39DDB400365D25 /* TAAnimatedDotView.m in Sources */,
 				F1DC9E8F1D3783CB00C1ADA8 /* SetingSubViewController.m in Sources */,
 				5FC174A01D39DF0100365D25 /* NSData+ImageContentType.m in Sources */,
@@ -706,6 +725,7 @@
 				5FC174AC1D39DF0100365D25 /* UIImageView+HighlightedWebCache.m in Sources */,
 				F1DC9E8C1D377D8B00C1ADA8 /* SetingViewController.m in Sources */,
 				5FC174621D39DDB400365D25 /* TAAbstractDotView.m in Sources */,
+				5F5030F21D3B4D7200ACE15D /* PcmPlayer.m in Sources */,
 				F11B67AE1D3619DB0065E7CD /* main.m in Sources */,
 				5FC174681D39DDB400365D25 /* UIView+SDExtension.m in Sources */,
 				5FC174AE1D39DF0100365D25 /* UIView+WebCacheOperation.m in Sources */,
