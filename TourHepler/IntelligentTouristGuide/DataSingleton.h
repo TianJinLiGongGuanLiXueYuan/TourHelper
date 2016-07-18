@@ -12,6 +12,8 @@
 @interface DataSingleton : NSObject
 
 @property(nonatomic,strong) NSMutableArray* allDetail;
+@property(nonatomic,strong) NSMutableArray* allImgWithLocation;
+
 //@property(nonatomic,strong) NSArray* allDetailText;
 
 +(instancetype) shareInstance; 

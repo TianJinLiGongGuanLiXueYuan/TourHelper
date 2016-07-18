@@ -76,6 +76,11 @@
     Location *Location3 = [[Location alloc]initWithlocationName:@"芦苇海" voice:@""locationImageName:@"芦苇海.jpg" distance:@"1.4KM" locationText:@"“芦苇海”海拔2140米，全长2.2公里，是一个半沼泽湖泊。海中芦苇丛生，水鸟飞翔，清溪碧流，漾绿摇翠，蜿蜒空行，好一派泽国风光。“芦苇海”中，荡荡芦苇，一片青葱，微风徐来，绿浪起伏。飒飒之声，委婉抒情，使人心旷神怡。"];
     Location *Location4 = [[Location alloc]initWithlocationName:@"双龙海" voice:@""locationImageName:@"双龙海.jpg" distance:@"1.5KM" locationText:@"“双龙海”在火花海瀑布下的树丛中。海中有两条带状的生物钙华礁堤隐隐潜伏于海底，活像两条蛟龙藏于海中，蠕蠕欲动。还有一个黑龙与白龙打斗的传说。那条白龙本是双龙海的守护神，黑龙是天将，黑龙因触犯天条，被玉帝贬下界，在双龙海与白龙夺龙王大权……"];
     DataSingleton* dataSL = [DataSingleton shareInstance];
+    NSArray* data1 = @[@"卧龙海.jpeg",@"卧龙海2.jpeg",@"卧龙海3.jpeg",@"卧龙海4.jpeg"];
+    NSArray* data2 = @[@"箭竹海.jpg",@"箭竹海2.jpeg",@"箭竹海3.jpeg",@"箭竹海4.jpeg"];
+    NSArray* data3 = @[@"芦苇海.jpg",@"芦苇海2.jpeg",@"芦苇海3.jpeg"];
+    NSArray* data4 = @[@"双龙海.jpg",@"双龙海2.jpeg",@"双龙海3.jpeg",@"双龙海4.jpeg"];
+    dataSL.allImgWithLocation = @[data1,data2,data3,data4];
     dataSL.allDetail = @[Location1,Location2,Location3,Location4];
     self.dataArr = @[Location1,Location2,Location3,Location4];
 }

@@ -33,11 +33,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES];
-
+    
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"语音.ico"] forState:UIControlStateNormal];
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
     
     UITextView *locationTV = [[UITextView alloc]initWithFrame:CGRectMake(0,300+64+64, 414, 280)];
+    self.navigationBar.titleLabel.text = _titleText;
     locationTV.text = self.detailText;
     [locationTV setEditable:NO];
     locationTV.font = [UIFont boldSystemFontOfSize:20];
@@ -54,14 +55,15 @@
             break;
         }
     }
+    imageNames = [dataSL.allImgWithLocation objectAtIndex:i];
     
-    for (int j = 0; j<[dataSL.allDetail count]; j++) {
+    for (int j = 0; j<[imageNames count]; j++) {
         Location* tem = [dataSL.allDetail objectAtIndex:i];
-        [imageNames addObject:tem.locationImageName];
+//        [imageNames addObject:tem.locationImageName];
         
         [locatianNames addObject:tem.locationText];
-        i++;
-        i%=[dataSL.allDetail count];
+//        i++;
+//        i%=[dataSL.allDetail count];
     }
     
      //本地加载 --- 创建不带标题的图片轮播器
