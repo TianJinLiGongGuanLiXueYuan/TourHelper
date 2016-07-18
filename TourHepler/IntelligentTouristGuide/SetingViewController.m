@@ -20,7 +20,7 @@
     if (self) {
         [self.navigationController setNavigationBarHidden:YES];
         self.navigationBar.titleLabel.text = @"个人设置";
-        [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
+        [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"返回.png"] forState:UIControlStateNormal];
         [self.navigationBar.rightBtn setHidden:YES];
         
         UIButton *cleanBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64+100, 414, 40)];

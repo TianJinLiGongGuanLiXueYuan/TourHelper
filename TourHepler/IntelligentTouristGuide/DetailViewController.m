@@ -43,7 +43,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"语音.ico"] forState:UIControlStateNormal];
-    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
+    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"主页.png"] forState:UIControlStateNormal];
     
     self.navigationBar.titleLabel.text = _titleText;
     

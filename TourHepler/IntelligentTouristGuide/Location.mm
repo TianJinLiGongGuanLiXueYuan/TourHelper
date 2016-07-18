@@ -19,8 +19,6 @@
         self.distance = distance;
         self.locationText = locationText;
         self.coor = coor;
-//        self.coor.latitude = coor.latitude;
-//        self.coor.longitude = coor.longitude;
     }
     return self;
 }

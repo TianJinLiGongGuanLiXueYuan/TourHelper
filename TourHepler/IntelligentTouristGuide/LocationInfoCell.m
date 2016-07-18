@@ -8,6 +8,8 @@
 
 #import "LocationInfoCell.h"
 #import "DetailViewController.h"
+#define kImgHeight 300
+#define kTop 10
 
 @interface LocationInfoCell ()
 
@@ -59,6 +61,21 @@
     self.cellText = location.locationText;
     self.locationNameLabel.text = self.currentLocation.locationName;
     self.distanceLabel.text = self.currentLocation.distance;
+    
+    [self layoutSubviews];
+    
+}
+
+- (void) layoutSubviews{
+    [super layoutSubviews];
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    self.locationImage.frame = CGRectMake(0, 0, screenWidth, kImgHeight);
+    self.UIImgBtn.frame = self.locationImage.frame;
+    CGSize locationSize = [self.locationNameLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
+    self.locationNameLabel.frame = CGRectMake(10, kImgHeight+kTop, locationSize.width, locationSize.height);
+    CGSize voiceSize = [self.voiceBtn.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
+    self.voiceBtn.frame = CGRectMake(self.locationNameLabel.frame.size.width+20, kImgHeight+kTop,voiceSize.width , voiceSize.height);
+    self.distanceLabel.frame = CGRectMake(screenWidth-80, kImgHeight+kTop, locationSize.width, locationSize.height);
 }
 
 @end

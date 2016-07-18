@@ -78,6 +78,8 @@
 		F16C73B11D3A40710070EFD7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C73B01D3A40710070EFD7 /* AudioToolbox.framework */; };
 		F16C73B31D3A407C0070EFD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C73B21D3A407C0070EFD7 /* UIKit.framework */; };
 		F17A93A31D39171B0076D6C2 /* test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F17A93A21D39171B0076D6C2 /* test.gpx */; };
+		F1BD09121D3D003A00B754E0 /* 返回.png in Resources */ = {isa = PBXBuildFile; fileRef = F1BD09111D3D003A00B754E0 /* 返回.png */; settings = {ASSET_TAGS = (); }; };
+		F1BD09141D3D00C800B754E0 /* 主页.png in Resources */ = {isa = PBXBuildFile; fileRef = F1BD09131D3D00C800B754E0 /* 主页.png */; settings = {ASSET_TAGS = (); }; };
 		F1C97C201D3A1D790006B637 /* DataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C97C1F1D3A1D790006B637 /* DataSingleton.m */; };
 		F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A4181D3668F900F48A48 /* LocationInfoCell.m */; };
 		F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D5A4191D3668F900F48A48 /* LocationInfoCell.xib */; };
@@ -218,6 +220,8 @@
 		F16C73B01D3A40710070EFD7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F16C73B21D3A407C0070EFD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F17A93A21D39171B0076D6C2 /* test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test.gpx; path = IntelligentTouristGuide/test.gpx; sourceTree = "<group>"; };
+		F1BD09111D3D003A00B754E0 /* 返回.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "返回.png"; sourceTree = "<group>"; };
+		F1BD09131D3D00C800B754E0 /* 主页.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主页.png"; sourceTree = "<group>"; };
 		F1C97C1E1D3A1D790006B637 /* DataSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSingleton.h; sourceTree = "<group>"; };
 		F1C97C1F1D3A1D790006B637 /* DataSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSingleton.m; sourceTree = "<group>"; };
 		F1D5A4171D3668F900F48A48 /* LocationInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationInfoCell.h; sourceTree = "<group>"; };
@@ -564,6 +568,8 @@
 		F11B67DE1D3641B50065E7CD /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F1BD09131D3D00C800B754E0 /* 主页.png */,
+				F1BD09111D3D003A00B754E0 /* 返回.png */,
 				5F12438D1D3C827800477E00 /* 卧龙海2.jpeg */,
 				5F12438E1D3C827800477E00 /* 卧龙海3.jpeg */,
 				5F12438F1D3C827800477E00 /* 卧龙海4.jpeg */,
@@ -717,6 +723,7 @@
 				F1DC9E941D378BBF00C1ADA8 /* 语音.ico in Resources */,
 				5F1243921D3C827800477E00 /* 卧龙海4.jpeg in Resources */,
 				5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */,
+				F1BD09141D3D00C800B754E0 /* 主页.png in Resources */,
 				F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */,
 				5F1243A11D3C860200477E00 /* 双龙海3.jpeg in Resources */,
 				F17A93A31D39171B0076D6C2 /* test.gpx in Resources */,
@@ -730,6 +737,7 @@
 				F11B67BC1D3619DB0065E7CD /* LaunchScreen.storyboard in Resources */,
 				F11B67B91D3619DB0065E7CD /* Assets.xcassets in Resources */,
 				5FC1747C1D39DEBA00365D25 /* h1.jpg in Resources */,
+				F1BD09121D3D003A00B754E0 /* 返回.png in Resources */,
 				5FC174751D39DEB100365D25 /* h4.jpg in Resources */,
 				5F1243901D3C827800477E00 /* 卧龙海2.jpeg in Resources */,
 				5FC174721D39DEB100365D25 /* 005.jpg in Resources */,

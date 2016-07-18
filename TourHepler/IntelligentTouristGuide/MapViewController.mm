@@ -31,7 +31,7 @@
     
     [self.navigationController setNavigationBarHidden:YES];
     self.navigationBar.titleLabel.text = self.titleText;
-    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
+    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"主页.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setHidden:YES];
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;

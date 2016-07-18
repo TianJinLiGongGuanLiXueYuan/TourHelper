@@ -151,11 +151,14 @@
 }
 //行高
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 189;
+    return 350;
 }
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailViewController *detailViewController = [[DetailViewController alloc]init];
+//    detailViewController.titleText = locationName;
+//    detailViewController.detailImg = img;
+//    detailViewController.detailText = locationText;
     [self.navigationController pushViewController:detailViewController animated:YES ];
     
 }
@@ -167,6 +170,7 @@
     mapViewController = [[MapViewController alloc]init];
     mapViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     mapViewController.titleText = self.navigationBar.titleLabel.text;
+    
     [self presentViewController:mapViewController animated:YES completion:nil];
 
 }
