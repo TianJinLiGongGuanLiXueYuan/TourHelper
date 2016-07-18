@@ -18,6 +18,8 @@
 #import <AudioToolbox/AudioSession.h>
 #import "AlertView.h"
 #import "PopupView.h"
+#import <CoreLocation/CoreLocation.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
 
 @class AlertView;
 @class PopupView;
@@ -33,9 +35,12 @@ typedef NS_OPTIONS(NSInteger, Status) {
 };
 
 @property (nonatomic,strong) NSString* titleText;
-@property(nonatomic,strong) NSString* detailImg;
-@property(nonatomic,strong) NSString* detailText;
+@property (nonatomic,strong) NSString* detailImg;
+@property (nonatomic,strong) NSString* detailText;
+@property (nonatomic) CLLocationCoordinate2D endCoor;
+//@property (readonly, nonatomic,strong) CLLocation *centerLocation;
 
+@property (nonatomic, strong) UIButton *detailBtn;
 @property (nonatomic, strong) PopupView *popUpView;
 @property (nonatomic, assign) Status state;
 @property (nonatomic, strong) AlertView *inidicateView;

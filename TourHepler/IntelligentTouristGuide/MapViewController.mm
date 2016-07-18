@@ -10,6 +10,8 @@
 
 @interface MapViewController ()
 
+@property (nonatomic) BOOL isPoi;
+
 @end
 
 @implementation MapViewController
@@ -18,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        
+        _isPoi = NO;
     }
     return self;
 }
@@ -223,28 +225,30 @@
 //    [_mapView updateLocationData:userLocation];
     [_mapView updateLocationData:userLocation];
     
-    //初始化检索对象
-    _searcher =[[BMKPoiSearch alloc]init];
-    _searcher.delegate = self;
-    //发起检索
-    BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
-    option.pageIndex = 0;
-    option.pageCapacity = 50;
-    option.radius = 100000;
+    if(!_isPoi){
+        _isPoi = YES;
+        //初始化检索对象
+        _searcher =[[BMKPoiSearch alloc]init];
+        _searcher.delegate = self;
+        //发起检索
+        BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
+        option.pageIndex = 0;
+        option.pageCapacity = 50;
+        option.radius = 100000;
     
-    option.location = userLocation.location.coordinate;
-    option.keyword = @"景点";
-    BOOL flag = [_searcher poiSearchNearBy:option];
-    //    [option release];
-    if(flag)
-    {
-        NSLog(@"周边检索发送成功");
+        option.location = userLocation.location.coordinate;
+        option.keyword = @"景点";
+        BOOL flag = [_searcher poiSearchNearBy:option];
+        //    [option release];
+        if(flag)
+        {
+            NSLog(@"周边检索发送成功");
+        }
+        else
+        {
+            NSLog(@"周边检索发送失败");
+        }
     }
-    else
-    {
-        NSLog(@"周边检索发送失败");
-    }
-    
     _mapView.centerCoordinate = userLocation.location.coordinate;
     [_locService stopUserLocationService];//取消定位
 }

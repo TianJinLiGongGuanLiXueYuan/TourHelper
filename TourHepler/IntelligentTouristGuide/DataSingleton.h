@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 //#import "Location.h"
 
 @interface DataSingleton : NSObject
@@ -17,5 +18,7 @@
 //@property(nonatomic,strong) NSArray* allDetailText;
 
 +(instancetype) shareInstance; 
+
+
 
 @end

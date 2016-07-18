@@ -9,12 +9,14 @@
 #import "DetailViewController.h"
 #import "DataSingleton.h"
 #import "Location.h"
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #define w [UIScreen mainScreen].bounds.size.width
 #define h [UIScreen mainScreen].bounds.size.height
 
-@interface DetailViewController ()
+@interface DetailViewController ()<BMKLocationServiceDelegate>
 
-
+@property (nonatomic,strong) BMKLocationService* locService;
+@property(readonly, nonatomic) CLLocationCoordinate2D homeCenterCC2D;
 
 @end
 
@@ -32,17 +34,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //初始化BMKLocationService
+    _locService = [[BMKLocationService alloc]init];
+    _locService.delegate = self;
+    //启动LocationService
+    [_locService startUserLocationService];
+    
     [self.navigationController setNavigationBarHidden:YES];
     
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"语音.ico"] forState:UIControlStateNormal];
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
     
-    UITextView *locationTV = [[UITextView alloc]initWithFrame:CGRectMake(0,300+64+64, 414, 280)];
     self.navigationBar.titleLabel.text = _titleText;
-    locationTV.text = self.detailText;
-    [locationTV setEditable:NO];
-    locationTV.font = [UIFont boldSystemFontOfSize:20];
-    [self.view addSubview:locationTV];
     
     // 采用本地图片和景点介绍实现
     DataSingleton* dataSL = [DataSingleton shareInstance];
@@ -59,14 +62,10 @@
     
     for (int j = 0; j<[imageNames count]; j++) {
         Location* tem = [dataSL.allDetail objectAtIndex:i];
-//        [imageNames addObject:tem.locationImageName];
-        
         [locatianNames addObject:tem.locationText];
-//        i++;
-//        i%=[dataSL.allDetail count];
     }
     
-     //本地加载 --- 创建不带标题的图片轮播器
+    //本地加载 --- 创建不带标题的图片轮播器
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, w, h-64) shouldInfiniteLoop:YES imageNamesGroup:imageNames];
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
@@ -76,11 +75,53 @@
     cycleScrollView.titleLabelHeight = 300;
     [self.view addSubview:cycleScrollView];
     
-    UIButton *detailBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 64+300+280+10, 414-40, 40)];
-    [detailBtn setTitle:@"我要到这里去" forState:UIControlStateNormal];
+    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(20, 64+300+280+10, 414-40, 40)];
+    [_detailBtn setTitle:@"我要到这里去" forState:UIControlStateNormal];
+    [_detailBtn addTarget:self action:@selector(detailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_detailBtn];
+    
+}
 
-    [self.view addSubview:detailBtn];
-   
+//处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+        _homeCenterCC2D.latitude = userLocation.location.coordinate.latitude;
+        _homeCenterCC2D.longitude = userLocation.location.coordinate.longitude;
+    
+    [_locService stopUserLocationService];//取消定位
+}
+
+- (void)detailBtnClick:(UIButton*)sender{
+    BMKOpenWalkingRouteOption *opt = [[BMKOpenWalkingRouteOption alloc] init];
+    opt.appScheme = @"baidumapsdk://mapsdk.baidu.com";
+    //初始化起点节点
+    BMKPlanNode* start = [[BMKPlanNode alloc]init];
+    //指定起点经纬度
+    CLLocationCoordinate2D coor1;
+    
+    coor1.latitude = _homeCenterCC2D.latitude;
+    coor1.longitude = _homeCenterCC2D.longitude;
+    
+    start.pt = coor1;
+    //指定起点名称
+    start.name = @"九寨沟";
+    //指定起点
+    opt.startPoint = start;
+    
+    //初始化终点节点
+    BMKPlanNode* end = [[BMKPlanNode alloc]init];
+    CLLocationCoordinate2D coor2;
+    coor2.latitude = _endCoor.latitude;
+    coor2.longitude = _endCoor.longitude;
+    end.pt = coor2;
+    //指定终点名称
+    end.name = _titleText;
+    opt.endPoint = end;
+    
+    BMKOpenErrorCode code = [BMKOpenRoute openBaiduMapWalkingRoute:opt];
+    NSLog(@"%d", code);
+    return;
 }
 
 - (void)didReceiveMemoryWarning {

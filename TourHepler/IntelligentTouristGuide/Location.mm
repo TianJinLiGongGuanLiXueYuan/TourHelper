@@ -10,7 +10,7 @@
 
 @implementation Location
 
-- (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance locationText:(NSString*)locationText{
+- (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance locationText:(NSString*)locationText coor:(CLLocationCoordinate2D)coor{
     self = [super init];
     if (self) {
         self.locationName = locationName;
@@ -18,6 +18,9 @@
         self.locationImageName = locationImageName;
         self.distance = distance;
         self.locationText = locationText;
+        self.coor = coor;
+//        self.coor.latitude = coor.latitude;
+//        self.coor.longitude = coor.longitude;
     }
     return self;
 }

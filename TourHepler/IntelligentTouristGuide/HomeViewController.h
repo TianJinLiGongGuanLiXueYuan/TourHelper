@@ -10,6 +10,7 @@
 #import "iflyMSC/IFlySpeechConstant.h"
 #import "iflyMSC/IFlySpeechSynthesizer.h"
 #import "iflyMSC/IFlySpeechSynthesizerDelegate.h"
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
 
 @interface HomeViewController : BaseViewController<IFlySpeechSynthesizerDelegate>{
 

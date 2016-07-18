@@ -24,8 +24,6 @@ static DataSingleton* _instance = nil;
     return _instance ;
 }
 
-
-
 -(id)copyWithZone:(struct _NSZone *)zone{
     return _instance;
 }

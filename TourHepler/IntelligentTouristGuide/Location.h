@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface Location : NSObject
 
@@ -15,8 +16,8 @@
 @property (nonatomic ,strong)NSString *locationImageName;
 @property (nonatomic ,strong)NSString *distance;
 @property (nonatomic ,strong)NSString *locationText;
+@property (nonatomic) CLLocationCoordinate2D coor;
 
-
-- (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance locationText:(NSString*)locationText;
+- (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance locationText:(NSString*)locationText coor:(CLLocationCoordinate2D)coor;
 
 @end
