@@ -48,6 +48,7 @@
     
     self.mainTableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
     self.mainTableView.backgroundColor = [UIColor whiteColor];
+    self.mainTableView.allowsSelection = NO;
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc]init];
@@ -118,6 +119,8 @@
 //- (void) onSpeakProgress:(int) progress{}
 //
 
+
+
 //控制行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -142,11 +145,12 @@
         }];
         
 //        cell = [[NSBundle mainBundle] loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
-        Location *currentLocation =self.dataArr[indexPath.row];
-//        CellFrameInfo *currentFrameInfo = [[CellFrameInfo alloc]initWithStudent:currentStudent];
-        [cell setCellData:currentLocation];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
     }
+    Location *currentLocation =self.dataArr[indexPath.row];
+    //        CellFrameInfo *currentFrameInfo = [[CellFrameInfo alloc]initWithStudent:currentStudent];
+    [cell setCellData:currentLocation];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 //行高
@@ -155,6 +159,7 @@
 }
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     DetailViewController *detailViewController = [[DetailViewController alloc]init];
 //    detailViewController.titleText = locationName;
 //    detailViewController.detailImg = img;

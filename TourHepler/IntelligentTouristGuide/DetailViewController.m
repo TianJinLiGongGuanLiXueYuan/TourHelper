@@ -74,8 +74,8 @@
     cycleScrollView.titlesGroup = locatianNames;
     cycleScrollView.titleLabelHeight = 300;
     [self.view addSubview:cycleScrollView];
-    
-    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(20, 64+300+280+10, 414-40, 40)];
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(0, 64+300+280+10, screenWidth, 40)];
     [_detailBtn setTitle:@"我要到这里去" forState:UIControlStateNormal];
     [_detailBtn addTarget:self action:@selector(detailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_detailBtn];

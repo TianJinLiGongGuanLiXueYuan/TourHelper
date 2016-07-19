@@ -146,7 +146,6 @@
     if (error == BMK_SEARCH_NO_ERROR) {
         //在此处理正常结果
 //        NSLog(@"结果为：%@",poiResultList.poiInfoList);
-        
         for (BMKPoiInfo* obj in poiResultList.poiInfoList) {
 //            NSLog(@"obj.name = %@ obj.address = %@ obj.city = %@ obj.phone = %@ obj.postcode = %@ obj.pt.latitude = %@ obj.pt.longitude = %d ",obj.name,obj.address,obj.city,obj.city,obj.phone,obj.postcode,obj.epoitype,obj.pt.latitude,obj.pt.longitude);
             CLLocationCoordinate2D coordinate = obj.pt;
@@ -237,7 +236,7 @@
         option.radius = 100000;
     
         option.location = userLocation.location.coordinate;
-        option.keyword = @"景点";
+        option.keyword = @"旅游景点";
         BOOL flag = [_searcher poiSearchNearBy:option];
         //    [option release];
         if(flag)

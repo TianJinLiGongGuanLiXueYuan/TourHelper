@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (nonatomic,strong) NSString *cellText;
 @property (nonatomic,strong) NSString *imgName;
+@property (nonatomic) CGFloat cellHeight;
+
 - (IBAction)voiceBtnClick:(id)sender;
 
 - (IBAction)imageBtnClick:(id)sender;
