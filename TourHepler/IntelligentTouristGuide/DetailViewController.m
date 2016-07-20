@@ -202,8 +202,10 @@
         [_iFlySpeechSynthesizer stopSpeaking];
         _state = NotStart;
     }
-    [self.navigationController popViewControllerAnimated:YES];
-    
+    if([self.navigationController popViewControllerAnimated:YES])
+        ;
+    else
+        [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

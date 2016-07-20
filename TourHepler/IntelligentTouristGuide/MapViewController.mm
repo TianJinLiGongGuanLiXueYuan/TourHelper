@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController.h"
+#import "MyBMKPointAnnotation.h"
+#import "DetailViewController.h"
 
 @interface MapViewController ()
 
@@ -41,7 +43,7 @@
     //[mapView setMapType:BMKMapTypeSatellite];
     _mapView.showsUserLocation = YES;//显示定位图层
     _mapView.showMapScaleBar = YES;//显示比例尺
-    _mapView.zoomLevel=16;//地图显示的级别
+    _mapView.zoomLevel=19;//地图显示的级别
     
     _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 64+10, screenWidth-10*2, 35)];
     _searchBar.showsCancelButton = YES;
@@ -125,6 +127,13 @@
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
     NSLog(@"MAP leftBtnDidClick");
+//    NSLog(@"点击goToBtn");
+//    DetailViewController *deVC = [[DetailViewController alloc]init];
+//    deVC.titleText = @"卧龙海";
+//    deVC.detailImg = @"卧龙海.jpeg";
+//    deVC.detailText = @"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。";
+//    
+//    [self.navigationController pushViewController:deVC animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -146,13 +155,17 @@
     if (error == BMK_SEARCH_NO_ERROR) {
         //在此处理正常结果
 //        NSLog(@"结果为：%@",poiResultList.poiInfoList);
+        NSMutableArray* mutArr = [[NSMutableArray alloc]init];
         for (BMKPoiInfo* obj in poiResultList.poiInfoList) {
 //            NSLog(@"obj.name = %@ obj.address = %@ obj.city = %@ obj.phone = %@ obj.postcode = %@ obj.pt.latitude = %@ obj.pt.longitude = %d ",obj.name,obj.address,obj.city,obj.city,obj.phone,obj.postcode,obj.epoitype,obj.pt.latitude,obj.pt.longitude);
             CLLocationCoordinate2D coordinate = obj.pt;
             //设置地图标注
             BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
             annotation.coordinate = coordinate;
-            [_mapView addAnnotation:annotation];
+            annotation.title = obj.name;
+            annotation.subtitle = obj.phone;
+            [mutArr addObject:annotation];
+//            [_mapView addAnnotation:annotation];
 //            BMKReverseGeoCodeOption *re = [[BMKReverseGeoCodeOption alloc] init];
 //            re.reverseGeoPoint = coordinate;
 //            [_geoCodeSearch reverseGeoCode:re];
@@ -162,6 +175,7 @@
 //            }
 
         }
+        [_mapView addAnnotations:mutArr];
         
     }
     else if (error == BMK_SEARCH_AMBIGUOUS_KEYWORD){
@@ -172,33 +186,33 @@
         NSLog(@"抱歉，未找到结果");
     }
 }
+//
+////点击地图上边的建筑物标记事件
+//-(void)mapView:(BMKMapView *)mapView onClickedMapPoi:(BMKMapPoi *)mapPoi{
+//    CLLocationCoordinate2D coordinate = mapPoi.pt;
+//    //长按之前删除所有标注
+//    NSArray *arrayAnmation=[[NSArray alloc] initWithArray:_mapView.annotations];
+//    [_mapView removeAnnotations:arrayAnmation];
+//    //设置地图标注
+//    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+//    annotation.coordinate = coordinate;
+//    [_mapView addAnnotation:annotation];
+//    BMKReverseGeoCodeOption *re = [[BMKReverseGeoCodeOption alloc] init];
+//    re.reverseGeoPoint = coordinate;
+//    [_geoCodeSearch reverseGeoCode:re];
+//    BOOL flag =[_geoCodeSearch reverseGeoCode:re];
+//    if (!flag){
+//        NSLog(@"search failed!");
+//    }
+//}
 
-//点击地图上边的建筑物标记事件
--(void)mapView:(BMKMapView *)mapView onClickedMapPoi:(BMKMapPoi *)mapPoi{
-    CLLocationCoordinate2D coordinate = mapPoi.pt;
-    //长按之前删除所有标注
-    NSArray *arrayAnmation=[[NSArray alloc] initWithArray:_mapView.annotations];
-    [_mapView removeAnnotations:arrayAnmation];
-    //设置地图标注
-    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
-    annotation.coordinate = coordinate;
-    [_mapView addAnnotation:annotation];
-    BMKReverseGeoCodeOption *re = [[BMKReverseGeoCodeOption alloc] init];
-    re.reverseGeoPoint = coordinate;
-    [_geoCodeSearch reverseGeoCode:re];
-    BOOL flag =[_geoCodeSearch reverseGeoCode:re];
-    if (!flag){
-        NSLog(@"search failed!");
-    }
-}
-
-//根据经纬度返回点击的位置的名称
--(void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
-    
-    NSLog(@"%@",result.address);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:result.address message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alert show];
-}
+////根据经纬度返回点击的位置的名称
+//-(void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
+//    
+//    NSLog(@"%@",result.address);
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:result.address message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//    [alert show];
+//}
 
 -(void)viewWillAppear:(BOOL)animated{
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
@@ -252,10 +266,103 @@
     [_locService stopUserLocationService];//取消定位
 }
 
+#pragma mark 定义每个标注样式
+
+/**
+ *根据anntation生成对应的View
+ *@param mapView 地图View
+ *@param annotation 指定的标注
+ *@return 生成的标注View
+ */
+-(BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
+        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+        newAnnotationView.animatesDrop = YES;
+        newAnnotationView.annotation = annotation;
+        //这里我根据自己需要，继承了BMKPointAnnotation，添加了标注的类型等需要的信息
+//        MyBMKPointAnnotation *tt = (MyBMKPointAnnotation *)annotation;
+        
+        //判断类别，需要添加不同类别，来赋予不同的标注图片
+//        if (tt.profNumber == 100000) {
+//            newAnnotationView.image = [UIImage imageNamed:@"ic_map_mode_category_merchants_normal.png"];
+//        }else if (tt.profNumber == 100001){
+//            
+//        }
+        newAnnotationView.image = [UIImage imageNamed:@"定位5.png"];
+        
+        //设定popView的高度，根据是否含有缩略图
+        double popViewH = 60;
+        if (annotation.subtitle == nil) {
+            popViewH = 38;
+        }
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        UIView *popView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth-100, popViewH)];
+        popView.backgroundColor = [UIColor whiteColor];
+        [popView.layer setMasksToBounds:YES];
+        [popView.layer setCornerRadius:3.0];
+        popView.alpha = 0.9;
+        
+        //自定义气泡的内容，添加子控件在popView上
+        UILabel *driverName = [[UILabel alloc]initWithFrame:CGRectMake(8, 4, popView.frame.size.width-50-8, 30)];
+        driverName.text = annotation.title;
+        driverName.numberOfLines = 0;
+        driverName.backgroundColor = [UIColor clearColor];
+        driverName.font = [UIFont systemFontOfSize:15];
+        driverName.textColor = [UIColor blackColor];
+        driverName.textAlignment = NSTextAlignmentLeft;
+        [popView addSubview:driverName];
+        
+        UILabel *carName = [[UILabel alloc]initWithFrame:CGRectMake(8, 30, 180, 30)];
+        [carName setLineBreakMode:NSLineBreakByWordWrapping];
+//        carName.lineBreakMode = UILineBreakModeWordWrap;
+        carName.text = annotation.subtitle;
+        carName.backgroundColor = [UIColor clearColor];
+        carName.font = [UIFont systemFontOfSize:11];
+        carName.textColor = [UIColor lightGrayColor];
+        carName.textAlignment = NSTextAlignmentLeft;
+        [popView addSubview:carName];
+        
+        if (annotation.subtitle != nil) {
+            UIButton *goToBtn = [[UIButton alloc]initWithFrame:CGRectMake(popView.frame.size.width-50, 0, 50, 60)];
+            [goToBtn setTitle:@"查看详情" forState:UIControlStateNormal];
+            goToBtn.backgroundColor = [UIColor redColor];
+            goToBtn.titleLabel.numberOfLines = 0;
+            [goToBtn addTarget:self action:@selector(goToBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//            [searchBn addTarget:self action:@selector(searchLine)];
+            [popView addSubview:goToBtn];
+        }
+        
+        BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc]initWithCustomView:popView];
+        pView.frame = CGRectMake(0, 0, screenWidth-100, popViewH);
+//        ((BMKPinAnnotationView*)newAnnotationView).paopaoView = nil;
+        ((BMKPinAnnotationView*)newAnnotationView).paopaoView = pView;
+        return newAnnotationView;
+    }
+    return nil;
+}
+
+- (void)goToBtnClick:(UIButton*)sender{
+//    locationImageName:@"卧龙海.jpeg" distance:@"1.2KM" locationText:@"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。"coor:(CLLocationCoordinate2D){103.907089,33.206952}];
+    NSLog(@"点击goToBtn");
+    DetailViewController *deVC = [[DetailViewController alloc]init];
+    deVC.titleText = @"卧龙海";
+    deVC.detailImg = @"卧龙海.jpeg";
+    deVC.detailText = @"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。";
+    [self presentViewController:deVC animated:YES completion:nil];
+//    [self.navigationController pushViewController:deVC animated:YES];
+    
+}
+
+
+#pragma mark -- BMKMapdelegate
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
