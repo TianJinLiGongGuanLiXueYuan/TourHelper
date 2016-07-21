@@ -23,6 +23,7 @@
 		5F5030F21D3B4D7200ACE15D /* PcmPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030ED1D3B4D7200ACE15D /* PcmPlayer.m */; };
 		5F5030F31D3B4D7200ACE15D /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030F01D3B4D7200ACE15D /* PopupView.m */; };
 		5F5030F91D3B4E9000ACE15D /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030F81D3B4E9000ACE15D /* AlertView.m */; };
+		5F5D944C1D40CA310000DAE0 /* MySearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5D944B1D40CA310000DAE0 /* MySearchBar.m */; };
 		5F6A652F1D3F7727004B6AB0 /* MyBMKPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */; };
 		5F6A65311D3F78B1004B6AB0 /* 定位.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65301D3F78B1004B6AB0 /* 定位.png */; };
 		5F6A65331D3F7EA5004B6AB0 /* 定位_meitu_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65321D3F7EA5004B6AB0 /* 定位_meitu_1.jpg */; };
@@ -142,6 +143,8 @@
 		5F5030F01D3B4D7200ACE15D /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
 		5F5030F71D3B4E9000ACE15D /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		5F5030F81D3B4E9000ACE15D /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		5F5D944A1D40CA310000DAE0 /* MySearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchBar.h; sourceTree = "<group>"; };
+		5F5D944B1D40CA310000DAE0 /* MySearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchBar.m; sourceTree = "<group>"; };
 		5F6A652D1D3F7727004B6AB0 /* MyBMKPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBMKPointAnnotation.h; sourceTree = "<group>"; };
 		5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBMKPointAnnotation.m; sourceTree = "<group>"; };
 		5F6A65301D3F78B1004B6AB0 /* 定位.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定位.png"; sourceTree = "<group>"; };
@@ -325,6 +328,8 @@
 			children = (
 				5F6A652D1D3F7727004B6AB0 /* MyBMKPointAnnotation.h */,
 				5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */,
+				5F5D944A1D40CA310000DAE0 /* MySearchBar.h */,
+				5F5D944B1D40CA310000DAE0 /* MySearchBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -818,6 +823,7 @@
 				5FC174A21D39DF0100365D25 /* SDWebImageCompat.m in Sources */,
 				5FC174651D39DDB400365D25 /* TAPageControl.m in Sources */,
 				5FC1749F1D39DF0100365D25 /* MKAnnotationView+WebCache.m in Sources */,
+				5F5D944C1D40CA310000DAE0 /* MySearchBar.m in Sources */,
 				F11B67D51D361B9D0065E7CD /* BaseNavigationViewController.m in Sources */,
 				F1D5A41E1D366A3A00F48A48 /* Location.mm in Sources */,
 				5FC174A71D39DF0100365D25 /* SDWebImagePrefetcher.m in Sources */,

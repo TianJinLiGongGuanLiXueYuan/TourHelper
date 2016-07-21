@@ -10,6 +10,7 @@
 #import "MyBMKPointAnnotation.h"
 #import "DetailViewController.h"
 
+
 @interface MapViewController ()
 
 @property (nonatomic) BOOL isPoi;
@@ -73,7 +74,9 @@
 //    [mapView updateLocationData:_locService];
     
     [self.view addSubview:_mapView];
-    [self.view addSubview:_searchBar];
+    _mySrarchBar = [[MySearchBar alloc]init];
+    [self.view addSubview:_mySrarchBar];
+//    [self.view addSubview:_searchBar];
 //    [self.view endEditing:YES];
     //设置搜索栏委托对象为当前视图控制器
     self.searchBar.delegate = self;
@@ -103,6 +106,13 @@
 //    }
 //    
 }
+
+//#pragma  mark- 通过委托放弃第一响应者
+//
+//-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+//    [textField resignFirstResponder];
+//    return YES;
+//}
 
 #pragma mark- 搜索栏相关
 

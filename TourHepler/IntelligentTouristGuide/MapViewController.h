@@ -24,6 +24,7 @@
 #import <BaiduMapAPI_Radar/BMKRadarComponent.h>//引入周边雷达功能所有的头文件
 
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
+#import "MySearchBar.h"
 
 @interface MapViewController : BaseViewController<BMKLocationServiceDelegate,BMKPoiSearchDelegate,BMKGeoCodeSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate,UISearchBarDelegate>
 
@@ -34,6 +35,7 @@
 @property (nonatomic,strong) BMKMapView* mapView;
 @property (nonatomic,strong) BMKGeoCodeSearch* geoCodeSearch;
 @property (nonatomic,strong) UISearchBar *searchBar;
+@property (nonatomic,strong) MySearchBar *mySrarchBar;
 
 
 @end
