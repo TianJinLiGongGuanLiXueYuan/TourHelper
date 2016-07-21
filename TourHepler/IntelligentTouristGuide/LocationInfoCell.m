@@ -70,18 +70,18 @@
 - (void) layoutSubviews{
     [super layoutSubviews];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    self.locationImage.frame = CGRectMake(0, 0, screenWidth, kImgHeight);
+    self.locationImage.frame =CGRectMake(0, 0, screenWidth, kImgHeight);
     
-    self.UIImgBtn.frame = self.locationImage.frame;
-//    self.UIImgBtn.backgroundColor = [UIColor orangeColor];
+    self.UIImgBtn.frame = CGRectMake(0, 0, screenWidth, kImgHeight+30);
+    self.UIImgBtn.backgroundColor = [UIColor orangeColor];
     
     CGSize locationSize = [self.locationNameLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
     self.locationNameLabel.frame = CGRectMake(10, kImgHeight+kTop, locationSize.width, locationSize.height);
-//    self.locationNameLabel.backgroundColor = [UIColor redColor];
+    self.locationNameLabel.backgroundColor = [UIColor redColor];
     
     CGSize voiceSize = [self.voiceBtn.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
     self.voiceBtn.frame = CGRectMake(self.locationNameLabel.frame.size.width+20, kImgHeight+kTop,voiceSize.width , voiceSize.height);
-//    self.voiceBtn.backgroundColor = [UIColor grayColor];
+    self.voiceBtn.backgroundColor = [UIColor grayColor];
     
     CGSize distanceSize = [self.distanceLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
     self.distanceLabel.frame = CGRectMake(screenWidth-distanceSize.width-10, kImgHeight+kTop, distanceSize.width, distanceSize.height);
