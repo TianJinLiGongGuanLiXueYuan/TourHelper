@@ -289,7 +289,7 @@
         }
     }
     
-    [_locService stopUserLocationService];//取消定位
+//    [_locService stopUserLocationService];//取消定位
 }
 
 #pragma mark 定义每个标注样式
