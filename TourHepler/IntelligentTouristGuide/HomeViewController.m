@@ -13,6 +13,7 @@
 #import "DetailViewController.h"
 #import "SetingViewController.h"
 #import "DataSingleton.h"
+#import "HttpTool.h"
 
 
 
@@ -45,6 +46,9 @@
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－首页设置.png"] forState:UIControlStateNormal];
     
     CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
+    
+    [self testWebServer];
+    
 //    self.mainTableView.bo
     self.mainTableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
     UIColor *mainTVColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
@@ -207,5 +211,28 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+
+#pragma merk -----test-----
+
+
+-(void)testWebServer{
+
+    NSDictionary *para = @{@"self_location":@"100,100"};
+    
+    [HttpTool postWithparamsWithURL:@"homeInfo/GetScenicAreaName" andParam:para success:^(id responseObject) {
+        NSData *data = [[NSData alloc]initWithData:responseObject];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_area _name"]);
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
+
+
+
 
 @end
