@@ -9,11 +9,16 @@
 #import "MapViewController.h"
 #import "MyBMKPointAnnotation.h"
 #import "DetailViewController.h"
-
+#import "MapUpView.h"
+//#import "BMKGeometry.h"
+#define screenHeight ([UIScreen mainScreen].bounds.size.height)
+#define screenWidth ([UIScreen mainScreen].bounds.size.width)
+#define kUpViewHeight 100
 
 @interface MapViewController ()
 
 @property (nonatomic) BOOL isPoi;
+@property (nonatomic) BOOL isUpViewPop;
 
 @end
 
@@ -24,6 +29,7 @@
     self = [super init];
     if (self) {
         _isPoi = NO;
+        _isUpViewPop = NO;
     }
     return self;
 }
@@ -34,10 +40,9 @@
     
     [self.navigationController setNavigationBarHidden:YES];
     self.navigationBar.titleLabel.text = self.titleText;
-    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"主页.png"] forState:UIControlStateNormal];
+    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setHidden:YES];
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
     
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, 414, screenHeight-64)];
     _mapView.delegate = self;
@@ -46,8 +51,8 @@
     _mapView.showMapScaleBar = YES;//显示比例尺
     _mapView.zoomLevel=19;//地图显示的级别
     
-    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 64+10, screenWidth-10*2, 35)];
-    _searchBar.showsCancelButton = YES;
+//    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 64+10, screenWidth-10*2, 35)];
+//    _searchBar.showsCancelButton = YES;
     //    searchBar.prompt = @"搜索";
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
@@ -243,13 +248,24 @@
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
 //    [self passLocationValue];
-//    [_mapView updateLocationData:userLocation];
     [_mapView updateLocationData:userLocation];
+//    [_mapView updateLocationData:userLocation];
     
     if(!_isPoi){
         _isPoi = YES;
+//        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+//        annotation.coordinate = coordinate;
+//        annotation.title = obj.name;
+//        annotation.subtitle = obj.phone;
+//        BMKPointAnnotation *myLocationAnnotation = [[BMKPointAnnotation alloc]init];
+//        myLocationAnnotation.coordinate = userLocation.location.coordinate;
+//        myLocationAnnotation.title = userLocation.title;
+//        myLocationAnnotation.subtitle = userLocation.subtitle;
+//        
+//        [_mapView addAnnotation:myLocationAnnotation];
+        _mapView.centerCoordinate = userLocation.location.coordinate;
         //初始化检索对象
         _searcher =[[BMKPoiSearch alloc]init];
         _searcher.delegate = self;
@@ -272,7 +288,7 @@
             NSLog(@"周边检索发送失败");
         }
     }
-    _mapView.centerCoordinate = userLocation.location.coordinate;
+    
     [_locService stopUserLocationService];//取消定位
 }
 
@@ -299,14 +315,14 @@
 //        }else if (tt.profNumber == 100001){
 //            
 //        }
-        newAnnotationView.image = [UIImage imageNamed:@"定位5.png"];
+        newAnnotationView.image = [UIImage imageNamed:@"旅游助手－地图钉子.png"];
         
         //设定popView的高度，根据是否含有缩略图
         double popViewH = 60;
         if (annotation.subtitle == nil) {
             popViewH = 38;
         }
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         UIView *popView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth-100, popViewH)];
         popView.backgroundColor = [UIColor whiteColor];
         [popView.layer setMasksToBounds:YES];
@@ -364,6 +380,78 @@
     
 }
 
+///**
+// *设定view的选中状态
+// *该方法被BMKMapView调用
+// *@param selected 如果view需要显示为选中状态，该值为YES
+// *@param animated 如果需要动画效果，该值为YES,暂不支持
+// */
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
+//    
+//}
+
+//当点击annotation view弹出的泡泡时，调用此接口
+- (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view
+{
+    NSLog(@"点击annotation view弹出的泡泡");
+}
+
+//当选中一个annotation views时，调用此接口
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
+{
+    NSLog(@"选中一个annotation views:%f,%f",view.annotation.coordinate.latitude,view.annotation.coordinate.longitude);
+    
+//    _con_view_picker.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/2);
+//    [UIView animateWithDuration:0.5 animations:^{
+//        _con_view_picker.frame = CGRectMake(0, SCREEN_HEIGHT/2, SCREEN_WIDTH, SCREEN_HEIGHT/2);
+//    }];
+    
+    
+    
+    MapUpView * mapUpView = [[MapUpView alloc]init];
+    mapUpView.locationNameLabel.text = view.annotation.title;
+    
+    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
+    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(view.annotation.coordinate.latitude,view.annotation.coordinate.longitude));
+    CGFloat distance = BMKMetersBetweenMapPoints(point1,point2);
+    [mapUpView getDataWithOwnLocation:CLLocationCoordinate2D(_locService.userLocation.location.coordinate)];
+    [mapUpView getDataWithGoToLocation:view.annotation.coordinate];
+//    [mapUpView ownLocation].x = point1.x;
+//    mapUpView.ownLocation.y = point1.y;
+//    mapUpView.goToLocation.x = point2.x;
+//    mapUpView.goToLocation.y = point2.y;
+//    = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
+//    mapUpView.goToLocation = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(view.annotation.coordinate.latitude,view.annotation.coordinate.longitude));
+
+    if (distance>1000.0) {
+        distance/=1000.0;
+        mapUpView.distanceLabel.text = [NSString stringWithFormat:@"%.4g",distance];
+        mapUpView.distanceLabel.text = [mapUpView.distanceLabel.text stringByAppendingString:@"km"];
+    }else{
+        mapUpView.distanceLabel.text = [NSString stringWithFormat:@"%g",distance];
+        mapUpView.distanceLabel.text = [mapUpView.distanceLabel.text stringByAppendingString:@"m"];
+    }
+        if (_isUpViewPop) {
+        mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
+        [self.view addSubview:mapUpView];
+    }else{
+        _isUpViewPop = YES;
+    //1.执行动画
+        [self.view addSubview:mapUpView];
+//    CGRect *tem = mapUpView.frame;
+        [UIView animateWithDuration:0.4 animations:^{
+            mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
+//        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+//        [self.view addSubview:mapUpView];
+//        self.contentView.transform = CGAffineTransformMakeTranslation(0, -self.contentShift);
+        }];
+//    mapUpView.locationNameLabel.text = view.paopaoView.annotation.title;
+//    [UIView animateWithDuration:1 animations:^{
+//        //将view.frame 设置在屏幕上方
+//        [self.view addSubview:mapUpView];
+//    }];
+    }
+}
 
 #pragma mark -- BMKMapdelegate
 

@@ -28,7 +28,7 @@
     // Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES];
     self.navigationBar.titleLabel.text = @"提出意见";
-    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
+    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setHidden:YES];
     
     UITextView *about = [[UITextView alloc]initWithFrame:CGRectMake(5,15+64, 414-10, 3000)];

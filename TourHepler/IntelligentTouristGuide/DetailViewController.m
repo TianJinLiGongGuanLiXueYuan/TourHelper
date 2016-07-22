@@ -18,6 +18,8 @@
 @property (nonatomic,strong) BMKLocationService* locService;
 @property(readonly, nonatomic) CLLocationCoordinate2D homeCenterCC2D;
 
+@property(nonatomic) NSInteger sum;
+
 @end
 
 @implementation DetailViewController
@@ -42,10 +44,13 @@
     
     [self.navigationController setNavigationBarHidden:YES];
     
-    [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"语音.ico"] forState:UIControlStateNormal];
-    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"主页.png"] forState:UIControlStateNormal];
-    
-    self.navigationBar.titleLabel.text = _titleText;
+    self.navigationBar.rightBtn.backgroundColor = [UIColor clearColor];
+    self.navigationBar.leftBtn.backgroundColor = [UIColor clearColor];
+    [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
+    UIColor *navigationBarColor = [UIColor colorWithWhite:0.6 alpha:0.6];
+    self.navigationBar.backgroundColor = navigationBarColor;
+//    self.navigationBar.titleLabel.text = _titleText;
     
     // 采用本地图片和景点介绍实现
     DataSingleton* dataSL = [DataSingleton shareInstance];
@@ -59,27 +64,49 @@
         }
     }
     imageNames = [dataSL.allImgWithLocation objectAtIndex:i];
-    
+    _sum = [imageNames count];
+    NSString *display = @"-";
+    display=[display stringByAppendingString:[NSString stringWithFormat:@"%d",1]];
+    display=[display stringByAppendingString:@"/"];
+    display=[display stringByAppendingString:[NSString stringWithFormat:@"%ld",_sum]];
+    display=[display stringByAppendingString:@"-"];
+    self.navigationBar.titleLabel.font = [UIFont systemFontOfSize:23];
+    self.navigationBar.titleLabel.text = display;
     for (int j = 0; j<[imageNames count]; j++) {
         Location* tem = [dataSL.allDetail objectAtIndex:i];
         [locatianNames addObject:tem.locationText];
     }
     
+    
     //本地加载 --- 创建不带标题的图片轮播器
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, w, h-64) shouldInfiniteLoop:YES imageNamesGroup:imageNames];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, -12, w, h+12) shouldInfiniteLoop:YES imageNamesGroup:imageNames];
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
     cycleScrollView.autoScroll = NO;
 //    cycleScrollView.showPageControl = NO;
     cycleScrollView.titlesGroup = locatianNames;
     cycleScrollView.titleLabelHeight = 300;
+    cycleScrollView.showPageControl = NO;
     [self.view addSubview:cycleScrollView];
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(0, 64+300+280+10, screenWidth, 40)];
-    [_detailBtn setTitle:@"我要到这里去" forState:UIControlStateNormal];
+    
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(200, 64+300+280+10, w-200, 50)];
+    [_detailBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－现在就去玩.png"] forState:UIControlStateNormal];
+//    [_detailBtn setTitle:@"我要到这里去" forState:UIControlStateNormal];
     [_detailBtn addTarget:self action:@selector(detailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_detailBtn];
+    [self.view addSubview:self.navigationBar];
     
+}
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
+    NSString *display = @"-";
+    display=[display stringByAppendingString:[NSString stringWithFormat:@"%ld",index+1]];
+    display=[display stringByAppendingString:@"/"];
+    display=[display stringByAppendingString:[NSString stringWithFormat:@"%ld",_sum]];
+    display=[display stringByAppendingString:@"-"];
+    self.navigationBar.titleLabel.text = display;
+//    NSLog(@"%ld",(long)index);
 }
 
 //处理位置坐标更新

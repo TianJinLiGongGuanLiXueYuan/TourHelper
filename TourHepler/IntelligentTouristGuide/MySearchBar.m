@@ -7,10 +7,12 @@
 //
 
 #import "MySearchBar.h"
+#define screenWidth ([UIScreen mainScreen].bounds.size.width)
+#define screenHeight ([UIScreen mainScreen].bounds.size.height)
 #define kViewLeftAndRightMargins 5
-#define kViewHeight 50
-#define kViewAndInput 5
-#define kBtnWeight 50
+#define kViewHeight 40
+#define kViewAndInput 8
+#define kBtnWeight 25
 
 @implementation MySearchBar
 
@@ -18,24 +20,29 @@
 {
     self = [super init];
     if (self) {
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 //        self.frame
 //        self.frame = [[UIView alloc]init];
-        self.frame = CGRectMake(kViewLeftAndRightMargins, 64+8, screenWidth-kViewLeftAndRightMargins*2, kViewHeight);
+        self.frame = CGRectMake(0, 64, screenWidth, kViewHeight);
         self.backgroundColor = [UIColor whiteColor];
         
-        _inputTF = [[UITextField alloc]init];
-        _inputTF.frame = CGRectMake(kViewLeftAndRightMargins+kViewAndInput,kViewAndInput, self.frame.size.width-kViewAndInput*2-kBtnWeight-5, kViewHeight-kViewAndInput*2);
-        _inputTF.backgroundColor = [UIColor grayColor];
-        _inputTF.delegate =self;
-        
         _returnBtn = [[UIButton alloc]init];
-        _returnBtn.frame = CGRectMake(self.frame.size.width-kViewAndInput*2-kBtnWeight-5, kViewAndInput, kBtnWeight, _inputTF.frame.size.height);
-        _returnBtn.backgroundColor = [UIColor redColor];
-        [_returnBtn setTitle:@"搜索" forState:UIControlStateNormal];
-//        _returnBtn.titleLabel.text = @"搜索";
-//        _returnBtn.titleLabel.backgroundColor = [UIColor redColor];
+        _returnBtn.frame = CGRectMake(5, kViewAndInput, kBtnWeight, kBtnWeight);
+        [_returnBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－搜索.png"] forState:UIControlStateNormal];
+//        _returnBtn.backgroundColor = [UIColor redColor];
+//        [_returnBtn setTitle:@"搜索" forState:UIControlStateNormal];
+        //        _returnBtn.titleLabel.text = @"搜索";
+        //        _returnBtn.titleLabel.backgroundColor = [UIColor redColor];
         [_returnBtn addTarget:self action:@selector(returnBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        _inputTF = [[UITextField alloc]init];
+        _inputTF.frame = CGRectMake(kBtnWeight+kViewAndInput,0, self.frame.size.width-kViewAndInput*2-kBtnWeight-5, kViewHeight);
+//        _inputTF.backgroundColor = [UIColor grayColor];
+        _inputTF.delegate =self;
+        _inputTF.placeholder = @"输入搜索内容";
+        _inputTF.clearButtonMode = UITextFieldViewModeAlways;
+        
         
         [self addSubview:_inputTF];
         [self addSubview:_returnBtn];

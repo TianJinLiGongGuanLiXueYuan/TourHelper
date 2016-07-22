@@ -25,7 +25,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIColor *navigationColor = [UIColor colorWithRed:135/255.0 green:206/255.0 blue:250/255.0 alpha:1];
+        UIColor *navigationColor = [UIColor colorWithRed:43.0/255.0 green:162.0/255.0 blue:145.0/255.0 alpha:1];
         self.backgroundColor = navigationColor;
         [self addSubview:self.titleLabel];
         [self addSubview:self.leftBtn];

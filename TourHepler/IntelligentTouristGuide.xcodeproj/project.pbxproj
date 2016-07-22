@@ -90,6 +90,17 @@
 		F1BD09121D3D003A00B754E0 /* 返回.png in Resources */ = {isa = PBXBuildFile; fileRef = F1BD09111D3D003A00B754E0 /* 返回.png */; };
 		F1BD09141D3D00C800B754E0 /* 主页.png in Resources */ = {isa = PBXBuildFile; fileRef = F1BD09131D3D00C800B754E0 /* 主页.png */; };
 		F1C97C201D3A1D790006B637 /* DataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C97C1F1D3A1D790006B637 /* DataSingleton.m */; };
+		F1D4C04C1D41B332000B2ACE /* 旅游助手－首页导航栏左地图icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C04B1D41B332000B2ACE /* 旅游助手－首页导航栏左地图icon.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C04E1D41B33B000B2ACE /* 旅游助手－首页设置.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C04D1D41B33B000B2ACE /* 旅游助手－首页设置.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C0501D41B35A000B2ACE /* 旅游助手－返回.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C04F1D41B35A000B2ACE /* 旅游助手－返回.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C0521D41BE4E000B2ACE /* 旅游助手－播放语音.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C0511D41BE4E000B2ACE /* 旅游助手－播放语音.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C0541D41C347000B2ACE /* 旅游助手－首页下面的地图icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C0531D41C347000B2ACE /* 旅游助手－首页下面的地图icon.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C0581D41D55E000B2ACE /* 旅游助手－现在就去玩.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C0571D41D55E000B2ACE /* 旅游助手－现在就去玩.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C05A1D41E1E4000B2ACE /* 旅游助手－搜索.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C0591D41E1E4000B2ACE /* 旅游助手－搜索.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C05C1D41E9DA000B2ACE /* 旅游助手－地图钉子.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C05B1D41E9DA000B2ACE /* 旅游助手－地图钉子.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C05F1D41FD18000B2ACE /* MapUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D4C05E1D41FD18000B2ACE /* MapUpView.m */; settings = {ASSET_TAGS = (); }; };
+		F1D4C0611D42031D000B2ACE /* 旅游助手－到这去.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C0601D42031D000B2ACE /* 旅游助手－到这去.png */; settings = {ASSET_TAGS = (); }; };
+		F1D4C0631D4207FF000B2ACE /* 旅游助手－小飞机.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D4C0621D4207FF000B2ACE /* 旅游助手－小飞机.png */; settings = {ASSET_TAGS = (); }; };
 		F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A4181D3668F900F48A48 /* LocationInfoCell.m */; };
 		F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D5A4191D3668F900F48A48 /* LocationInfoCell.xib */; };
 		F1D5A41E1D366A3A00F48A48 /* Location.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A41D1D366A3A00F48A48 /* Location.mm */; };
@@ -244,6 +255,18 @@
 		F1BD09131D3D00C800B754E0 /* 主页.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主页.png"; sourceTree = "<group>"; };
 		F1C97C1E1D3A1D790006B637 /* DataSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSingleton.h; sourceTree = "<group>"; };
 		F1C97C1F1D3A1D790006B637 /* DataSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSingleton.m; sourceTree = "<group>"; };
+		F1D4C04B1D41B332000B2ACE /* 旅游助手－首页导航栏左地图icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "旅游助手－首页导航栏左地图icon.png"; sourceTree = "<group>"; };
+		F1D4C04D1D41B33B000B2ACE /* 旅游助手－首页设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "旅游助手－首页设置.png"; sourceTree = "<group>"; };
+		F1D4C04F1D41B35A000B2ACE /* 旅游助手－返回.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "旅游助手－返回.png"; sourceTree = "<group>"; };
+		F1D4C0511D41BE4E000B2ACE /* 旅游助手－播放语音.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "旅游助手－播放语音.png"; path = "切图/旅游助手－播放语音.png"; sourceTree = "<group>"; };
+		F1D4C0531D41C347000B2ACE /* 旅游助手－首页下面的地图icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "旅游助手－首页下面的地图icon.png"; path = "切图/旅游助手－首页下面的地图icon.png"; sourceTree = "<group>"; };
+		F1D4C0571D41D55E000B2ACE /* 旅游助手－现在就去玩.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "旅游助手－现在就去玩.png"; path = "切图/旅游助手－现在就去玩.png"; sourceTree = "<group>"; };
+		F1D4C0591D41E1E4000B2ACE /* 旅游助手－搜索.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "旅游助手－搜索.png"; path = "切图/旅游助手－搜索.png"; sourceTree = "<group>"; };
+		F1D4C05B1D41E9DA000B2ACE /* 旅游助手－地图钉子.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "旅游助手－地图钉子.png"; path = "切图/旅游助手－地图钉子.png"; sourceTree = "<group>"; };
+		F1D4C05D1D41FD18000B2ACE /* MapUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapUpView.h; sourceTree = "<group>"; };
+		F1D4C05E1D41FD18000B2ACE /* MapUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapUpView.m; sourceTree = "<group>"; };
+		F1D4C0601D42031D000B2ACE /* 旅游助手－到这去.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "旅游助手－到这去.png"; path = "切图/旅游助手－到这去.png"; sourceTree = "<group>"; };
+		F1D4C0621D4207FF000B2ACE /* 旅游助手－小飞机.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "旅游助手－小飞机.png"; path = "切图/旅游助手－小飞机.png"; sourceTree = "<group>"; };
 		F1D5A4171D3668F900F48A48 /* LocationInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationInfoCell.h; sourceTree = "<group>"; };
 		F1D5A4181D3668F900F48A48 /* LocationInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationInfoCell.m; sourceTree = "<group>"; };
 		F1D5A4191D3668F900F48A48 /* LocationInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationInfoCell.xib; sourceTree = "<group>"; };
@@ -330,6 +353,8 @@
 				5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */,
 				5F5D944A1D40CA310000DAE0 /* MySearchBar.h */,
 				5F5D944B1D40CA310000DAE0 /* MySearchBar.m */,
+				F1D4C05D1D41FD18000B2ACE /* MapUpView.h */,
+				F1D4C05E1D41FD18000B2ACE /* MapUpView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -592,6 +617,16 @@
 		F11B67DE1D3641B50065E7CD /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F1D4C0621D4207FF000B2ACE /* 旅游助手－小飞机.png */,
+				F1D4C0601D42031D000B2ACE /* 旅游助手－到这去.png */,
+				F1D4C05B1D41E9DA000B2ACE /* 旅游助手－地图钉子.png */,
+				F1D4C0591D41E1E4000B2ACE /* 旅游助手－搜索.png */,
+				F1D4C0571D41D55E000B2ACE /* 旅游助手－现在就去玩.png */,
+				F1D4C0531D41C347000B2ACE /* 旅游助手－首页下面的地图icon.png */,
+				F1D4C0511D41BE4E000B2ACE /* 旅游助手－播放语音.png */,
+				F1D4C04F1D41B35A000B2ACE /* 旅游助手－返回.png */,
+				F1D4C04D1D41B33B000B2ACE /* 旅游助手－首页设置.png */,
+				F1D4C04B1D41B332000B2ACE /* 旅游助手－首页导航栏左地图icon.png */,
 				5F6A653C1D3F88F8004B6AB0 /* 定位5.png */,
 				5F6A653A1D3F889B004B6AB0 /* 定位4.png */,
 				5F6A65381D3F87EF004B6AB0 /* 定位3.png */,
@@ -738,6 +773,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F6A653D1D3F88F8004B6AB0 /* 定位5.png in Resources */,
+				F1D4C0611D42031D000B2ACE /* 旅游助手－到这去.png in Resources */,
 				5FC174741D39DEB100365D25 /* h3.jpg in Resources */,
 				5F6A65391D3F87EF004B6AB0 /* 定位3.png in Resources */,
 				5F12439C1D3C857900477E00 /* 芦苇海3.jpeg in Resources */,
@@ -756,27 +792,36 @@
 				F1DC9E941D378BBF00C1ADA8 /* 语音.ico in Resources */,
 				5F1243921D3C827800477E00 /* 卧龙海4.jpeg in Resources */,
 				5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */,
+				F1D4C04C1D41B332000B2ACE /* 旅游助手－首页导航栏左地图icon.png in Resources */,
 				F1BD09141D3D00C800B754E0 /* 主页.png in Resources */,
 				5F6A65311D3F78B1004B6AB0 /* 定位.png in Resources */,
 				F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */,
 				5F1243A11D3C860200477E00 /* 双龙海3.jpeg in Resources */,
 				F17A93A31D39171B0076D6C2 /* test.gpx in Resources */,
 				5FC1747A1D39DEB100365D25 /* placeholder@2x.png in Resources */,
+				F1D4C05A1D41E1E4000B2ACE /* 旅游助手－搜索.png in Resources */,
 				F11B67E81D36444F0065E7CD /* homeNabigationRightIcon.ico in Resources */,
 				5FC174771D39DEB100365D25 /* pageControlCurrentDot@3x.png in Resources */,
+				F1D4C0631D4207FF000B2ACE /* 旅游助手－小飞机.png in Resources */,
 				5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */,
 				5F6A65351D3F8071004B6AB0 /* 定位2_meitu_1.jpg in Resources */,
 				5FC174791D39DEB100365D25 /* pageControlDot@3x.png in Resources */,
+				F1D4C04E1D41B33B000B2ACE /* 旅游助手－首页设置.png in Resources */,
 				5F6A65331D3F7EA5004B6AB0 /* 定位_meitu_1.jpg in Resources */,
 				F1DC9EB61D379DA600C1ADA8 /* mapapi.bundle in Resources */,
 				5F1243971D3C850B00477E00 /* 箭竹海3.jpeg in Resources */,
 				F11B67BC1D3619DB0065E7CD /* LaunchScreen.storyboard in Resources */,
 				5F6A653B1D3F889B004B6AB0 /* 定位4.png in Resources */,
 				F11B67B91D3619DB0065E7CD /* Assets.xcassets in Resources */,
+				F1D4C0501D41B35A000B2ACE /* 旅游助手－返回.png in Resources */,
 				5FC1747C1D39DEBA00365D25 /* h1.jpg in Resources */,
+				F1D4C0541D41C347000B2ACE /* 旅游助手－首页下面的地图icon.png in Resources */,
 				F1BD09121D3D003A00B754E0 /* 返回.png in Resources */,
+				F1D4C0581D41D55E000B2ACE /* 旅游助手－现在就去玩.png in Resources */,
 				5F6A65371D3F8141004B6AB0 /* 定位2_meitu_2.jpg in Resources */,
+				F1D4C05C1D41E9DA000B2ACE /* 旅游助手－地图钉子.png in Resources */,
 				5FC174751D39DEB100365D25 /* h4.jpg in Resources */,
+				F1D4C0521D41BE4E000B2ACE /* 旅游助手－播放语音.png in Resources */,
 				5F1243901D3C827800477E00 /* 卧龙海2.jpeg in Resources */,
 				5FC174721D39DEB100365D25 /* 005.jpg in Resources */,
 				5F12439B1D3C857900477E00 /* 芦苇海2.jpeg in Resources */,
@@ -796,6 +841,7 @@
 				5F6A652F1D3F7727004B6AB0 /* MyBMKPointAnnotation.m in Sources */,
 				F1DC9E861D37603800C1ADA8 /* DetailUIView.m in Sources */,
 				5FC174661D39DDB400365D25 /* SDCollectionViewCell.m in Sources */,
+				F1D4C05F1D41FD18000B2ACE /* MapUpView.m in Sources */,
 				5FC174A81D39DF0100365D25 /* UIButton+WebCache.m in Sources */,
 				F11B67CF1D361B2C0065E7CD /* BaseViewController.m in Sources */,
 				5FC174B11D39E0D700365D25 /* SDCycleScrollView.m in Sources */,

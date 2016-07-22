@@ -41,13 +41,15 @@
     [self loadDataFromWeb];
     [self.navigationController setNavigationBarHidden:YES];
     self.navigationBar.titleLabel.text = @"九寨沟";
-    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"homeNabigationLeftIcon.ico"] forState:UIControlStateNormal];
-    [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"homeNabigationRightIcon.ico"] forState:UIControlStateNormal];
+    [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－首页导航栏左地图icon.png"] forState:UIControlStateNormal];
+    [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－首页设置.png"] forState:UIControlStateNormal];
     
     CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
-    
+//    self.mainTableView.bo
     self.mainTableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
-    self.mainTableView.backgroundColor = [UIColor whiteColor];
+    UIColor *mainTVColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTableView.backgroundColor = mainTVColor;
     self.mainTableView.allowsSelection = NO;
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
@@ -155,7 +157,7 @@
 }
 //行高
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 350;
+    return 320;
 }
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -170,6 +172,11 @@
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
     NSLog(@"HOME leftBtnDidClick");
+    
+//    if (_state==Playing) {
+        [_iFlySpeechSynthesizer stopSpeaking];
+//        _state = NotStart;
+//    }
     
     MapViewController *mapViewController;
     mapViewController = [[MapViewController alloc]init];
