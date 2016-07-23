@@ -15,7 +15,7 @@
 
 
 + (void)postWithparamsWithURL:(NSString *)url andParam:(NSDictionary *)params success:(Success)success failure:(Failure)failure{
-    
+    //PHP文件路径
     NSString *needURL=[NSString stringWithFormat:@"/TourHelperServer/index.php/Home/%@",url];
     
     [[APIClient sharedClient]POST:needURL parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {

@@ -15,6 +15,7 @@
     static APIClient *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        //服务器IP
         _sharedClient = [[APIClient alloc]initWithBaseURL:
                          [NSURL URLWithString:@"http://127.0.0.1"]];
         _sharedClient.responseSerializer = [AFHTTPResponseSerializer serializer];

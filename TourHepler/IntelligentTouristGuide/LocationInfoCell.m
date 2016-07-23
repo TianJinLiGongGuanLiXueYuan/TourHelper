@@ -115,4 +115,8 @@
 //    self.distanceLabel.backgroundColor = [UIColor purpleColor];
 }
 
++ (CGFloat) returnCellHeight{
+    return kImgTopMargins+kImgHeight+kBarHeight;
+}
+
 @end

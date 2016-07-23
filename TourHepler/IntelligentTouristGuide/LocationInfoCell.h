@@ -33,6 +33,8 @@
 - (IBAction)imageBtnClick:(id)sender;
 - (void)setCellData:(Location*)location;
 
++ (CGFloat) returnCellHeight;
+
 @property (nonatomic, copy) void(^imageViewClickBlock)(UIButton *btn,NSString *locationName,NSString* img,NSString* locationText);
 
 @end

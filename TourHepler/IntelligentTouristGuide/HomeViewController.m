@@ -46,7 +46,7 @@
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－首页设置.png"] forState:UIControlStateNormal];
     
     CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
-    
+    //测试网络接口
     [self testWebServer];
     
 //    self.mainTableView.bo
@@ -161,7 +161,7 @@
 }
 //行高
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 320;
+    return [LocationInfoCell returnCellHeight];
 }
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -226,6 +226,7 @@
         NSData *data = [[NSData alloc]initWithData:responseObject];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_area _name"]);
+        
     } failure:^(NSError *error) {
         
     }];
