@@ -1,0 +1,551 @@
+[ 2016-07-23T19:03:26+08:00 ] ::1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName?self_location=%E6%B5%8B%E8%AF%95%E6%99%AF%E7%82%B9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000669s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000894s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000945s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000501s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000519s ]
+
+[ 2016-07-23T19:07:55+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.006679s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000638s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000562s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000581s ]
+
+[ 2016-07-23T19:47:22+08:00 ] ::1 /TourHelperServer/index.php/Home/homeInfo/GetHomeInfo?scenic_area_name=%E6%B5%8B%E8%AF%95%E6%99%AF%E7%82%B9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000637s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001037s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001096s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0011s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000450s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000468s ]
+
+[ 2016-07-23T19:49:28+08:00 ] ::1 /TourHelperServer/index.php/Home/homeInfo/GetHomeInfo?scenic_area_name=%E6%B5%8B%E8%AF%95%E6%99%AF%E7%82%B9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000166s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000177s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000193s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000280s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000296s ]
+
+[ 2016-07-23T19:55:49+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000730s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001559s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001599s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0005s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007616s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007647s ]
+
+[ 2016-07-23T19:55:49+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetHomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000733s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001510s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001543s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0023s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0094s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000297s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000314s ]
+
+[ 2016-07-23T19:56:24+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000777s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000570s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0142s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000549s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000568s ]
+
+[ 2016-07-23T19:56:24+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetHomeInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000778s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000570s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000602s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0142s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000414s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000460s ]
+
+[ 2016-07-23T20:37:56+08:00 ] ::1 /TourHelperServer/index.php/Home/homeInfo/GetSpotImgInfoWithSpotName?scenic_spot_name=%E6%B5%8B%E8%AF%95%E6%99%AF%E7%82%B9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000832s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000893s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000931s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `scenic_spot_info` WHERE `scenic_spot_name` = '测试景点'  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_piclist` [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: scenic_spot_id /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 86 行.
+SQL: SELECT * FROM `scenic_spot_piclist`  [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000534s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000551s ]
+
+[ 2016-07-23T20:41:18+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001164s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000616s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000637s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0069s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001480s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001508s ]
+
+[ 2016-07-23T20:41:18+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotWordInfoWithAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001164s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000649s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0032s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000308s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000325s ]
+
+[ 2016-07-23T20:41:18+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotImgInfoWithSpotName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001164s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000402s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000433s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0071s ]
+SQL: SELECT * FROM `scenic_spot_info` WHERE `scenic_spot_name` = '测试景点'  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_piclist` [ RunTime:0.0033s ]
+NOTIC: [8] Undefined index: scenic_spot_id /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 86 行.
+SQL: SELECT * FROM `scenic_spot_piclist`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000315s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000337s ]
+
+[ 2016-07-23T20:42:10+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.011173s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000597s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000624s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0094s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000542s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000562s ]
+
+[ 2016-07-23T20:42:10+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotWordInfoWithAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.011173s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000658s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0091s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0021s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000304s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000333s ]
+
+[ 2016-07-23T20:42:10+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotImgInfoWithSpotName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.011174s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000630s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000657s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0094s ]
+SQL: SELECT * FROM `scenic_spot_info` WHERE `scenic_spot_name` = '测试景点'  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_piclist` [ RunTime:0.0083s ]
+NOTIC: [8] Undefined index: scenic_spot_id /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 86 行.
+SQL: SELECT * FROM `scenic_spot_piclist`  [ RunTime:0.0005s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000358s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000380s ]
+
+[ 2016-07-23T21:17:43+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001952s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001589s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001637s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000329s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000347s ]
+
+[ 2016-07-23T21:17:43+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotWordInfoWithAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001534s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002030s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002062s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0019s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000326s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000346s ]
+
+[ 2016-07-23T21:17:43+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001647s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001699s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001736s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0028s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001186s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001208s ]
+
+[ 2016-07-23T21:17:43+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotImgInfoWithSpotName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001644s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001460s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001512s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `scenic_spot_info` WHERE `scenic_spot_name` = '测试景点'  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_piclist` [ RunTime:0.0027s ]
+NOTIC: [8] Undefined index: scenic_spot_id /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 86 行.
+SQL: SELECT * FROM `scenic_spot_piclist`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000285s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000304s ]
+
+[ 2016-07-23T21:18:07+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000381s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000231s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000251s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0300s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0016s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007417s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007479s ]
+
+[ 2016-07-23T21:18:07+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000723s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000251s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000269s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0245s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.008655s ]
+INFO: [ app_end ] --END-- [ RunTime:0.008697s ]
+
+[ 2016-07-23T21:18:07+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotWordInfoWithAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000152s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000210s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0273s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0071s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000310s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000327s ]
+
+[ 2016-07-23T21:18:07+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotImgInfoWithSpotName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000161s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000212s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0305s ]
+SQL: SELECT * FROM `scenic_spot_info` WHERE `scenic_spot_name` = '测试景点'  [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_piclist` [ RunTime:0.0074s ]
+NOTIC: [8] Undefined index: scenic_spot_id /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 86 行.
+SQL: SELECT * FROM `scenic_spot_piclist`  [ RunTime:0.0035s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000335s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000355s ]
+
+[ 2016-07-23T21:24:58+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000664s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000567s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000587s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0033s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000639s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000668s ]
+
+[ 2016-07-23T21:24:58+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000614s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000695s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000718s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0032s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000564s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000591s ]
+
+[ 2016-07-23T21:24:58+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotImgInfoWithSpotName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000005s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000768s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.007149s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007221s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0035s ]
+SQL: SELECT * FROM `scenic_spot_info` WHERE `scenic_spot_name` = '测试景点'  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_piclist` [ RunTime:0.0060s ]
+NOTIC: [8] Undefined index: scenic_spot_id /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 86 行.
+SQL: SELECT * FROM `scenic_spot_piclist`  [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000381s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000402s ]
+
+[ 2016-07-23T21:24:58+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotWordInfoWithAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000614s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000687s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000708s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0063s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000367s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000385s ]
+
+[ 2016-07-23T21:25:40+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000621s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000255s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000282s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0104s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000337s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000354s ]
+
+[ 2016-07-23T21:25:40+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000189s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000206s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.008893s ]
+INFO: [ app_end ] --END-- [ RunTime:0.008926s ]
+
+[ 2016-07-23T21:25:40+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotImgInfoWithSpotName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000174s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000209s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `scenic_spot_info` WHERE `scenic_spot_name` = '测试景点'  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_piclist` [ RunTime:0.0163s ]
+NOTIC: [8] Undefined index: scenic_spot_id /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 86 行.
+SQL: SELECT * FROM `scenic_spot_piclist`  [ RunTime:0.0006s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000558s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000610s ]
+
+[ 2016-07-23T21:25:40+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotWordInfoWithAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000210s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0151s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0015s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000564s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000596s ]
+
+[ 2016-07-23T21:27:12+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000695s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000757s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000788s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000284s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000302s ]
+
+[ 2016-07-23T21:27:12+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000603s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000695s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000723s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000732s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000757s ]
+
+[ 2016-07-23T21:27:12+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotImgInfoWithSpotName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000618s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000224s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000247s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `scenic_spot_info` WHERE `scenic_spot_name` = '测试景点'  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_piclist` [ RunTime:0.0030s ]
+NOTIC: [8] Undefined index: scenic_spot_id /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 86 行.
+SQL: SELECT * FROM `scenic_spot_piclist`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000262s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000279s ]
+
+[ 2016-07-23T21:27:12+08:00 ] 127.0.0.1 /TourHelperServer/index.php/Home/homeInfo/GetSpotWordInfoWithAreaName
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000208s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000617s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000645s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `scenic_spot_info` [ RunTime:0.0031s ]
+NOTIC: [8] Undefined index: scenic_area_info /Applications/XAMPP/xamppfiles/htdocs/TourHelperServer/Application/Home/Controller/HomeInfoController.class.php 第 49 行.
+SQL: SELECT * FROM `scenic_spot_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000269s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000286s ]
+
+[ 2016-07-23T21:32:30+08:00 ] ::1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName?self_location=100,100
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000786s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000997s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001033s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000733s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000774s ]
+
+[ 2016-07-23T21:35:32+08:00 ] ::1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName?self_location=100,100
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000777s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000984s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001020s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000673s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000703s ]
+
+[ 2016-07-23T21:35:33+08:00 ] ::1 /TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName?self_location=100,100
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000004s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000138s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000169s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000184s ]
+SQL: SHOW COLUMNS FROM `scenic_area_info` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `scenic_area_info`  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000302s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000322s ]
+

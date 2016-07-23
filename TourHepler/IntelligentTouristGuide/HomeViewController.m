@@ -48,6 +48,9 @@
     CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
     //测试网络接口
     [self testWebServer];
+    [self getSpotInfoWordForWeb];
+    [self GetSpotImgInfoWithSpotName];
+    
     
 //    self.mainTableView.bo
     self.mainTableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
@@ -102,18 +105,34 @@
 }
 
 - (void) loadDataFromWeb{
-    Location *Location1 = [[Location alloc]initWithlocationName:@"卧龙海" voice:@"" locationImageName:@"卧龙海.jpeg" distance:@"1.2KM" locationText:@"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。"coor:(CLLocationCoordinate2D){103.907089,33.206952}];
-    Location *Location2 = [[Location alloc]initWithlocationName:@"箭竹海" voice:@""locationImageName:@"箭竹海.jpg" distance:@"1.3KM" locationText:@"箭竹(Arrow Bamboo)是大熊猫喜食的食物，箭竹海(Arrow Bamboo Lake)湖岸四周广有生长，是箭竹海最大的特点，因而得名。箭竹海湖面开阔而绵长，水色碧蓝。倒影历历，直叫人分不清究竟是山入水中还是水浸山上。"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
-    Location *Location3 = [[Location alloc]initWithlocationName:@"芦苇海" voice:@""locationImageName:@"芦苇海.jpg" distance:@"1.4KM" locationText:@"“芦苇海”海拔2140米，全长2.2公里，是一个半沼泽湖泊。海中芦苇丛生，水鸟飞翔，清溪碧流，漾绿摇翠，蜿蜒空行，好一派泽国风光。“芦苇海”中，荡荡芦苇，一片青葱，微风徐来，绿浪起伏。飒飒之声，委婉抒情，使人心旷神怡。"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
-    Location *Location4 = [[Location alloc]initWithlocationName:@"双龙海" voice:@""locationImageName:@"双龙海.jpg" distance:@"1.5KM" locationText:@"“双龙海”在火花海瀑布下的树丛中。海中有两条带状的生物钙华礁堤隐隐潜伏于海底，活像两条蛟龙藏于海中，蠕蠕欲动。还有一个黑龙与白龙打斗的传说。那条白龙本是双龙海的守护神，黑龙是天将，黑龙因触犯天条，被玉帝贬下界，在双龙海与白龙夺龙王大权……"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
-    DataSingleton* dataSL = [DataSingleton shareInstance];
-    NSArray* data1 = @[@"卧龙海.jpeg",@"卧龙海2.jpeg",@"卧龙海3.jpeg",@"卧龙海4.jpeg"];
-    NSArray* data2 = @[@"箭竹海.jpg",@"箭竹海2.jpeg",@"箭竹海3.jpeg",@"箭竹海4.jpeg"];
-    NSArray* data3 = @[@"芦苇海.jpg",@"芦苇海2.jpeg",@"芦苇海3.jpeg"];
-    NSArray* data4 = @[@"双龙海.jpg",@"双龙海2.jpeg",@"双龙海3.jpeg",@"双龙海4.jpeg"];
-    dataSL.allImgWithLocation = @[data1,data2,data3,data4];
-    dataSL.allDetail = @[Location1,Location2,Location3,Location4];
-    self.dataArr = @[Location1,Location2,Location3,Location4];
+//    Location *Location1 = [[Location alloc]initWithlocationName:@"卧龙海" voice:@"" locationImageName:@"卧龙海.jpeg" distance:@"1.2KM" locationText:@"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。"coor:(CLLocationCoordinate2D){103.907089,33.206952}];
+//    Location *Location2 = [[Location alloc]initWithlocationName:@"箭竹海" voice:@""locationImageName:@"箭竹海.jpg" distance:@"1.3KM" locationText:@"箭竹(Arrow Bamboo)是大熊猫喜食的食物，箭竹海(Arrow Bamboo Lake)湖岸四周广有生长，是箭竹海最大的特点，因而得名。箭竹海湖面开阔而绵长，水色碧蓝。倒影历历，直叫人分不清究竟是山入水中还是水浸山上。"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
+//    Location *Location3 = [[Location alloc]initWithlocationName:@"芦苇海" voice:@""locationImageName:@"芦苇海.jpg" distance:@"1.4KM" locationText:@"“芦苇海”海拔2140米，全长2.2公里，是一个半沼泽湖泊。海中芦苇丛生，水鸟飞翔，清溪碧流，漾绿摇翠，蜿蜒空行，好一派泽国风光。“芦苇海”中，荡荡芦苇，一片青葱，微风徐来，绿浪起伏。飒飒之声，委婉抒情，使人心旷神怡。"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
+//    Location *Location4 = [[Location alloc]initWithlocationName:@"双龙海" voice:@""locationImageName:@"双龙海.jpg" distance:@"1.5KM" locationText:@"“双龙海”在火花海瀑布下的树丛中。海中有两条带状的生物钙华礁堤隐隐潜伏于海底，活像两条蛟龙藏于海中，蠕蠕欲动。还有一个黑龙与白龙打斗的传说。那条白龙本是双龙海的守护神，黑龙是天将，黑龙因触犯天条，被玉帝贬下界，在双龙海与白龙夺龙王大权……"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
+    
+    NSDictionary *para = @{@"self_location":@"100,100"};
+//    NSDictionary *dictWithAreaName = [[NSDictionary alloc]init];
+    [HttpTool postWithparamsWithURL:@"homeInfo/GetScenicAreaName" andParam:para success:^(id responseObject) {
+        NSData *data = [[NSData alloc]initWithData:responseObject];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        DataSingleton* dataSL = [DataSingleton shareInstance];
+//        dataSL.title = [[NSString alloc]initWithString:dict[@"data"][0][@"scenic_area_name"]];
+//        dictWithAreaName = dict;
+        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_area_name"]);
+        //        return dict[@"data"][0][@"scenic_area_name"];
+    } failure:^(NSError *error) {
+        NSLog(@"附近没有景区");
+        
+    }];
+    
+    
+//    NSArray* data1 = @[@"卧龙海.jpeg",@"卧龙海2.jpeg",@"卧龙海3.jpeg",@"卧龙海4.jpeg"];
+//    NSArray* data2 = @[@"箭竹海.jpg",@"箭竹海2.jpeg",@"箭竹海3.jpeg",@"箭竹海4.jpeg"];
+//    NSArray* data3 = @[@"芦苇海.jpg",@"芦苇海2.jpeg",@"芦苇海3.jpeg"];
+//    NSArray* data4 = @[@"双龙海.jpg",@"双龙海2.jpeg",@"双龙海3.jpeg",@"双龙海4.jpeg"];
+//    dataSL.allImgWithLocation = @[data1,data2,data3,data4];
+//    dataSL.allDetail = @[Location1,Location2,Location3,Location4];
+//    self.dataArr = @[Location1,Location2,Location3,Location4];
 }
 
 ////结束代理
@@ -218,21 +237,53 @@
 #pragma merk -----test-----
 
 
--(void)testWebServer{
+- (void) testWebServer{
 
     NSDictionary *para = @{@"self_location":@"100,100"};
     
     [HttpTool postWithparamsWithURL:@"homeInfo/GetScenicAreaName" andParam:para success:^(id responseObject) {
         NSData *data = [[NSData alloc]initWithData:responseObject];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_area _name"]);
+        NSLog(@"成功调用,%@",dict[@"data"][0]);
+//        return dict[@"data"][0][@"scenic_area_name"];
+    } failure:^(NSError *error) {
+        NSLog(@"附近没有景区");
+
+    }];
+    
+}
+
+- (void) getSpotInfoWordForWeb{
+    
+    NSDictionary *para = @{@"scenic_area_name":@"测试景区"};
+    
+    [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotWordInfoWithAreaName" andParam:para success:^(id responseObject) {
+        NSData *data = [[NSData alloc]initWithData:responseObject];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_spot_name"]);
         
     } failure:^(NSError *error) {
+        NSLog(@"附近没有景区");
         
     }];
     
 }
 
+- (void) GetSpotImgInfoWithSpotName{
+    
+    NSDictionary *para = @{@"scenic_spot_name":@"测试景点"};
+    
+    [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotImgInfoWithSpotName" andParam:para success:^(id responseObject) {
+        NSData *data = [[NSData alloc]initWithData:responseObject];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"成功调用,%@",dict);
+        
+    } failure:^(NSError *error) {
+        NSLog(@"景点没有图片");
+        
+    }];
+    
+}
 
 
 
