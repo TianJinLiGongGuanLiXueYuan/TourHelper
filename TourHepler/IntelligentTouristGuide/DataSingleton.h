@@ -15,6 +15,7 @@
 @property(nonatomic,strong) NSMutableArray* allDetail;
 @property(nonatomic,strong) NSMutableArray* allImgWithLocation;
 @property(nonatomic,strong) NSString* title;
+@property(nonatomic,strong) NSDictionary* dataDict;
 
 //@property(nonatomic,strong) NSArray* allDetailText;
 

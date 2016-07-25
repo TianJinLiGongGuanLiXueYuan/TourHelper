@@ -17,9 +17,9 @@
 
 
 
-@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,IFlySpeechSynthesizerDelegate,BMKLocationServiceDelegate>
+@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,IFlySpeechSynthesizerDelegate,BMKLocationServiceDelegate>
 
-@property (nonatomic ,strong) NSArray *dataArr;
+@property (nonatomic ,strong) NSMutableArray *dataArr;
 @property (nonatomic,strong) BMKLocationService* locService;
 //@property (readonly, nonatomic,strong) CLLocation *homeLocation;
 
@@ -28,6 +28,7 @@
 @interface HomeViewController ()
 
 @property (nonatomic ,strong) UITableView *mainTableView;
+//@property (nonatomic,strong) NSMutableArray *mainDict;
 //@property (nonatomic ,strong) MapViewController *mapViewController;
 //@property (nonatomic ,strong) DetailViewController *deVC;
 
@@ -38,21 +39,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //初始化BMKLocationService
+    _locService = [[BMKLocationService alloc]init];
+    _locService.delegate = self;
+    //启动LocationService
+    [_locService startUserLocationService];
+//    [self getAreaName];
+    
 #pragma mark - 导航栏初始化
-    [self loadDataFromWeb];
+    
+//    NSLog(@"%@",self.mainDict);
     [self.navigationController setNavigationBarHidden:YES];
-    self.navigationBar.titleLabel.text = @"九寨沟";
+//    self.navigationBar.titleLabel.text = @"九寨沟";
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－首页导航栏左地图icon.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－首页设置.png"] forState:UIControlStateNormal];
     
-    CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
+    
     //测试网络接口
-    [self testWebServer];
-    [self getSpotInfoWordForWeb];
-    [self GetSpotImgInfoWithSpotName];
+//    [self testWebServer];
+//    [self getSpotInfoWordForWeb];
+//    [self GetSpotImgInfoWithSpotName];
     
     
 //    self.mainTableView.bo
+    CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
     self.mainTableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
     UIColor *mainTVColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -64,11 +74,12 @@
     
     [self.view addSubview:self.mainTableView];
     
-    //初始化BMKLocationService
-    _locService = [[BMKLocationService alloc]init];
-    _locService.delegate = self;
-    //启动LocationService
-    [_locService startUserLocationService];
+    
+    UIRefreshControl *mainRC = [[UIRefreshControl alloc]init];
+    mainRC.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
+    [mainRC addTarget:self action:@selector(refreshTableView) forControlEvents:UIControlEventValueChanged];
+    
+    
     
 //    DataSingleton* dataSL = [DataSingleton shareInstance];
 //    dataSL.homeCenterCC2D.latitude = _homeCenterCC2D.latitude;
@@ -100,8 +111,89 @@
 //    _homeCenterCC2D.latitude = userLocation.location.coordinate.latitude;
 //    _homeCenterCC2D.longitude = userLocation.location.coordinate.longitude;
 //    _homeLocation = userLocation.location;
-    
+    [self getAreaName];
     [_locService stopUserLocationService];//取消定位
+}
+
+- (void) reLoadImgDetail:(NSDictionary*)dict{
+    DataSingleton* dataSL = [DataSingleton shareInstance];
+    dataSL.allImgWithLocation = [[NSMutableArray alloc]initWithArray:dataSL.allImgWithLocation];
+    if ([dict[@"data"]isEqual:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"提示"
+                                  message:@"附近没有景区"
+                                  delegate:nil
+                                  cancelButtonTitle:@"好的"
+                                  otherButtonTitles:nil
+                                  ];
+        //
+        [alertView show];
+    }else{
+        NSMutableArray *teamArr= [[NSMutableArray alloc]initWithArray:[dict objectForKey:@"data"]];
+        NSMutableArray *Img = [[NSMutableArray alloc]init];
+        for (NSDictionary *obj in teamArr) {
+            [Img addObject:obj[@"scenic_spot_picture"]];
+        }
+        [dataSL.allImgWithLocation addObject:Img];
+    }
+}
+
+- (void) reLoad:(NSDictionary*)dict{
+    NSMutableArray *teamArr= [[NSMutableArray alloc]initWithArray:[dict objectForKey:@"data"]];
+    _dataArr = [[NSMutableArray alloc]init];
+    DataSingleton* dataSL = [DataSingleton shareInstance];
+    dataSL.allDetail = [[NSMutableArray alloc]initWithArray:dataSL.allDetail];
+    for (NSDictionary *obj in teamArr) {
+        NSString *latitude = [NSString stringWithFormat:@"%@",[obj objectForKey:@"scenic_spot_latitude"]];
+        NSString *longitude = [NSString stringWithFormat:@"%@",[obj objectForKey:@"scenic_spot_longitude"]];
+        double latitudeDou = [latitude floatValue];
+        double longitudeDou = [longitude floatValue];
+        
+//        NSLog(@"%f %f",_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude);
+//        NSLog(@"%f %f",latitudeDou,longitudeDou);
+        BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
+        BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(latitudeDou,longitudeDou));
+        CGFloat distance = BMKMetersBetweenMapPoints(point1,point2);
+        NSString *distanceString;
+        if (distance>1000.0) {
+            distance/=1000.0;
+            distanceString = [NSString stringWithFormat:@"%.4g",distance];
+            distanceString = [distanceString stringByAppendingString:@"km"];
+        }else{
+            distanceString = [NSString stringWithFormat:@"%g",distance];
+            distanceString = [distanceString stringByAppendingString:@"m"];
+        }
+        
+        
+//        NSLog(@"%@",obj);
+        Location *location = [[Location alloc]initWithlocationName:[obj objectForKey:@"scenic_spot_name"] voice:[obj objectForKey:@"scenic_spot_voice"] locationImageName:[obj objectForKey:@"scenic_spot_picture"] distance:distanceString locationText:[obj objectForKey:@"scenic_spot_introduction"] coor:(CLLocationCoordinate2D){latitudeDou,longitudeDou}];
+        
+        [_dataArr addObject:location];
+        [dataSL.allDetail addObject:location];
+        
+        NSDictionary *para = @{@"scenic_spot_name":location.locationName};
+        [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotImgInfoWithSpotName" andParam:para success:^(id responseObject) {
+            NSData *data = [[NSData alloc]initWithData:responseObject];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            [self reLoadImgDetail:dict];
+            NSLog(@"成功调用,%@",dict);
+            
+        } failure:^(NSError *error) {
+            NSLog(@"景点没有图片");
+            
+        }];
+        
+        
+        
+    }
+    
+    
+//    self.mainTableView.delegate = self;
+//    self.mainTableView.dataSource = self;
+    [_mainTableView reloadData];
+//    NSLog(@"%@",self.dataArr);
+    
+    
 }
 
 - (void) loadDataFromWeb{
@@ -109,23 +201,27 @@
 //    Location *Location2 = [[Location alloc]initWithlocationName:@"箭竹海" voice:@""locationImageName:@"箭竹海.jpg" distance:@"1.3KM" locationText:@"箭竹(Arrow Bamboo)是大熊猫喜食的食物，箭竹海(Arrow Bamboo Lake)湖岸四周广有生长，是箭竹海最大的特点，因而得名。箭竹海湖面开阔而绵长，水色碧蓝。倒影历历，直叫人分不清究竟是山入水中还是水浸山上。"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
 //    Location *Location3 = [[Location alloc]initWithlocationName:@"芦苇海" voice:@""locationImageName:@"芦苇海.jpg" distance:@"1.4KM" locationText:@"“芦苇海”海拔2140米，全长2.2公里，是一个半沼泽湖泊。海中芦苇丛生，水鸟飞翔，清溪碧流，漾绿摇翠，蜿蜒空行，好一派泽国风光。“芦苇海”中，荡荡芦苇，一片青葱，微风徐来，绿浪起伏。飒飒之声，委婉抒情，使人心旷神怡。"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
 //    Location *Location4 = [[Location alloc]initWithlocationName:@"双龙海" voice:@""locationImageName:@"双龙海.jpg" distance:@"1.5KM" locationText:@"“双龙海”在火花海瀑布下的树丛中。海中有两条带状的生物钙华礁堤隐隐潜伏于海底，活像两条蛟龙藏于海中，蠕蠕欲动。还有一个黑龙与白龙打斗的传说。那条白龙本是双龙海的守护神，黑龙是天将，黑龙因触犯天条，被玉帝贬下界，在双龙海与白龙夺龙王大权……"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
-    
-    NSDictionary *para = @{@"self_location":@"100,100"};
+//    NSLog(@"%@",self.navigationBar.titleLabel.text);
+    NSDictionary *para = @{@"scenic_area_name":self.navigationBar.titleLabel.text};
+//    NSDictionary *test;
 //    NSDictionary *dictWithAreaName = [[NSDictionary alloc]init];
-    [HttpTool postWithparamsWithURL:@"homeInfo/GetScenicAreaName" andParam:para success:^(id responseObject) {
+    [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotInfoWithAreaName" andParam:para success:^(id responseObject) {
         NSData *data = [[NSData alloc]initWithData:responseObject];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        DataSingleton* dataSL = [DataSingleton shareInstance];
+//        DataSingleton* dataSL = [DataSingleton shareInstance];
 //        dataSL.title = [[NSString alloc]initWithString:dict[@"data"][0][@"scenic_area_name"]];
 //        dictWithAreaName = dict;
-        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_area_name"]);
+//        _mainDict = [[NSDictionary alloc]initWithDictionary:dict];
+//        test = [[NSDictionary alloc]initWithDictionary:_mainDict];
+        [self reLoad:dict];
+        NSLog(@"--------------------成功调用,%@",[dict objectForKey:@"data"]);
         //        return dict[@"data"][0][@"scenic_area_name"];
     } failure:^(NSError *error) {
         NSLog(@"附近没有景区");
         
     }];
-    
-    
+//    NSLog(@"%@",_mainDict);
+//    DataSingleton* dataSL = [DataSingleton shareInstance];
 //    NSArray* data1 = @[@"卧龙海.jpeg",@"卧龙海2.jpeg",@"卧龙海3.jpeg",@"卧龙海4.jpeg"];
 //    NSArray* data2 = @[@"箭竹海.jpg",@"箭竹海2.jpeg",@"箭竹海3.jpeg",@"箭竹海4.jpeg"];
 //    NSArray* data3 = @[@"芦苇海.jpg",@"芦苇海2.jpeg",@"芦苇海3.jpeg"];
@@ -237,17 +333,45 @@
 #pragma merk -----test-----
 
 
-- (void) testWebServer{
-
-    NSDictionary *para = @{@"self_location":@"100,100"};
+- (void) getAreaName{
+//    _locService.userLocation.location.coordinate.latitude
+    NSString *latitude = [NSString stringWithFormat:@"%f",_locService.userLocation.location.coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f",_locService.userLocation.location.coordinate.longitude];
+//    NSLog(@"%f %f",_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude);
+//    NSLog(@"%@ %@",latitude,longitude);
+    NSDictionary *para = @{@"scenic_area_latitude":latitude,
+                           @"scenic_area_longitude":longitude};
     
     [HttpTool postWithparamsWithURL:@"homeInfo/GetScenicAreaName" andParam:para success:^(id responseObject) {
         NSData *data = [[NSData alloc]initWithData:responseObject];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"成功调用,%@",dict[@"data"][0]);
+//        NSMutableString *title = [[NSMutableString alloc]initWithString:[[dict objectForKey:@"data"] objectForKey:@"scenic_area_name"]];
+                           //[@"data"][@"scenic_area_name"]];
+//        NSString *title = [[NSString alloc]initWithString:dict[@"data"][0][@"scenic_area_name"]];
+//        NSLog(@"%@",title);
+        if ([dict[@"data"]isEqual:@""]) {
+            UIAlertView *alertView = [[UIAlertView alloc]
+                                      initWithTitle:@"提示"
+                                      message:@"附近没有景区"
+                                      delegate:nil
+                                      cancelButtonTitle:@"好的"
+                                      otherButtonTitles:nil
+                                      ];
+            //
+            [alertView show];
+            
+        }else{
+            [self.navigationBar.titleLabel setText:dict[@"data"][0][@"scenic_area_name"]];
+            [self loadDataFromWeb];
+        }
+        
+        //= dict[@"data"][0][@"scenic_spot_name"];
+//        NSLog(@"%@",self.navigationBar.titleLabel.text);
+        
+//        NSLog(@"成功调用,%@",dict[@"data"][0]);
 //        return dict[@"data"][0][@"scenic_area_name"];
     } failure:^(NSError *error) {
-        NSLog(@"附近没有景区");
+        NSLog(@"网络数据接受错误");
 
     }];
     

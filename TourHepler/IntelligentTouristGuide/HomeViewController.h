@@ -19,6 +19,7 @@
     IFlySpeechSynthesizer * _iFlySpeechSynthesizer;
 }
 
+- (void) reLoad:(NSDictionary*)Dict;
 
 //typedef NS_OPTIONS(NSInteger, Status) {
 //    NotStart            = 0,

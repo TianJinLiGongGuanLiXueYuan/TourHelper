@@ -69,6 +69,7 @@
 		5FC174AD1D39DF0100365D25 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1749C1D39DF0100365D25 /* UIImageView+WebCache.m */; };
 		5FC174AE1D39DF0100365D25 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1749E1D39DF0100365D25 /* UIView+WebCacheOperation.m */; };
 		5FC174B11D39E0D700365D25 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174B01D39E0D700365D25 /* SDCycleScrollView.m */; };
+		5FC21AF51D46015A0081587E /* SetingSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC21AF41D46015A0081587E /* SetingSubViewController.m */; };
 		7DF1167B1D42743D00FDA0DA /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF1166F1D42743D00FDA0DA /* AFHTTPSessionManager.m */; };
 		7DF1167C1D42743D00FDA0DA /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF116721D42743D00FDA0DA /* AFNetworkReachabilityManager.m */; };
 		7DF1167D1D42743D00FDA0DA /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF116741D42743D00FDA0DA /* AFSecurityPolicy.m */; };
@@ -115,7 +116,6 @@
 		F1DC9E831D375E7500C1ADA8 /* Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC9E821D375E7500C1ADA8 /* Detail.m */; };
 		F1DC9E861D37603800C1ADA8 /* DetailUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC9E851D37603800C1ADA8 /* DetailUIView.m */; };
 		F1DC9E8C1D377D8B00C1ADA8 /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC9E8B1D377D8B00C1ADA8 /* SetingViewController.m */; };
-		F1DC9E8F1D3783CB00C1ADA8 /* SetingSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC9E8E1D3783CB00C1ADA8 /* SetingSubViewController.m */; };
 		F1DC9E921D3783DD00C1ADA8 /* SetingAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC9E911D3783DD00C1ADA8 /* SetingAboutViewController.m */; };
 		F1DC9E941D378BBF00C1ADA8 /* 语音.ico in Resources */ = {isa = PBXBuildFile; fileRef = F1DC9E931D378BBF00C1ADA8 /* 语音.ico */; };
 		F1DC9E961D379B1200C1ADA8 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DC9E951D379B1200C1ADA8 /* BaiduMapAPI_Base.framework */; };
@@ -234,6 +234,8 @@
 		5FC1749E1D39DF0100365D25 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		5FC174AF1D39E0D700365D25 /* SDCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCycleScrollView.h; sourceTree = "<group>"; };
 		5FC174B01D39E0D700365D25 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
+		5FC21AF31D46015A0081587E /* SetingSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingSubViewController.h; sourceTree = "<group>"; };
+		5FC21AF41D46015A0081587E /* SetingSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingSubViewController.m; sourceTree = "<group>"; };
 		5FCCE2B31D430FAB00DE68B5 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7DF1166E1D42743D00FDA0DA /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		7DF1166F1D42743D00FDA0DA /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
@@ -304,8 +306,6 @@
 		F1DC9E851D37603800C1ADA8 /* DetailUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailUIView.m; sourceTree = "<group>"; };
 		F1DC9E8A1D377D8B00C1ADA8 /* SetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingViewController.h; sourceTree = "<group>"; };
 		F1DC9E8B1D377D8B00C1ADA8 /* SetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingViewController.m; sourceTree = "<group>"; };
-		F1DC9E8D1D3783CB00C1ADA8 /* SetingSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingSubViewController.h; sourceTree = "<group>"; };
-		F1DC9E8E1D3783CB00C1ADA8 /* SetingSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingSubViewController.m; sourceTree = "<group>"; };
 		F1DC9E901D3783DD00C1ADA8 /* SetingAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetingAboutViewController.h; sourceTree = "<group>"; };
 		F1DC9E911D3783DD00C1ADA8 /* SetingAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetingAboutViewController.m; sourceTree = "<group>"; };
 		F1DC9E931D378BBF00C1ADA8 /* 语音.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = "语音.ico"; sourceTree = "<group>"; };
@@ -753,10 +753,10 @@
 			children = (
 				F1DC9E8A1D377D8B00C1ADA8 /* SetingViewController.h */,
 				F1DC9E8B1D377D8B00C1ADA8 /* SetingViewController.m */,
-				F1DC9E8D1D3783CB00C1ADA8 /* SetingSubViewController.h */,
-				F1DC9E8E1D3783CB00C1ADA8 /* SetingSubViewController.m */,
 				F1DC9E901D3783DD00C1ADA8 /* SetingAboutViewController.h */,
 				F1DC9E911D3783DD00C1ADA8 /* SetingAboutViewController.m */,
+				5FC21AF31D46015A0081587E /* SetingSubViewController.h */,
+				5FC21AF41D46015A0081587E /* SetingSubViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -910,6 +910,7 @@
 				5FC174AA1D39DF0100365D25 /* UIImage+MultiFormat.m in Sources */,
 				5F5030F31D3B4D7200ACE15D /* PopupView.m in Sources */,
 				F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */,
+				5FC21AF51D46015A0081587E /* SetingSubViewController.m in Sources */,
 				7DF116871D42747B00FDA0DA /* HttpTool.m in Sources */,
 				7DF1167F1D42743D00FDA0DA /* AFURLResponseSerialization.m in Sources */,
 				7DF1167B1D42743D00FDA0DA /* AFHTTPSessionManager.m in Sources */,
@@ -920,7 +921,6 @@
 				5F5030F91D3B4E9000ACE15D /* AlertView.m in Sources */,
 				5FC174631D39DDB400365D25 /* TAAnimatedDotView.m in Sources */,
 				7DF116861D42747B00FDA0DA /* APIClient.m in Sources */,
-				F1DC9E8F1D3783CB00C1ADA8 /* SetingSubViewController.m in Sources */,
 				5FC174A01D39DF0100365D25 /* NSData+ImageContentType.m in Sources */,
 				5FC174A41D39DF0100365D25 /* SDWebImageDownloader.m in Sources */,
 				F11B67D81D361BE80065E7CD /* CustomNavigationBar.m in Sources */,

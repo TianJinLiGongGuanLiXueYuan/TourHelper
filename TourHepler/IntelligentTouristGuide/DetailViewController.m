@@ -12,6 +12,9 @@
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #define w [UIScreen mainScreen].bounds.size.width
 #define h [UIScreen mainScreen].bounds.size.height
+#define btnH (163.0/1920*h)
+#define btnW (335.0/1080*w)
+
 
 @interface DetailViewController ()<BMKLocationServiceDelegate>
 
@@ -85,12 +88,12 @@
     cycleScrollView.autoScroll = NO;
 //    cycleScrollView.showPageControl = NO;
     cycleScrollView.titlesGroup = locatianNames;
-    cycleScrollView.titleLabelHeight = 300;
+    cycleScrollView.titleLabelHeight = (574.0/1920.0)*h;
     cycleScrollView.showPageControl = NO;
     [self.view addSubview:cycleScrollView];
     
 //    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(200, 64+300+280+10, w-200, 50)];
+    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(w-btnW, h-btnH, btnW, btnH)];
     [_detailBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－现在就去玩.png"] forState:UIControlStateNormal];
 //    [_detailBtn setTitle:@"我要到这里去" forState:UIControlStateNormal];
     [_detailBtn addTarget:self action:@selector(detailBtnClick:) forControlEvents:UIControlEventTouchUpInside];

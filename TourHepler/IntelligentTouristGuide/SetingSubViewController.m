@@ -2,11 +2,18 @@
 //  SetingSubViewController.m
 //  IntelligentTouristGuide
 //
-//  Created by Student04 on 16/7/14.
+//  Created by MuChen on 16/7/25.
 //  Copyright © 2016年 MuChen. All rights reserved.
 //
 
 #import "SetingSubViewController.h"
+#define screenWidth ([UIScreen mainScreen].bounds.size.width)
+#define screenHeight ([UIScreen mainScreen].bounds.size.height)
+#define kViewLeftAndRightMargins 5
+#define kViewHeight (1.0/3.0*screenHeight)
+#define kViewAndInput 8
+#define kBtnWeight (1.0/3.0*screenWidth)
+#define kBtnHeight (30)
 
 @interface SetingSubViewController ()
 
@@ -23,6 +30,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,22 +39,63 @@
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setHidden:YES];
     
+    UIColor *Color = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
+    self.view.backgroundColor = Color;
     
-    UITextView *subTV = [[UITextView alloc]initWithFrame:CGRectMake(0,64+5, 410, 280)];
-    subTV.text = @"请写下您的意见";
-    subTV.font = [UIFont boldSystemFontOfSize:15];
-    subTV.layer.borderColor =(__bridge CGColorRef _Nullable)([UIColor redColor]);
-    subTV.layer.borderWidth =1.0;
-    subTV.layer.cornerRadius =5.0;
-    [self.view addSubview:subTV];
+//    SetingSubView * setingSubView = [[SetingSubView alloc]init];
+//    [self.view addSubview:setingSubView];
     
-    UIButton *aboutBtn = [[UIButton alloc]initWithFrame:CGRectMake(100, 64+5+280+40, 414-200, 40)];
-    [aboutBtn setTitle:@"提交" forState:UIControlStateNormal];
-    aboutBtn.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:aboutBtn];
+//    self.frame = CGRectMake(0, 64, screenWidth, kViewHeight);
+//    UIColor *Color = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
+//    self.backgroundColor = Color;
+    
+    _inputTF = [[UITextField alloc]init];
+    _inputTF.frame = CGRectMake(kViewLeftAndRightMargins,64+kViewLeftAndRightMargins, screenWidth-kViewLeftAndRightMargins*2, kViewHeight);
+    _inputTF.backgroundColor = [UIColor whiteColor];
+    _inputTF.delegate =self;
+    _inputTF.placeholder = @"提出您的意见";
+    _inputTF.clearButtonMode = UITextFieldViewModeAlways;
+    
+    
+    _returnBtn = [[UIButton alloc]init];
+    _returnBtn.frame = CGRectMake(kBtnWeight, screenHeight-kViewHeight, kBtnWeight, kBtnHeight);
+    _returnBtn.backgroundColor = [UIColor grayColor];
+    [_returnBtn setTitle:@"提交" forState:UIControlStateNormal];
+    _returnBtn.titleLabel.textColor = [UIColor whiteColor];
+    
+    [_returnBtn addTarget:self action:@selector(returnBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_inputTF];
+    [self.view addSubview:_returnBtn];
+    
     
     
 }
+
+#pragma  mark- 通过委托放弃第一响应者
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)returnBtnClick:(UIButton*)sender{
+    //    self.inputTF.showsScopeBar = NO;
+    //    [self.searchBar sizeToFit];
+    [self.inputTF resignFirstResponder];
+//    NSLog(@"returnBtn 点击");
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:@"提示"
+                              message:@"提交成功，谢谢您！"
+                              delegate:nil
+                              cancelButtonTitle:@"关闭"
+                              otherButtonTitles:nil
+                              ];
+    //
+    [alertView show];
+}
+
+
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
     //    NSLog(@"leftBtnDidClick");

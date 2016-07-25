@@ -10,6 +10,8 @@
 #import "MyBMKPointAnnotation.h"
 #import "DetailViewController.h"
 #import "MapUpView.h"
+#import "DataSingleton.h"
+#import "Location.h"
 //#import "BMKGeometry.h"
 #define screenHeight ([UIScreen mainScreen].bounds.size.height)
 #define screenWidth ([UIScreen mainScreen].bounds.size.width)
@@ -19,6 +21,7 @@
 
 @property (nonatomic) BOOL isPoi;
 @property (nonatomic) BOOL isUpViewPop;
+@property (nonatomic,strong) Location* curlocation;
 
 @end
 
@@ -77,6 +80,7 @@
     //以下_mapView为BMKMapView对象
     
 //    [mapView updateLocationData:_locService];
+    [self insertAnnotation];
     
     [self.view addSubview:_mapView];
     _mySrarchBar = [[MySearchBar alloc]init];
@@ -84,8 +88,8 @@
 //    [self.view addSubview:_searchBar];
 //    [self.view endEditing:YES];
     //设置搜索栏委托对象为当前视图控制器
-    self.searchBar.delegate = self;
-//    
+//    self.searchBar.delegate = self;
+//
 //    //初始化检索对象
 //    _searcher =[[BMKPoiSearch alloc]init];
 //    _searcher.delegate = self;
@@ -190,7 +194,7 @@
 //            }
 
         }
-        [_mapView addAnnotations:mutArr];
+//        [_mapView addAnnotations:mutArr];
         
     }
     else if (error == BMK_SEARCH_AMBIGUOUS_KEYWORD){
@@ -294,6 +298,23 @@
 
 #pragma mark 定义每个标注样式
 
+//上标注
+
+- (void) insertAnnotation{
+    DataSingleton * dataSL = [DataSingleton shareInstance];
+    NSMutableArray* mutArr = [[NSMutableArray alloc]init];
+    for (Location *obj in dataSL.allDetail) {
+        CLLocationCoordinate2D coordinate = obj.coor;
+        //设置地图标注
+        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+        annotation.coordinate = coordinate;
+        annotation.title = obj.locationName;
+        annotation.subtitle = obj.locationText;
+        [mutArr addObject:annotation];
+    }
+    [_mapView addAnnotations:mutArr];
+}
+
 /**
  *根据anntation生成对应的View
  *@param mapView 地图View
@@ -370,14 +391,15 @@
 
 - (void)goToBtnClick:(UIButton*)sender{
 //    locationImageName:@"卧龙海.jpeg" distance:@"1.2KM" locationText:@"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。"coor:(CLLocationCoordinate2D){103.907089,33.206952}];
-    NSLog(@"点击goToBtn");
-    DetailViewController *deVC = [[DetailViewController alloc]init];
-    deVC.titleText = @"卧龙海";
-    deVC.detailImg = @"卧龙海.jpeg";
-    deVC.detailText = @"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。";
-    [self presentViewController:deVC animated:YES completion:nil];
+//    NSLog(@"");
+    if(_curlocation){
+        DetailViewController *deVC = [[DetailViewController alloc]init];
+        deVC.titleText = _curlocation.locationName;
+        deVC.detailImg = _curlocation.locationImageName;
+        deVC.detailText = _curlocation.locationText;
+        [self presentViewController:deVC animated:YES completion:nil];
 //    [self.navigationController pushViewController:deVC animated:YES];
-    
+    }
 }
 
 ///**
@@ -405,8 +427,15 @@
 //    [UIView animateWithDuration:0.5 animations:^{
 //        _con_view_picker.frame = CGRectMake(0, SCREEN_HEIGHT/2, SCREEN_WIDTH, SCREEN_HEIGHT/2);
 //    }];
+    _curlocation = [[Location alloc]init];
     
-    
+    DataSingleton *dataSL = [DataSingleton shareInstance];
+    for (Location *obj in dataSL.allDetail) {
+        if ([view.annotation.title isEqualToString:obj.locationName]) {
+            _curlocation = [[Location alloc]initWithlocationName:obj.locationName voice:obj.voice locationImageName:obj.locationImageName distance:obj.distance locationText:obj.locationText coor:obj.coor];
+            break;
+        }
+    }
     
     MapUpView * mapUpView = [[MapUpView alloc]init];
     mapUpView.locationNameLabel.text = view.annotation.title;
@@ -431,7 +460,8 @@
         mapUpView.distanceLabel.text = [NSString stringWithFormat:@"%g",distance];
         mapUpView.distanceLabel.text = [mapUpView.distanceLabel.text stringByAppendingString:@"m"];
     }
-        if (_isUpViewPop) {
+    
+    if (_isUpViewPop) {
         mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
         [self.view addSubview:mapUpView];
     }else{

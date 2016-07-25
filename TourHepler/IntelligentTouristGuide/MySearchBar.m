@@ -7,6 +7,7 @@
 //
 
 #import "MySearchBar.h"
+#import "HttpTool.h"
 #define screenWidth ([UIScreen mainScreen].bounds.size.width)
 #define screenHeight ([UIScreen mainScreen].bounds.size.height)
 #define kViewLeftAndRightMargins 5
@@ -43,7 +44,6 @@
         _inputTF.placeholder = @"输入搜索内容";
         _inputTF.clearButtonMode = UITextFieldViewModeAlways;
         
-        
         [self addSubview:_inputTF];
         [self addSubview:_returnBtn];
     }
@@ -53,6 +53,18 @@
 #pragma  mark- 通过委托放弃第一响应者
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    NSDictionary *para = @{@"scenic_spot_name":textField.text};
+    
+    [HttpTool postWithparamsWithURL:@"homeInfo/GetInfoWithSearch" andParam:para success:^(id responseObject) {
+        NSData *data = [[NSData alloc]initWithData:responseObject];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        NSLog(@"成功调用,%@",dict);
+    } failure:^(NSError *error) {
+        NSLog(@"网络信息错误");
+        
+    }];
     [textField resignFirstResponder];
     return YES;
 }
@@ -60,6 +72,8 @@
 - (void)returnBtnClick:(UIButton*)sender{
 //    self.inputTF.showsScopeBar = NO;
     //    [self.searchBar sizeToFit];
+    NSLog(@"%@",_inputTF.text);
+    
     [self.inputTF resignFirstResponder];
 }
 
