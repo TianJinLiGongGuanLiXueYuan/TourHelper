@@ -8,10 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MySearchBarDelegate <NSObject>
+
+- (void)locationBtnClick:(UIButton *)btn;
+- (void)wcBtnClick:(UIButton *)btn;
+- (void)foodBtnClick:(UIButton *)btn;
+
+@end
+
+
 @interface MySearchBar : UIView<UITextFieldDelegate>
 
 //@property (nonatomic,strong) UIView *searchBarView;
-@property (nonatomic,strong) UITextField *inputTF;
-@property (nonatomic,strong) UIButton *returnBtn;
+//@property (nonatomic,strong) UITextField *inputTF;
+//@property (nonatomic,strong) UIButton *returnBtn;
+@property (nonatomic,strong) UIButton *locationBtn;
+@property (nonatomic,strong) UIButton *wcBtn;
+@property (nonatomic,strong) UIButton *foodBtn;
+@property (nonatomic,weak) id<MySearchBarDelegate> delegate;
+
+
+
 
 @end

@@ -107,7 +107,7 @@
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
 //    _homeCenterCC2D.latitude = userLocation.location.coordinate.latitude;
 //    _homeCenterCC2D.longitude = userLocation.location.coordinate.longitude;
 //    _homeLocation = userLocation.location;
@@ -126,7 +126,6 @@
                                   cancelButtonTitle:@"好的"
                                   otherButtonTitles:nil
                                   ];
-        //
         [alertView show];
     }else{
         NSMutableArray *teamArr= [[NSMutableArray alloc]initWithArray:[dict objectForKey:@"data"]];
@@ -214,7 +213,7 @@
 //        _mainDict = [[NSDictionary alloc]initWithDictionary:dict];
 //        test = [[NSDictionary alloc]initWithDictionary:_mainDict];
         [self reLoad:dict];
-        NSLog(@"--------------------成功调用,%@",[dict objectForKey:@"data"]);
+//        NSLog(@"--------------------成功调用,%@",[dict objectForKey:@"data"]);
         //        return dict[@"data"][0][@"scenic_area_name"];
     } failure:^(NSError *error) {
         NSLog(@"附近没有景区");
@@ -384,7 +383,7 @@
     [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotWordInfoWithAreaName" andParam:para success:^(id responseObject) {
         NSData *data = [[NSData alloc]initWithData:responseObject];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_spot_name"]);
+//        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_spot_name"]);
         
     } failure:^(NSError *error) {
         NSLog(@"附近没有景区");

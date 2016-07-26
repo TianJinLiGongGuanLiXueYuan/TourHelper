@@ -53,6 +53,10 @@
     _mapView.showsUserLocation = YES;//显示定位图层
     _mapView.showMapScaleBar = YES;//显示比例尺
     _mapView.zoomLevel=19;//地图显示的级别
+    BMKLocationViewDisplayParam* myBMKLocationViewDisplayParam = [[BMKLocationViewDisplayParam alloc]init];
+    myBMKLocationViewDisplayParam.isAccuracyCircleShow = NO;
+    myBMKLocationViewDisplayParam.locationViewImgName = @"旅游助手－地图大钉子.png";
+    [_mapView updateLocationViewWithParam:myBMKLocationViewDisplayParam];
     
 //    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(10, 64+10, screenWidth-10*2, 35)];
 //    _searchBar.showsCancelButton = YES;
@@ -85,61 +89,70 @@
     [self.view addSubview:_mapView];
     _mySrarchBar = [[MySearchBar alloc]init];
     [self.view addSubview:_mySrarchBar];
-//    [self.view addSubview:_searchBar];
-//    [self.view endEditing:YES];
-    //设置搜索栏委托对象为当前视图控制器
-//    self.searchBar.delegate = self;
-//
-//    //初始化检索对象
-//    _searcher =[[BMKPoiSearch alloc]init];
-//    _searcher.delegate = self;
-//    //发起检索
-//    BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
-//    option.pageIndex = 0;
-//    option.pageCapacity = 10;
-////    CLLocationCoordinate2D tem = _geoCodeSearch.;
-////    tem.latitude = 39.915;
-////    tem.longitude = 116.404;
-//    
-//    option.location = tem;
-//    option.keyword = @"景点";
-//    BOOL flag = [_searcher poiSearchNearBy:option];
-////    [option release];
-//    if(flag)
-//    {
-//        NSLog(@"周边检索发送成功");
-//    }
-//    else
-//    {
-//        NSLog(@"周边检索发送失败");
-//    }
-//    
+    _mySrarchBar.delegate = self;
+    
 }
 
-//#pragma  mark- 通过委托放弃第一响应者
-//
-//-(BOOL) textFieldShouldReturn:(UITextField *)textField{
-//    [textField resignFirstResponder];
-//    return YES;
-//}
+#pragma mark - 按钮点击事件
 
-#pragma mark- 搜索栏相关
-
-//关闭键盘
--(void)searchBarSearchButtonClicked:(UISearchBar*)searchBar{
-    self.searchBar.showsScopeBar = NO;
-    //    [self.searchBar sizeToFit];
-    [self.searchBar resignFirstResponder];
-}
-
-//点击搜索栏取消按钮
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+- (void)locationBtnClick:(UIButton *)btn
 {
-    //    //查询所有
-    //    [self filterContentForSearchText:self.searchBar.text scope:-1];
-    self.searchBar.showsScopeBar = NO;
-    //    [self.searchBar sizeToFit];
-    [self.searchBar resignFirstResponder];
+    [_mapView removeAnnotations:_mapView.annotations];
+    [self insertAnnotation];
+}
+
+- (void)wcBtnClick:(UIButton *)btn
+{
+    [_mapView removeAnnotations:_mapView.annotations];
+    //初始化检索对象
+    _searcher =[[BMKPoiSearch alloc]init];
+    _searcher.delegate = self;
+    //发起检索
+    BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
+    option.pageIndex = 0;
+    option.pageCapacity = 50;
+    option.radius = 100000;
+    
+    option.location = _locService.userLocation.location.coordinate;
+    option.keyword = @"厕所";
+    BOOL flag = [_searcher poiSearchNearBy:option];
+    //    [option release];
+    if(flag)
+    {
+        NSLog(@"厕所检索发送成功");
+    }
+    else
+    {
+        NSLog(@"厕所检索发送失败");
+    }
+
+    
+}
+
+- (void)foodBtnClick:(UIButton *)btn
+{
+    [_mapView removeAnnotations:_mapView.annotations];
+    //初始化检索对象
+    _searcher =[[BMKPoiSearch alloc]init];
+    _searcher.delegate = self;
+    //发起检索
+    BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
+    option.pageIndex = 0;
+    option.pageCapacity = 50;
+    option.radius = 100000;
+    
+    option.location = _locService.userLocation.location.coordinate;
+    option.keyword = @"美食";
+    BOOL flag = [_searcher poiSearchNearBy:option];
+    //    [option release];
+    if(flag)
+    {
+        NSLog(@"美食检索发送成功");
+    }
+    else
+    {
+        NSLog(@"美食检索发送失败");
+    }
 }
 
 #pragma mark- 导航栏左buttom
@@ -194,7 +207,7 @@
 //            }
 
         }
-//        [_mapView addAnnotations:mutArr];
+        [_mapView addAnnotations:mutArr];
         
     }
     else if (error == BMK_SEARCH_AMBIGUOUS_KEYWORD){
@@ -205,33 +218,6 @@
         NSLog(@"抱歉，未找到结果");
     }
 }
-//
-////点击地图上边的建筑物标记事件
-//-(void)mapView:(BMKMapView *)mapView onClickedMapPoi:(BMKMapPoi *)mapPoi{
-//    CLLocationCoordinate2D coordinate = mapPoi.pt;
-//    //长按之前删除所有标注
-//    NSArray *arrayAnmation=[[NSArray alloc] initWithArray:_mapView.annotations];
-//    [_mapView removeAnnotations:arrayAnmation];
-//    //设置地图标注
-//    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
-//    annotation.coordinate = coordinate;
-//    [_mapView addAnnotation:annotation];
-//    BMKReverseGeoCodeOption *re = [[BMKReverseGeoCodeOption alloc] init];
-//    re.reverseGeoPoint = coordinate;
-//    [_geoCodeSearch reverseGeoCode:re];
-//    BOOL flag =[_geoCodeSearch reverseGeoCode:re];
-//    if (!flag){
-//        NSLog(@"search failed!");
-//    }
-//}
-
-////根据经纬度返回点击的位置的名称
-//-(void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
-//    
-//    NSLog(@"%@",result.address);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:result.address message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//    [alert show];
-//}
 
 -(void)viewWillAppear:(BOOL)animated{
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
@@ -247,7 +233,7 @@
 //处理方向变更信息
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-    NSLog(@"heading is %@",userLocation.heading);
+//    NSLog(@"heading is %@",userLocation.heading);
 }
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
@@ -270,27 +256,27 @@
 //        
 //        [_mapView addAnnotation:myLocationAnnotation];
         _mapView.centerCoordinate = userLocation.location.coordinate;
-        //初始化检索对象
-        _searcher =[[BMKPoiSearch alloc]init];
-        _searcher.delegate = self;
-        //发起检索
-        BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
-        option.pageIndex = 0;
-        option.pageCapacity = 50;
-        option.radius = 100000;
-    
-        option.location = userLocation.location.coordinate;
-        option.keyword = @"旅游景点";
-        BOOL flag = [_searcher poiSearchNearBy:option];
-        //    [option release];
-        if(flag)
-        {
-            NSLog(@"周边检索发送成功");
-        }
-        else
-        {
-            NSLog(@"周边检索发送失败");
-        }
+//        //初始化检索对象
+//        _searcher =[[BMKPoiSearch alloc]init];
+//        _searcher.delegate = self;
+//        //发起检索
+//        BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
+//        option.pageIndex = 0;
+//        option.pageCapacity = 50;
+//        option.radius = 100000;
+//    
+//        option.location = userLocation.location.coordinate;
+//        option.keyword = @"旅游景点";
+//        BOOL flag = [_searcher poiSearchNearBy:option];
+//        //    [option release];
+//        if(flag)
+//        {
+//            NSLog(@"周边检索发送成功");
+//        }
+//        else
+//        {
+//            NSLog(@"周边检索发送失败");
+//        }
     }
     
 //    [_locService stopUserLocationService];//取消定位
@@ -327,7 +313,6 @@
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
         newAnnotationView.animatesDrop = YES;
         newAnnotationView.annotation = annotation;
-        //这里我根据自己需要，继承了BMKPointAnnotation，添加了标注的类型等需要的信息
 //        MyBMKPointAnnotation *tt = (MyBMKPointAnnotation *)annotation;
         
         //判断类别，需要添加不同类别，来赋予不同的标注图片
@@ -370,7 +355,16 @@
         carName.textAlignment = NSTextAlignmentLeft;
         [popView addSubview:carName];
         
-        if (annotation.subtitle != nil) {
+        BOOL ok = NO;
+        DataSingleton *dataSL = [DataSingleton shareInstance];
+        for (Location *obj in dataSL.allDetail) {
+            if ([obj.locationName isEqualToString:annotation.title]) {
+                ok = YES;
+                break;
+            }
+        }
+        
+        if (ok) {
             UIButton *goToBtn = [[UIButton alloc]initWithFrame:CGRectMake(popView.frame.size.width-50, 0, 50, 60)];
             [goToBtn setTitle:@"查看详情" forState:UIControlStateNormal];
             goToBtn.backgroundColor = [UIColor redColor];
@@ -421,12 +415,7 @@
 //当选中一个annotation views时，调用此接口
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
-    NSLog(@"选中一个annotation views:%f,%f",view.annotation.coordinate.latitude,view.annotation.coordinate.longitude);
-    
-//    _con_view_picker.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/2);
-//    [UIView animateWithDuration:0.5 animations:^{
-//        _con_view_picker.frame = CGRectMake(0, SCREEN_HEIGHT/2, SCREEN_WIDTH, SCREEN_HEIGHT/2);
-//    }];
+//    NSLog(@"选中一个annotation views:%f,%f",view.annotation.coordinate.latitude,view.annotation.coordinate.longitude);
     _curlocation = [[Location alloc]init];
     
     DataSingleton *dataSL = [DataSingleton shareInstance];

@@ -115,7 +115,7 @@
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
         _homeCenterCC2D.latitude = userLocation.location.coordinate.latitude;
         _homeCenterCC2D.longitude = userLocation.location.coordinate.longitude;
     
@@ -189,7 +189,7 @@
  ****/
 - (void)onBufferProgress:(int) progress message:(NSString *)msg
 {
-    NSLog(@"buffer progress %2d%%. msg: %@.", progress, msg);
+//    NSLog(@"buffer progress %2d%%. msg: %@.", progress, msg);
 }
 
 /**
@@ -203,7 +203,7 @@
  ****/
 - (void) onSpeakProgress:(int) progress beginPos:(int)beginPos endPos:(int)endPos
 {
-    NSLog(@"speak progress %2d%%.", progress);
+//    NSLog(@"speak progress %2d%%.", progress);
 }
 
 

@@ -63,12 +63,14 @@
     [_returnBtn setTitle:@"提交" forState:UIControlStateNormal];
     _returnBtn.titleLabel.textColor = [UIColor whiteColor];
     
+    _returnBtn.layer.masksToBounds = YES;
+    _returnBtn.layer.cornerRadius = 6.0;
+    _returnBtn.layer.borderWidth = 1.0;
+    
     [_returnBtn addTarget:self action:@selector(returnBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:_inputTF];
     [self.view addSubview:_returnBtn];
-    
-    
     
 }
 

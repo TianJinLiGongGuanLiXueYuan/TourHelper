@@ -18,6 +18,8 @@
 
 @interface SetingViewController ()
 
+@property ( nonatomic , strong ) UILabel * cachLabel;//显示缓存有多少m
+
 @end
 
 @implementation SetingViewController
@@ -51,6 +53,7 @@
         [cleanBtn setTitle:@"清除缓存" forState:UIControlStateNormal];
         [cleanBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         cleanBtn.backgroundColor = [UIColor clearColor];
+        [cleanBtn addTarget:self action:@selector(cleanBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:cleanBtn];
         
         UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(kTVLeftMargins+kLineMargins, kTVTopMargins+kTVheight/3.0, kTVWidth-2*kLineMargins, kLineHeight)];
@@ -87,8 +90,18 @@
 }
 
 - (void)aboutBtnClick:(UIButton*)sender{
-    SetingAboutViewController *aboutVC = [[SetingAboutViewController alloc]init];
-    [self.navigationController pushViewController:aboutVC animated:YES ];
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:@"关于我们"
+                              message:@"天津理工大学管理学院"
+                              delegate:nil
+                              cancelButtonTitle:@"好的"
+                              otherButtonTitles:nil
+                              ];
+    [alertView show];
+    
+    
+//    SetingAboutViewController *aboutVC = [[SetingAboutViewController alloc]init];
+//    [self.navigationController pushViewController:aboutVC animated:YES ];
 }
 
 - (void)subBtnClick:(UIButton*)sender{
@@ -105,6 +118,128 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - 清理缓存
+
+- (void)cleanBtnClick:(UIButton*)sender{
+    _cachLabel = [[UILabel alloc]init];
+    _cachLabel.text = [[NSString alloc]initWithFormat:@"%.2f", [self filePath]];
+    NSString *display = @"一共有";
+    display=[display stringByAppendingString:_cachLabel.text];
+    display=[display stringByAppendingString:@"M的缓存文件"];
+    UIAlertView * alertView = [[ UIAlertView alloc ] initWithTitle : @" 提示 " message :display  delegate : self cancelButtonTitle : @" 取消 " otherButtonTitles :@"清理", nil ];
+    
+    [alertView show];
+    NSLog(@"%@",_cachLabel.text);
+    
+}
+
+
+
+//1:首先我们计算一下 单个文件的大小
+
+- ( long long ) fileSizeAtPath:( NSString *) filePath{
+    
+    NSFileManager * manager = [ NSFileManager defaultManager ];
+    
+    if ([manager fileExistsAtPath :filePath]){
+        
+        return [[manager attributesOfItemAtPath :filePath error : nil ] fileSize ];
+        
+    }
+    
+    return 0 ;
+    
+}
+
+//2: 遍历文件夹获得文件夹大小，返回多少 M（提示：你可以在工程界设置（)m）
+
+- ( float ) folderSizeAtPath:( NSString *) folderPath{
+    
+    NSFileManager * manager = [ NSFileManager defaultManager ];
+    
+    if (![manager fileExistsAtPath :folderPath]) return 0 ;
+    
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath :folderPath] objectEnumerator ];
+    
+    NSString * fileName;
+    
+    long long folderSize = 0 ;
+    
+    while ((fileName = [childFilesEnumerator nextObject ]) != nil ){
+        
+        NSString * fileAbsolutePath = [folderPath stringByAppendingPathComponent :fileName];
+        
+        folderSize += [ self fileSizeAtPath :fileAbsolutePath];
+        
+    }
+    
+    return folderSize/( 1024.0 * 1024.0 );
+    
+}
+
+// 显示缓存大小
+
+- ( float )filePath
+
+{
+    
+    NSString * cachPath = [ NSSearchPathForDirectoriesInDomains ( NSCachesDirectory , NSUserDomainMask , YES ) firstObject ];
+    
+    return [ self folderSizeAtPath :cachPath];
+    
+}
+
+// 清理缓存
+
+- ( void )clearFile
+
+{
+    
+    NSString * cachPath = [ NSSearchPathForDirectoriesInDomains ( NSCachesDirectory , NSUserDomainMask , YES ) firstObject ];
+    
+    NSArray * files = [[ NSFileManager defaultManager ] subpathsAtPath :cachPath];
+    
+//    NSLog ( @"cachpath = %@" , cachPath);
+    
+    for ( NSString * p in files) {
+        
+        NSError * error = nil ;
+        
+        NSString * path = [cachPath stringByAppendingPathComponent :p];
+        
+        if ([[ NSFileManager defaultManager ] fileExistsAtPath :path]) {
+            
+            [[ NSFileManager defaultManager ] removeItemAtPath :path error :&error];
+            
+        }
+        
+    }
+    
+    [ self performSelectorOnMainThread : @selector (clearCachSuccess) withObject :nil waitUntilDone : YES ];
+    
+}
+
+- ( void )clearCachSuccess
+
+{
+    
+//    NSLog ( @" 清理成功 " );
+    
+    UIAlertView * alertView = [[ UIAlertView alloc ] initWithTitle : @" 提示 " message : @"清理成功" delegate : nil cancelButtonTitle : @" 好的 " otherButtonTitles : nil ];
+    
+    [alertView show];
+//    [ _tableView reloadData ];//清理完之后重新导入数据
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    NSLog(@"%li",(long)buttonIndex);
+    if (1==buttonIndex) {
+        [self clearFile];
+    }
+}
+
 
 /*
 #pragma mark - Navigation

@@ -10,6 +10,6 @@
 #import "SetingSubViewController.h"
 #import "SetingAboutViewController.h"
 
-@interface SetingViewController : BaseViewController
+@interface SetingViewController : BaseViewController<UIAlertViewDelegate>
 
 @end

@@ -16,7 +16,7 @@
 #define kBarHeight (112.0/1920.0*screenHeight)
 #define kImgWithBarMargins (48.0/1920.0*screenHeight)
 #define kBarLeftAndRightMargins (19.0/1080.0*screenWidth)
-#define kVioceWidth (48.0/1080.0*screenWidth)
+#define kVioceWidth (58.0/1080.0*screenWidth)
 #define kVioceHeight (65.0/1920.0*screenHeight)
 #define kUpRightImgWidth (48.0/1080.0*screenWidth)
 
@@ -24,6 +24,8 @@
 
 @property (strong, nonatomic) Location *currentLocation;
 @property (strong, nonatomic) DetailViewController *detailViewController;
+@property (nonatomic) BOOL isPlaying;
+
 
 @end
 
@@ -40,19 +42,28 @@
 }
 
 - (IBAction)voiceBtnClick:(id)sender {
-    //1.创建合成对象
-    _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
-    self;
-    
-    //设置在线工作方式
-    [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
-                                  forKey:[IFlySpeechConstant ENGINE_TYPE]];
-    //音量,取值范围 0~100
-    [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
-    [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
-    //3.启动合成会话
-//    [IFlySpeechUtility createUtility:@"你好,我是科大讯飞的小燕"];
-    [_iFlySpeechSynthesizer startSpeaking: self.currentLocation.locationText];
+    if (_isPlaying==NO) {
+        //1.创建合成对象
+        _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
+        self;
+        
+        //设置在线工作方式
+        [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
+                                      forKey:[IFlySpeechConstant ENGINE_TYPE]];
+        //音量,取值范围 0~100
+        [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
+        [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
+        //3.启动合成会话
+        //    [IFlySpeechUtility createUtility:@"你好,我是科大讯飞的小燕"];
+        [_iFlySpeechSynthesizer startSpeaking: self.currentLocation.locationText];
+        
+        [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"stop27.png"] forState:UIControlStateNormal];
+        
+    }else{
+        [_iFlySpeechSynthesizer stopSpeaking];
+        [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+    }
+    _isPlaying^=1;
 
     
 }
@@ -66,6 +77,7 @@
 - (void)setCellData:(Location*)location{
     self.currentLocation = location;
     [self.locationImage setImage:[UIImage imageNamed:location.locationImageName]];
+    _isPlaying = NO;
     
     self.imgName = location.locationImageName;
     self.cellText = location.locationText;
