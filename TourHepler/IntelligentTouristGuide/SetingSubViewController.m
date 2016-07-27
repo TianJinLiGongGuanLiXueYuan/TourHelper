@@ -7,6 +7,7 @@
 //
 
 #import "SetingSubViewController.h"
+#import "HttpTool.h"
 #define screenWidth ([UIScreen mainScreen].bounds.size.width)
 #define screenHeight ([UIScreen mainScreen].bounds.size.height)
 #define kViewLeftAndRightMargins 5
@@ -55,7 +56,7 @@
     _inputTF.delegate =self;
     _inputTF.placeholder = @"提出您的意见";
     _inputTF.clearButtonMode = UITextFieldViewModeAlways;
-    
+    _inputTF.returnKeyType = UIReturnKeySend;
     
     _returnBtn = [[UIButton alloc]init];
     _returnBtn.frame = CGRectMake(kBtnWeight, screenHeight-kViewHeight, kBtnWeight, kBtnHeight);
@@ -85,16 +86,42 @@
     //    self.inputTF.showsScopeBar = NO;
     //    [self.searchBar sizeToFit];
     [self.inputTF resignFirstResponder];
-//    NSLog(@"returnBtn 点击");
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:@"提示"
-                              message:@"提交成功，谢谢您！"
-                              delegate:nil
-                              cancelButtonTitle:@"关闭"
-                              otherButtonTitles:nil
-                              ];
-    //
-    [alertView show];
+    if (![self.inputTF.text isEqualToString:@""]) {
+        NSDictionary *para = @{@"opinion_content":self.inputTF.text};
+        [HttpTool postWithparamsWithURL:@"subinfo/SubInfoForWeb" andParam:para success:^(id responseObject) {
+//            NSData *data = [[NSData alloc]initWithData:responseObject];
+//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            UIAlertView *alertView = [[UIAlertView alloc]
+                                      initWithTitle:@"提示"
+                                      message:@"提交成功，谢谢您！"
+                                      delegate:nil
+                                      cancelButtonTitle:@"关闭"
+                                      otherButtonTitles:nil
+                                      ];
+            //
+            [alertView show];
+            NSLog(@"成功调用");
+            
+        } failure:^(NSError *error) {
+            NSLog(@"附近没有景区");
+            
+        }];
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"提示"
+                                  message:@"输入不能为空"
+                                  delegate:nil
+                                  cancelButtonTitle:@"关闭"
+                                  otherButtonTitles:nil
+                                  ];
+        //
+        [alertView show];
+    }
+    
+    
+    
+    
+    
 }
 
 

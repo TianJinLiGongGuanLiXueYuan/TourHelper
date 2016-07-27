@@ -14,6 +14,7 @@
 #import "SetingViewController.h"
 #import "DataSingleton.h"
 #import "HttpTool.h"
+#import "SDRefresh.h"
 
 
 
@@ -21,6 +22,7 @@
 
 @property (nonatomic ,strong) NSMutableArray *dataArr;
 @property (nonatomic,strong) BMKLocationService* locService;
+@property (nonatomic) NSInteger *cnt;
 //@property (readonly, nonatomic,strong) CLLocation *homeLocation;
 
 @end
@@ -38,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _cnt = 0;
     // Do any additional setup after loading the view.
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
@@ -72,12 +75,30 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc]init];
     
+    
+//    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
+//    
+//    //加入到目标tableview，默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
+//    [refreshHeader addToScrollView:_mainTableView];
+//    refreshHeader.isEffectedByNavigationController = NO;
+//    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
+////    __weak typeof(self) weakSelf = self.mainTableView;
+//    refreshHeader.beginRefreshingOperation = ^{
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            _cnt += 3;
+//            [_mainTableView reloadData];
+//            [weakRefreshHeader endRefreshing];
+//        });
+//    };
+    //或者 refreshHeader.beginRefreshingOperation = ^{} 任选其中一种即可
+    
+    
     [self.view addSubview:self.mainTableView];
     
     
-    UIRefreshControl *mainRC = [[UIRefreshControl alloc]init];
-    mainRC.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-    [mainRC addTarget:self action:@selector(refreshTableView) forControlEvents:UIControlEventValueChanged];
+//    UIRefreshControl *mainRC = [[UIRefreshControl alloc]init];
+//    mainRC.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
+//    [mainRC addTarget:self action:@selector(refreshTableView) forControlEvents:UIControlEventValueChanged];
     
     
     
@@ -244,7 +265,7 @@
 //控制行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    
+//    return _cnt;
     return self.dataArr.count;
 }
 //控制每一行样式

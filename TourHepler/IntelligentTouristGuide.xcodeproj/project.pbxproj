@@ -18,6 +18,11 @@
 		5F1243A01D3C860200477E00 /* 双龙海2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12439D1D3C860200477E00 /* 双龙海2.jpeg */; };
 		5F1243A11D3C860200477E00 /* 双龙海3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12439E1D3C860200477E00 /* 双龙海3.jpeg */; };
 		5F1243A21D3C860200477E00 /* 双龙海4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12439F1D3C860200477E00 /* 双龙海4.jpeg */; };
+		5F14185D1D4851BA007EEC4B /* sdRefeshView_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F1418531D4851BA007EEC4B /* sdRefeshView_arrow@2x.png */; };
+		5F14185E1D4851BA007EEC4B /* SDRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1418551D4851BA007EEC4B /* SDRefreshView.m */; };
+		5F14185F1D4851BA007EEC4B /* SDRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1418571D4851BA007EEC4B /* SDRefreshHeaderView.m */; };
+		5F1418601D4851BA007EEC4B /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1418591D4851BA007EEC4B /* UIView+SDExtension.m */; };
+		5F1418611D4851BA007EEC4B /* SDRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F14185B1D4851BA007EEC4B /* SDRefreshFooterView.m */; };
 		5F1C55491D37276D00B08D4D /* MapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C55481D37276D00B08D4D /* MapViewController.mm */; };
 		5F1C554F1D37339F00B08D4D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C554E1D37339F00B08D4D /* DetailViewController.m */; };
 		5F5030F21D3B4D7200ACE15D /* PcmPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030ED1D3B4D7200ACE15D /* PcmPlayer.m */; };
@@ -113,7 +118,7 @@
 		F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A4181D3668F900F48A48 /* LocationInfoCell.m */; };
 		F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D5A4191D3668F900F48A48 /* LocationInfoCell.xib */; };
 		F1D5A41E1D366A3A00F48A48 /* Location.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1D5A41D1D366A3A00F48A48 /* Location.mm */; };
-		F1D935B21D4776D700EF5424 /* stop27.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D935B11D4776D700EF5424 /* stop27.png */; settings = {ASSET_TAGS = (); }; };
+		F1D935B21D4776D700EF5424 /* stop27.png in Resources */ = {isa = PBXBuildFile; fileRef = F1D935B11D4776D700EF5424 /* stop27.png */; };
 		F1DC9E831D375E7500C1ADA8 /* Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC9E821D375E7500C1ADA8 /* Detail.m */; };
 		F1DC9E861D37603800C1ADA8 /* DetailUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC9E851D37603800C1ADA8 /* DetailUIView.m */; };
 		F1DC9E8C1D377D8B00C1ADA8 /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DC9E8B1D377D8B00C1ADA8 /* SetingViewController.m */; };
@@ -152,6 +157,16 @@
 		5F12439D1D3C860200477E00 /* 双龙海2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海2.jpeg"; sourceTree = "<group>"; };
 		5F12439E1D3C860200477E00 /* 双龙海3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海3.jpeg"; sourceTree = "<group>"; };
 		5F12439F1D3C860200477E00 /* 双龙海4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海4.jpeg"; sourceTree = "<group>"; };
+		5F1418531D4851BA007EEC4B /* sdRefeshView_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sdRefeshView_arrow@2x.png"; sourceTree = "<group>"; };
+		5F1418541D4851BA007EEC4B /* SDRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefreshView.h; sourceTree = "<group>"; };
+		5F1418551D4851BA007EEC4B /* SDRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRefreshView.m; sourceTree = "<group>"; };
+		5F1418561D4851BA007EEC4B /* SDRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefreshHeaderView.h; sourceTree = "<group>"; };
+		5F1418571D4851BA007EEC4B /* SDRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRefreshHeaderView.m; sourceTree = "<group>"; };
+		5F1418581D4851BA007EEC4B /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
+		5F1418591D4851BA007EEC4B /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
+		5F14185A1D4851BA007EEC4B /* SDRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefreshFooterView.h; sourceTree = "<group>"; };
+		5F14185B1D4851BA007EEC4B /* SDRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRefreshFooterView.m; sourceTree = "<group>"; };
+		5F14185C1D4851BA007EEC4B /* SDRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefresh.h; sourceTree = "<group>"; };
 		5F1C55471D37276D00B08D4D /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		5F1C55481D37276D00B08D4D /* MapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MapViewController.mm; sourceTree = "<group>"; };
 		5F1C554D1D37339F00B08D4D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -367,6 +382,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F1418621D4851F7007EEC4B /* SDRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				5F1418531D4851BA007EEC4B /* sdRefeshView_arrow@2x.png */,
+				5F1418541D4851BA007EEC4B /* SDRefreshView.h */,
+				5F1418551D4851BA007EEC4B /* SDRefreshView.m */,
+				5F1418561D4851BA007EEC4B /* SDRefreshHeaderView.h */,
+				5F1418571D4851BA007EEC4B /* SDRefreshHeaderView.m */,
+				5F1418581D4851BA007EEC4B /* UIView+SDExtension.h */,
+				5F1418591D4851BA007EEC4B /* UIView+SDExtension.m */,
+				5F14185A1D4851BA007EEC4B /* SDRefreshFooterView.h */,
+				5F14185B1D4851BA007EEC4B /* SDRefreshFooterView.m */,
+				5F14185C1D4851BA007EEC4B /* SDRefresh.h */,
+			);
+			name = SDRefresh;
+			sourceTree = "<group>";
+		};
 		5F1C55431D37242600B08D4D /* Mode */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,7 +575,6 @@
 		F11B67AB1D3619DB0065E7CD /* IntelligentTouristGuide */ = {
 			isa = PBXGroup;
 			children = (
-				7DF116811D42746400FDA0DA /* WebServer */,
 				F11B67AF1D3619DB0065E7CD /* AppDelegate.h */,
 				F11B67B01D3619DB0065E7CD /* AppDelegate.mm */,
 				F1C97C1E1D3A1D790006B637 /* DataSingleton.h */,
@@ -635,6 +666,8 @@
 		F11B67CA1D361ADE0065E7CD /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				7DF116811D42746400FDA0DA /* WebServer */,
+				5F1418621D4851F7007EEC4B /* SDRefresh */,
 				7DF1166D1D42743D00FDA0DA /* AFNetworking */,
 				5FC1747D1D39DF0100365D25 /* SDWebImage */,
 				5FC174521D39DDB400365D25 /* SDCycleScrollView */,
@@ -857,6 +890,7 @@
 				5F1243921D3C827800477E00 /* 卧龙海4.jpeg in Resources */,
 				5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */,
 				F1D4C04C1D41B332000B2ACE /* 旅游助手－首页导航栏左地图icon.png in Resources */,
+				5F14185D1D4851BA007EEC4B /* sdRefeshView_arrow@2x.png in Resources */,
 				F1BD09141D3D00C800B754E0 /* 主页.png in Resources */,
 				5F6A65311D3F78B1004B6AB0 /* 定位.png in Resources */,
 				F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */,
@@ -902,9 +936,11 @@
 				7DF116801D42743D00FDA0DA /* AFURLSessionManager.m in Sources */,
 				5FC174A91D39DF0100365D25 /* UIImage+GIF.m in Sources */,
 				F11B67B11D3619DB0065E7CD /* AppDelegate.mm in Sources */,
+				5F14185F1D4851BA007EEC4B /* SDRefreshHeaderView.m in Sources */,
 				5FC174641D39DDB400365D25 /* TADotView.m in Sources */,
 				5F6A652F1D3F7727004B6AB0 /* MyBMKPointAnnotation.m in Sources */,
 				7DF1167C1D42743D00FDA0DA /* AFNetworkReachabilityManager.m in Sources */,
+				5F1418601D4851BA007EEC4B /* UIView+SDExtension.m in Sources */,
 				F1DC9E861D37603800C1ADA8 /* DetailUIView.m in Sources */,
 				5FC174661D39DDB400365D25 /* SDCollectionViewCell.m in Sources */,
 				F1D4C05F1D41FD18000B2ACE /* MapUpView.m in Sources */,
@@ -915,6 +951,7 @@
 				5F5030F31D3B4D7200ACE15D /* PopupView.m in Sources */,
 				F1D5A41A1D3668F900F48A48 /* LocationInfoCell.m in Sources */,
 				5FC21AF51D46015A0081587E /* SetingSubViewController.m in Sources */,
+				5F1418611D4851BA007EEC4B /* SDRefreshFooterView.m in Sources */,
 				7DF116871D42747B00FDA0DA /* HttpTool.m in Sources */,
 				7DF1167F1D42743D00FDA0DA /* AFURLResponseSerialization.m in Sources */,
 				7DF1167B1D42743D00FDA0DA /* AFHTTPSessionManager.m in Sources */,
@@ -942,6 +979,7 @@
 				5FC1749F1D39DF0100365D25 /* MKAnnotationView+WebCache.m in Sources */,
 				5F5D944C1D40CA310000DAE0 /* MySearchBar.m in Sources */,
 				F11B67D51D361B9D0065E7CD /* BaseNavigationViewController.m in Sources */,
+				5F14185E1D4851BA007EEC4B /* SDRefreshView.m in Sources */,
 				F1D5A41E1D366A3A00F48A48 /* Location.mm in Sources */,
 				7DF1167E1D42743D00FDA0DA /* AFURLRequestSerialization.m in Sources */,
 				5FC174A71D39DF0100365D25 /* SDWebImagePrefetcher.m in Sources */,
