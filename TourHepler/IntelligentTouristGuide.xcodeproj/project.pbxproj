@@ -94,6 +94,7 @@
 		F11B67DD1D3631F70065E7CD /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = F11B67DC1D3631F70065E7CD /* LOGO.png */; };
 		F11B67E61D3643800065E7CD /* homeNabigationLeftIcon.ico in Resources */ = {isa = PBXBuildFile; fileRef = F11B67E51D3643800065E7CD /* homeNabigationLeftIcon.ico */; };
 		F11B67E81D36444F0065E7CD /* homeNabigationRightIcon.ico in Resources */ = {isa = PBXBuildFile; fileRef = F11B67E71D36444F0065E7CD /* homeNabigationRightIcon.ico */; };
+		F151F2261D48836200E1AA92 /* 54C5D57F9705BCC1D0486DB7D059E2E3.png in Resources */ = {isa = PBXBuildFile; fileRef = F151F2251D48836200E1AA92 /* 54C5D57F9705BCC1D0486DB7D059E2E3.png */; settings = {ASSET_TAGS = (); }; };
 		F16C73A91D3A40070070EFD7 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C73A81D3A40070070EFD7 /* iflyMSC.framework */; };
 		F16C73AB1D3A40250070EFD7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C73AA1D3A40250070EFD7 /* libz.tbd */; };
 		F16C73AD1D3A402E0070EFD7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16C73AC1D3A402E0070EFD7 /* AVFoundation.framework */; };
@@ -288,6 +289,7 @@
 		F11B67DC1D3631F70065E7CD /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
 		F11B67E51D3643800065E7CD /* homeNabigationLeftIcon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = homeNabigationLeftIcon.ico; sourceTree = "<group>"; };
 		F11B67E71D36444F0065E7CD /* homeNabigationRightIcon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = homeNabigationRightIcon.ico; sourceTree = "<group>"; };
+		F151F2251D48836200E1AA92 /* 54C5D57F9705BCC1D0486DB7D059E2E3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 54C5D57F9705BCC1D0486DB7D059E2E3.png; path = "切图/54C5D57F9705BCC1D0486DB7D059E2E3.png"; sourceTree = "<group>"; };
 		F16C73A81D3A40070070EFD7 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		F16C73AA1D3A40250070EFD7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		F16C73AC1D3A402E0070EFD7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -712,6 +714,7 @@
 		F11B67DE1D3641B50065E7CD /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F151F2251D48836200E1AA92 /* 54C5D57F9705BCC1D0486DB7D059E2E3.png */,
 				F1D935B11D4776D700EF5424 /* stop27.png */,
 				F1D4C0621D4207FF000B2ACE /* 旅游助手－小飞机.png */,
 				F1D4C0601D42031D000B2ACE /* 旅游助手－到这去.png */,
@@ -876,6 +879,7 @@
 				5F1243981D3C850B00477E00 /* 箭竹海4.jpeg in Resources */,
 				F1D935B21D4776D700EF5424 /* stop27.png in Resources */,
 				5FC174761D39DEB100365D25 /* pageControlCurrentDot@2x.png in Resources */,
+				F151F2261D48836200E1AA92 /* 54C5D57F9705BCC1D0486DB7D059E2E3.png in Resources */,
 				5FC174731D39DEB100365D25 /* h2.jpg in Resources */,
 				5FC174781D39DEB100365D25 /* pageControlDot@2x.png in Resources */,
 				F11B67E61D3643800065E7CD /* homeNabigationLeftIcon.ico in Resources */,

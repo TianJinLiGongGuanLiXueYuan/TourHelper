@@ -20,6 +20,8 @@
 
 @property (nonatomic,strong) BMKLocationService* locService;
 @property(readonly, nonatomic) CLLocationCoordinate2D homeCenterCC2D;
+@property(nonatomic) BOOL isPlaying;
+
 
 @property(nonatomic) NSInteger sum;
 
@@ -31,7 +33,7 @@
 {
     self = [super init];
     if (self) {
-        
+        _isPlaying = NO;
     }
     return self;
 }
@@ -208,22 +210,32 @@
 
 
 - (void)rightBtnDidClick:(UIButton *)rightBtn{
-    //1.创建合成对象
-    _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
-    self;
+    if (!_isPlaying) {
+        //1.创建合成对象
+        _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
+        self;
+        
+        //设置在线工作方式
+        [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
+                                      forKey:[IFlySpeechConstant ENGINE_TYPE]];
+        //音量,取值范围 0~100
+        [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
+        [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
+        //3.启动合成会话
+        [_iFlySpeechSynthesizer startSpeaking: self.detailText];
+        [_inidicateView setText: @"正在缓冲..."];
+        [_inidicateView show];
+        [_popUpView removeFromSuperview];
+        [_popUpView showText:@"正在缓冲..."];
+        
+        [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"54C5D57F9705BCC1D0486DB7D059E2E3.png"] forState:UIControlStateNormal];
+        
+    }else{
+        [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+        [_iFlySpeechSynthesizer stopSpeaking];
+    }
+    _isPlaying^=1;
     
-    //设置在线工作方式
-    [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
-                                  forKey:[IFlySpeechConstant ENGINE_TYPE]];
-    //音量,取值范围 0~100
-    [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
-    [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
-    //3.启动合成会话
-    [_iFlySpeechSynthesizer startSpeaking: self.detailText];
-    [_inidicateView setText: @"正在缓冲..."];
-    [_inidicateView show];
-    [_popUpView removeFromSuperview];
-    [_popUpView showText:@"正在缓冲..."];
 }
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{

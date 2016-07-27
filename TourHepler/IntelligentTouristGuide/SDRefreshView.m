@@ -190,7 +190,7 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
             
         case SDRefreshViewStateNormal:
         {
-            [UIView animateWithDuration:0.5 animations:^{
+            [UIView animateWithDuration:0.3 animations:^{
                 _stateIndicatorView.transform = CGAffineTransformMakeRotation(self.stateIndicatorViewNormalTransformAngle);
             }];
             _textIndicator.text = self.textForNormalState;

@@ -46,8 +46,6 @@
         self.distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(kLeftAndRightMargins+kleftImgLen+kLeftAndRightMargins/2.0, kLeftAndRightMargins*2+klocationNameLabelHeight, kdistanceLabelWidth, kdistanceLabelHeight)];
         [self addSubview:_distanceLabel];
         
-
-        
     }
     return self;
 }
@@ -65,7 +63,7 @@
     
     start.pt = coor1;
     //指定起点名称
-    start.name = @"九寨沟";
+    start.name = @"我的位置";
     //指定起点
     opt.startPoint = start;
     

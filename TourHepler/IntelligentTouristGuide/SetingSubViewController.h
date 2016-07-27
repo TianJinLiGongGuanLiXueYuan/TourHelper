@@ -9,9 +9,10 @@
 #import "BaseViewController.h"
 //#import "SetingSubView.h"
 
-@interface SetingSubViewController : BaseViewController<UITextFieldDelegate>
+@interface SetingSubViewController : BaseViewController<UITextViewDelegate,UITextFieldDelegate>
 
-@property (nonatomic,strong) UITextField *inputTF;
-@property (nonatomic,strong) UIButton *returnBtn;
+@property (nonatomic,strong) UITextView *inputTV;
+@property (nonatomic,strong) UIButton *subBtn;
+@property (nonatomic,strong) UIButton *cancelBtn;
 
 @end

@@ -30,8 +30,10 @@
 @property(nonatomic,strong) UIImageView *leftImg;
 @property(nonatomic,strong) UILabel *distanceLabel;
 @property(nonatomic,strong) UIButton *goToBtn;
+
 @property(nonatomic) CLLocationCoordinate2D ownLocation;
 @property(nonatomic) CLLocationCoordinate2D goToLocation;
+@property(nonatomic,strong) NSString *title;
 
 - (void) getDataWithOwnLocation:(CLLocationCoordinate2D)mapPoint;
 

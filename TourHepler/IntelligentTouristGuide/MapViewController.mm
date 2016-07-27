@@ -12,10 +12,14 @@
 #import "MapUpView.h"
 #import "DataSingleton.h"
 #import "Location.h"
+#import "HttpTool.h"
 //#import "BMKGeometry.h"
 #define screenHeight ([UIScreen mainScreen].bounds.size.height)
 #define screenWidth ([UIScreen mainScreen].bounds.size.width)
-#define kUpViewHeight 100
+#define kUpViewHeight (100)
+#define kInputTFWeight (15.0/16.0*screenWidth)
+#define kInputTFHeight (40)
+#define kViewLeftAndRightMargins (5)
 
 @interface MapViewController ()
 
@@ -33,6 +37,27 @@
     if (self) {
         _isPoi = NO;
         _isUpViewPop = NO;
+        
+        if (_inputTF==Nil) {
+            _inputTF = [[UITextField alloc]init];
+            _inputTF.frame = CGRectMake(0, 64, screenWidth, kInputTFHeight);
+            _inputTF.backgroundColor = [UIColor whiteColor];
+//            _inputTF.layer.masksToBounds = YES;
+//            _inputTF.layer.cornerRadius = 6.0;
+//            _inputTF.layer.borderWidth = 0;
+            _inputTF.placeholder = @"点击搜索";
+            _inputTF.returnKeyType = UIReturnKeySearch;
+            _inputTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+            UIImageView *inputView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kInputTFHeight-17, kInputTFHeight-17)];
+            [inputView setImage:[UIImage imageNamed:@"旅游助手－搜索.png"]];
+            _inputTF.leftView=inputView;
+            _inputTF.leftViewMode = UITextFieldViewModeAlways;
+            //        //        _locationBtn.titleLabel.textColor = [UIColor blackColor];
+            //        [_locationBtn setTitle:@"景点" forState:UIControlStateNormal];
+            //        [_locationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            //
+            //        [_locationBtn addTarget:self action:@selector(locationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        }
     }
     return self;
 }
@@ -84,25 +109,31 @@
     //以下_mapView为BMKMapView对象
     
 //    [mapView updateLocationData:_locService];
-    [self insertAnnotation];
+    [self insertLocationAnnotation];
     
     [self.view addSubview:_mapView];
-    _mySrarchBar = [[MySearchBar alloc]init];
-    [self.view addSubview:_mySrarchBar];
-    _mySrarchBar.delegate = self;
+    
+    
+    [self.view addSubview:_inputTF];
+    _inputTF.delegate = self;
     
 }
 
-#pragma mark - 按钮点击事件
+#pragma mark - 搜索相关按钮点击事件
 
 - (void)locationBtnClick:(UIButton *)btn
 {
+    _inputTF.text = @"";
+    [_inputTF resignFirstResponder];
     [_mapView removeAnnotations:_mapView.annotations];
-    [self insertAnnotation];
+    [self insertLocationAnnotation];
+    [_mySearchBar removeFromSuperview];
+    [_translucentBtn removeFromSuperview];
 }
 
 - (void)wcBtnClick:(UIButton *)btn
 {
+    [_inputTF resignFirstResponder];
     [_mapView removeAnnotations:_mapView.annotations];
     //初始化检索对象
     _searcher =[[BMKPoiSearch alloc]init];
@@ -126,11 +157,15 @@
         NSLog(@"厕所检索发送失败");
     }
 
-    
+    _inputTF.text = @"";
+    [_inputTF resignFirstResponder];
+    [_mySearchBar removeFromSuperview];
+    [_translucentBtn removeFromSuperview];
 }
 
 - (void)foodBtnClick:(UIButton *)btn
 {
+    [_inputTF resignFirstResponder];
     [_mapView removeAnnotations:_mapView.annotations];
     //初始化检索对象
     _searcher =[[BMKPoiSearch alloc]init];
@@ -153,7 +188,79 @@
     {
         NSLog(@"美食检索发送失败");
     }
+    
+    _inputTF.text = @"";
+    [_inputTF resignFirstResponder];
+    [_mySearchBar removeFromSuperview];
+    [_translucentBtn removeFromSuperview];
 }
+
+- (void)translucentBtnClick:(UIButton *)btn{
+    _inputTF.text = @"";
+    [_inputTF resignFirstResponder];
+    [_mySearchBar removeFromSuperview];
+    [_translucentBtn removeFromSuperview];
+}
+
+
+#pragma  mark- 控制TF
+
+- ( BOOL )textFieldShouldClear:( UITextField*)textField{
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    _translucentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kInputTFHeight+64, screenWidth, screenHeight-kInputTFHeight)];
+    _translucentBtn.backgroundColor = [UIColor colorWithRed:(40/255.0f) green:(40/255.0f) blue:(40/255.0f) alpha:1.0f];
+    _translucentBtn.alpha = 0.4;
+    
+    [_translucentBtn addTarget:self action:@selector(translucentBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_translucentBtn];
+//    [textField resignFirstResponder];
+    _mySearchBar = [[MySearchBar alloc]init];
+    
+    [self.view addSubview:_mySearchBar];
+    _mySearchBar.delegate = self;
+    return YES;
+}
+
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [_mapView removeAnnotations:_mapView.annotations];
+    if (![textField.text isEqualToString:@""]) {
+        //初始化检索对象
+        _searcher =[[BMKPoiSearch alloc]init];
+        _searcher.delegate = self;
+        //发起检索
+        BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
+        option.pageIndex = 0;
+        option.pageCapacity = 50;
+        option.radius = 100000;
+        
+        option.location = _locService.userLocation.location.coordinate;
+        option.keyword = textField.text;
+        BOOL flag = [_searcher poiSearchNearBy:option];
+        //    [option release];
+        if(flag)
+        {
+            NSLog(@"%@检索发送成功",textField.text);
+        }
+        else
+        {
+            NSLog(@"%@检索发送失败",textField.text);
+        }
+    }
+    textField.text = @"";
+    [textField resignFirstResponder];
+    [_mySearchBar removeFromSuperview];
+    [_translucentBtn removeFromSuperview];
+    return YES;
+}
+
+
 
 #pragma mark- 导航栏左buttom
 
@@ -172,24 +279,21 @@
 
 #pragma mark- Poi搜索
 
-/**
- *当点击annotation view弹出的泡泡时，调用此接口
- *@param mapView 地图View
- *@param view 泡泡所属的annotation view
- */
-//- (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
-//    view.canShowCallout = YES;
-//}
-
 //实现PoiSearchDeleage处理回调结果
 - (void)onGetPoiResult:(BMKPoiSearch*)searcher result:(BMKPoiResult*)poiResultList errorCode:(BMKSearchErrorCode)error
 {
     if (error == BMK_SEARCH_NO_ERROR) {
         //在此处理正常结果
 //        NSLog(@"结果为：%@",poiResultList.poiInfoList);
+        CLLocationCoordinate2D coorCenter;
+        BOOL ok = NO;
         NSMutableArray* mutArr = [[NSMutableArray alloc]init];
         for (BMKPoiInfo* obj in poiResultList.poiInfoList) {
 //            NSLog(@"obj.name = %@ obj.address = %@ obj.city = %@ obj.phone = %@ obj.postcode = %@ obj.pt.latitude = %@ obj.pt.longitude = %d ",obj.name,obj.address,obj.city,obj.city,obj.phone,obj.postcode,obj.epoitype,obj.pt.latitude,obj.pt.longitude);
+            if (ok==NO) {
+                ok = YES;
+                coorCenter = obj.pt;
+            }
             CLLocationCoordinate2D coordinate = obj.pt;
             //设置地图标注
             BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
@@ -197,17 +301,14 @@
             annotation.title = obj.name;
             annotation.subtitle = obj.phone;
             [mutArr addObject:annotation];
-//            [_mapView addAnnotation:annotation];
-//            BMKReverseGeoCodeOption *re = [[BMKReverseGeoCodeOption alloc] init];
-//            re.reverseGeoPoint = coordinate;
-//            [_geoCodeSearch reverseGeoCode:re];
-//            BOOL flag =[_geoCodeSearch reverseGeoCode:re];
-//            if (!flag){
-//                NSLog(@"search failed!");
-//            }
-
         }
         [_mapView addAnnotations:mutArr];
+        
+        BMKMapStatus *temp = [[BMKMapStatus alloc]init];
+        temp.targetGeoPt = coorCenter;
+        temp.fLevel = 19;
+        
+        [_mapView setMapStatus:temp withAnimation:YES withAnimationTime:1000];
         
     }
     else if (error == BMK_SEARCH_AMBIGUOUS_KEYWORD){
@@ -225,6 +326,8 @@
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
 }
@@ -286,10 +389,16 @@
 
 //上标注
 
-- (void) insertAnnotation{
+- (void) insertLocationAnnotation{
     DataSingleton * dataSL = [DataSingleton shareInstance];
     NSMutableArray* mutArr = [[NSMutableArray alloc]init];
+    CLLocationCoordinate2D coorCenter;
+    BOOL ok = NO;
     for (Location *obj in dataSL.allDetail) {
+        if (ok == NO) {
+            ok = YES;
+            coorCenter = obj.coor;
+        }
         CLLocationCoordinate2D coordinate = obj.coor;
         //设置地图标注
         BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
@@ -299,6 +408,24 @@
         [mutArr addObject:annotation];
     }
     [_mapView addAnnotations:mutArr];
+    
+    /**
+     *	设置地图状态
+     *	@param	[in]	mapStatus	地图状态信息
+     *	@param	[in]	bAnimation	是否需要动画效果，true:需要做动画
+     */
+//    - (void)setMapStatus:(BMKMapStatus*)mapStatus withAnimation:(BOOL)bAnimation;
+    BMKMapStatus *temp = [[BMKMapStatus alloc]init];
+    temp.targetGeoPt = coorCenter;
+    temp.fLevel = 19;
+    
+    [_mapView setMapStatus:temp withAnimation:YES withAnimationTime:1000];
+    
+//    [_mapView setCenterCoordinate:coorCenter animated:YES];
+    
+//    _mapView.zoomLevel=19;
+    
+    
 }
 
 /**
@@ -384,15 +511,12 @@
 }
 
 - (void)goToBtnClick:(UIButton*)sender{
-//    locationImageName:@"卧龙海.jpeg" distance:@"1.2KM" locationText:@"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。"coor:(CLLocationCoordinate2D){103.907089,33.206952}];
-//    NSLog(@"");
     if(_curlocation){
         DetailViewController *deVC = [[DetailViewController alloc]init];
         deVC.titleText = _curlocation.locationName;
         deVC.detailImg = _curlocation.locationImageName;
         deVC.detailText = _curlocation.locationText;
         [self presentViewController:deVC animated:YES completion:nil];
-//    [self.navigationController pushViewController:deVC animated:YES];
     }
 }
 
@@ -412,10 +536,22 @@
     NSLog(@"点击annotation view弹出的泡泡");
 }
 
+
+///**
+// *地图区域即将改变时会调用此接口
+// *@param mapview 地图View
+// *@param animated 是否动画
+// */
+//- (void)mapView:(BMKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
+//    
+//}
+
+
 //当选中一个annotation views时，调用此接口
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
 //    NSLog(@"选中一个annotation views:%f,%f",view.annotation.coordinate.latitude,view.annotation.coordinate.longitude);
+
     _curlocation = [[Location alloc]init];
     
     DataSingleton *dataSL = [DataSingleton shareInstance];
@@ -428,18 +564,13 @@
     
     MapUpView * mapUpView = [[MapUpView alloc]init];
     mapUpView.locationNameLabel.text = view.annotation.title;
+    mapUpView.title = self.navigationBar.titleLabel.text;
     
     BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
     BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(view.annotation.coordinate.latitude,view.annotation.coordinate.longitude));
     CGFloat distance = BMKMetersBetweenMapPoints(point1,point2);
     [mapUpView getDataWithOwnLocation:CLLocationCoordinate2D(_locService.userLocation.location.coordinate)];
     [mapUpView getDataWithGoToLocation:view.annotation.coordinate];
-//    [mapUpView ownLocation].x = point1.x;
-//    mapUpView.ownLocation.y = point1.y;
-//    mapUpView.goToLocation.x = point2.x;
-//    mapUpView.goToLocation.y = point2.y;
-//    = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
-//    mapUpView.goToLocation = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(view.annotation.coordinate.latitude,view.annotation.coordinate.longitude));
 
     if (distance>1000.0) {
         distance/=1000.0;
@@ -469,7 +600,10 @@
 //        //将view.frame 设置在屏幕上方
 //        [self.view addSubview:mapUpView];
 //    }];
+        
+        
     }
+    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(view.annotation.coordinate.latitude,view.annotation.coordinate.longitude) animated:YES];
 }
 
 #pragma mark -- BMKMapdelegate

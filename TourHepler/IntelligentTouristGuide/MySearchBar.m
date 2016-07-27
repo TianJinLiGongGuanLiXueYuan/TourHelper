@@ -14,7 +14,10 @@
 #define kViewHeight (40)
 #define kViewAndInput (8)
 #define kBtnWeight (2.0/9.0*screenWidth)
-#define kBtenHeight (40)
+#define kBtenHeight (20)
+#define kInputTFWeight (15.0/16.0*screenWidth)
+#define kInputTFHeight (40)
+#define kBtnCnt (3)
 
 @implementation MySearchBar
 
@@ -23,8 +26,10 @@
     self = [super init];
     if (self) {
 
-        self.frame = CGRectMake((screenWidth-(kBtnWeight*3+4*kViewLeftAndRightMargins))/2.0, 64+kViewLeftAndRightMargins, kBtnWeight*3+4*kViewLeftAndRightMargins, kBtenHeight+kViewLeftAndRightMargins*2);
+        self.frame = CGRectMake(0, 64+kViewLeftAndRightMargins, screenWidth, kInputTFHeight+kBtenHeight+kViewLeftAndRightMargins);
         self.backgroundColor = [UIColor clearColor];
+        
+//        [self addSubview:self.inputTF];
         
         [self addSubview:self.locationBtn];
         
@@ -36,12 +41,35 @@
     return self;
 }
 
-#pragma mark - 按钮初始化
+#pragma mark - 初始化
+
+//- (UITextField *)inputTF{
+//    if (_inputTF==Nil) {
+//        _inputTF = [[UITextField alloc]init];
+//        _inputTF.frame = CGRectMake((screenWidth-kInputTFWeight)/2.0, 0, kInputTFWeight, kInputTFHeight);
+//        _inputTF.backgroundColor = [UIColor whiteColor];
+//        _inputTF.layer.masksToBounds = YES;
+//        _inputTF.layer.cornerRadius = 6.0;
+//        _inputTF.layer.borderWidth = 0;
+//        _inputTF.placeholder = @"点击搜索";
+//        _inputTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+//        UIImageView *inputView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kInputTFHeight-17, kInputTFHeight-17)];
+//        [inputView setImage:[UIImage imageNamed:@"旅游助手－搜索.png"]];
+//        _inputTF.leftView=inputView;
+//        _inputTF.leftViewMode = UITextFieldViewModeAlways;
+////        //        _locationBtn.titleLabel.textColor = [UIColor blackColor];
+////        [_locationBtn setTitle:@"景点" forState:UIControlStateNormal];
+////        [_locationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+////        
+////        [_locationBtn addTarget:self action:@selector(locationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _inputTF;
+//}
 
 - (UIButton *)locationBtn{
     if (_locationBtn==Nil) {
         _locationBtn = [[UIButton alloc]init];
-        _locationBtn.frame = CGRectMake(kViewLeftAndRightMargins, kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
+        _locationBtn.frame = CGRectMake((screenWidth - (kBtnWeight*kBtnCnt+kViewLeftAndRightMargins*(kBtnCnt-1)))/2.0, kInputTFHeight+kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
         _locationBtn.backgroundColor = [UIColor colorWithRed:204.0/255.0 green:166.0/255.0 blue:176.0/2555.0 alpha:1];
         _locationBtn.layer.masksToBounds = YES;
         _locationBtn.layer.cornerRadius = 6.0;
@@ -58,7 +86,7 @@
 - (UIButton *)wcBtn{
     if (_wcBtn==Nil) {
         _wcBtn = [[UIButton alloc]init];
-        _wcBtn.frame = CGRectMake(kViewLeftAndRightMargins*2+kBtnWeight, kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
+        _wcBtn.frame = CGRectMake(kViewLeftAndRightMargins+kBtnWeight+(screenWidth - (kBtnWeight*kBtnCnt+kViewLeftAndRightMargins*(kBtnCnt-1)))/2.0, kInputTFHeight+kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
         _wcBtn.backgroundColor = [UIColor colorWithRed:236.0/255.0 green:206.0/255.0 blue:176.0/255.0 alpha:1];
         _wcBtn.layer.masksToBounds = YES;
         _wcBtn.layer.cornerRadius = 6.0;
@@ -74,7 +102,7 @@
 - (UIButton *)foodBtn{
     if (_foodBtn==Nil) {
         _foodBtn = [[UIButton alloc]init];
-        _foodBtn.frame = CGRectMake(kViewLeftAndRightMargins*3+kBtnWeight*2, kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
+        _foodBtn.frame = CGRectMake(kViewLeftAndRightMargins*2+kBtnWeight*2+(screenWidth - (kBtnWeight*kBtnCnt+kViewLeftAndRightMargins*(kBtnCnt-1)))/2.0, kInputTFHeight+kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
         _foodBtn.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:225.0/255.0 blue:205.0/255.0 alpha:1];
         _foodBtn.layer.masksToBounds = YES;
         _foodBtn.layer.cornerRadius = 6.0;
@@ -104,7 +132,10 @@
     [self.delegate foodBtnClick:btn];
 }
 
-
+//- (void)returnBtnClick:(UIButton*)btn{
+//    [self.delegate returnBtnClick:btn];
+//    
+//}
 
 
 

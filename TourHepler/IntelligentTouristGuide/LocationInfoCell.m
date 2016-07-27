@@ -57,7 +57,7 @@
         //    [IFlySpeechUtility createUtility:@"你好,我是科大讯飞的小燕"];
         [_iFlySpeechSynthesizer startSpeaking: self.currentLocation.locationText];
         
-        [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"stop27.png"] forState:UIControlStateNormal];
+        [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"54C5D57F9705BCC1D0486DB7D059E2E3.png"] forState:UIControlStateNormal];
         
     }else{
         [_iFlySpeechSynthesizer stopSpeaking];

@@ -22,14 +22,16 @@
 
 @property (nonatomic ,strong) NSMutableArray *dataArr;
 @property (nonatomic,strong) BMKLocationService* locService;
-@property (nonatomic) NSInteger *cnt;
+@property (nonatomic, weak) SDRefreshFooterView *refreshFooter;
+@property (nonatomic) NSInteger cnt;
+@property (nonatomic) NSInteger sum;
 //@property (readonly, nonatomic,strong) CLLocation *homeLocation;
 
 @end
 
 @interface HomeViewController ()
 
-@property (nonatomic ,strong) UITableView *mainTableView;
+@property (nonatomic ,strong) UITableViewController *mainTVC;
 //@property (nonatomic,strong) NSMutableArray *mainDict;
 //@property (nonatomic ,strong) MapViewController *mapViewController;
 //@property (nonatomic ,strong) DetailViewController *deVC;
@@ -40,7 +42,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _cnt = 0;
+    _cnt = 3;
+    _sum = 0;
     // Do any additional setup after loading the view.
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
@@ -65,35 +68,26 @@
     
     
 //    self.mainTableView.bo
+    _mainTVC = [[UITableViewController alloc]init];
     CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
-    self.mainTableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
+    self.mainTVC.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
     UIColor *mainTVColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
-    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTableView.backgroundColor = mainTVColor;
-    self.mainTableView.allowsSelection = NO;
-    self.mainTableView.delegate = self;
-    self.mainTableView.dataSource = self;
-    self.mainTableView.tableFooterView = [[UIView alloc]init];
+    self.mainTVC.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTVC.tableView.backgroundColor = [UIColor whiteColor];
+    self.mainTVC.tableView.allowsSelection = NO;
+    self.mainTVC.tableView.delegate = self;
+    self.mainTVC.tableView.dataSource = self;
+    self.mainTVC.tableView.tableFooterView = [[UIView alloc]init];
     
+    [self setupHeader];
+    [self setupFooter];
     
-//    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
-//    
-//    //加入到目标tableview，默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
-//    [refreshHeader addToScrollView:_mainTableView];
-//    refreshHeader.isEffectedByNavigationController = NO;
-//    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
-////    __weak typeof(self) weakSelf = self.mainTableView;
-//    refreshHeader.beginRefreshingOperation = ^{
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            _cnt += 3;
-//            [_mainTableView reloadData];
-//            [weakRefreshHeader endRefreshing];
-//        });
-//    };
     //或者 refreshHeader.beginRefreshingOperation = ^{} 任选其中一种即可
     
+//    [self addChildViewController:_mainTVC];
+    [self.view addSubview:self.mainTVC.tableView];
     
-    [self.view addSubview:self.mainTableView];
+    
     
     
 //    UIRefreshControl *mainRC = [[UIRefreshControl alloc]init];
@@ -124,7 +118,53 @@
     
     
 }
+#pragma mark - 刷新控件
 
+- (void)setupHeader
+{
+    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
+    //
+    //    //加入到目标tableview，默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
+    [refreshHeader addToScrollView:self.mainTVC.tableView];
+    refreshHeader.isEffectedByNavigationController = NO;
+    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
+    __weak typeof(self) weakSelf = self;
+    refreshHeader.beginRefreshingOperation = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (weakSelf.cnt+3<=weakSelf.sum) {
+                weakSelf.cnt += 3;
+            }else
+                weakSelf.cnt = weakSelf.sum;
+            [self.mainTVC.tableView reloadData];
+            [weakRefreshHeader endRefreshing];
+        });
+    };
+    // 进入页面自动加载一次数据
+    [refreshHeader autoRefreshWhenViewDidAppear];
+}
+
+- (void)setupFooter
+{
+    SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
+    [refreshFooter addToScrollView:self.mainTVC.tableView];
+    [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
+    _refreshFooter = refreshFooter;
+}
+
+- (void)footerRefresh
+{
+    if (_cnt!=!_sum){
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (_cnt+3<=_sum) {
+                _cnt += 3;
+            }else
+                _cnt = _sum;
+            [self.mainTVC.tableView reloadData];
+            [self.refreshFooter endRefreshing];
+        });
+    }
+}
+#pragma mark - 地图坐标更新
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
@@ -160,6 +200,7 @@
 
 - (void) reLoad:(NSDictionary*)dict{
     NSMutableArray *teamArr= [[NSMutableArray alloc]initWithArray:[dict objectForKey:@"data"]];
+    _sum = teamArr.count;
     _dataArr = [[NSMutableArray alloc]init];
     DataSingleton* dataSL = [DataSingleton shareInstance];
     dataSL.allDetail = [[NSMutableArray alloc]initWithArray:dataSL.allDetail];
@@ -210,7 +251,8 @@
     
 //    self.mainTableView.delegate = self;
 //    self.mainTableView.dataSource = self;
-    [_mainTableView reloadData];
+//    [self setupHeader];
+    [_mainTVC.tableView reloadData];
 //    NSLog(@"%@",self.dataArr);
     
     
@@ -260,13 +302,13 @@
 //- (void) onSpeakProgress:(int) progress{}
 //
 
-
+#pragma mark - tableView相关代理
 
 //控制行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-//    return _cnt;
-    return self.dataArr.count;
+    return _cnt;
+//    return self.dataArr.count;
 }
 //控制每一行样式
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
@@ -350,7 +392,7 @@
 
 
 
-#pragma merk -----test-----
+#pragma merk -----网络接口-----
 
 
 - (void) getAreaName{
