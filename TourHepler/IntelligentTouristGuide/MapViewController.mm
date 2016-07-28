@@ -196,10 +196,23 @@
 }
 
 - (void)translucentBtnClick:(UIButton *)btn{
+    
+    
+    [UIView beginAnimations:@"" context:nil];
+    [UIView setAnimationDuration:1.8];
+    btn.alpha = 0.0;
+    [UIView commitAnimations];
+    
     _inputTF.text = @"";
     [_inputTF resignFirstResponder];
     [_mySearchBar removeFromSuperview];
-    [_translucentBtn removeFromSuperview];
+    [btn removeFromSuperview];
+    
+//    CABasicAnimation *animaTranslucentBtn = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//    animaTranslucentBtn.fromValue = [NSNumber numberWithFloat:1.0f];
+//    animaTranslucentBtn.toValue = [NSNumber numberWithFloat:0.2f];
+//    animaTranslucentBtn.duration = 1.0f;
+//    [_translucentBtn.layer addAnimation:animaTranslucentBtn forKey:@"opacityAniamtion"];
 }
 
 
@@ -217,9 +230,22 @@
     
     [_translucentBtn addTarget:self action:@selector(translucentBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    CABasicAnimation *animaTranslucentBtn = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    animaTranslucentBtn.fromValue = [NSNumber numberWithFloat:1.0f];
+    animaTranslucentBtn.toValue = [NSNumber numberWithFloat:0.2f];
+    animaTranslucentBtn.duration = 0.125f;
+    [_translucentBtn.layer addAnimation:animaTranslucentBtn forKey:@"opacityAniamtion"];
+    
     [self.view addSubview:_translucentBtn];
 //    [textField resignFirstResponder];
     _mySearchBar = [[MySearchBar alloc]init];
+    
+//    [self.view addSubview:mapUpView];
+//    [UIView animateWithDuration:0.4 animations:^{
+//        _mySearchBar.frame = CGRectMake(0, 64+kUpViewHeight,screenWidth, kUpViewHeight);
+//    }];
+    
     
     [self.view addSubview:_mySearchBar];
     _mySearchBar.delegate = self;
@@ -536,17 +562,6 @@
     NSLog(@"点击annotation view弹出的泡泡");
 }
 
-
-///**
-// *地图区域即将改变时会调用此接口
-// *@param mapview 地图View
-// *@param animated 是否动画
-// */
-//- (void)mapView:(BMKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
-//    
-//}
-
-
 //当选中一个annotation views时，调用此接口
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
@@ -583,17 +598,14 @@
     
     if (_isUpViewPop) {
         mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
+        
         [self.view addSubview:mapUpView];
     }else{
         _isUpViewPop = YES;
     //1.执行动画
         [self.view addSubview:mapUpView];
-//    CGRect *tem = mapUpView.frame;
         [UIView animateWithDuration:0.4 animations:^{
             mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
-//        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-//        [self.view addSubview:mapUpView];
-//        self.contentView.transform = CGAffineTransformMakeTranslation(0, -self.contentShift);
         }];
 //    mapUpView.locationNameLabel.text = view.paopaoView.annotation.title;
 //    [UIView animateWithDuration:1 animations:^{

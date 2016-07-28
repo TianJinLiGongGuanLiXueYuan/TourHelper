@@ -103,6 +103,9 @@
     if (![self.inputTV.text isEqualToString:@""]) {
         NSDictionary *para = @{@"opinion_content":self.inputTV.text};
         [HttpTool postWithparamsWithURL:@"subinfo/SubInfoForWeb" andParam:para success:^(id responseObject) {
+            
+            
+            
 //            NSData *data = [[NSData alloc]initWithData:responseObject];
 //            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             UIAlertView *alertView = [[UIAlertView alloc]
