@@ -9,7 +9,6 @@
 #import "MapViewController.h"
 #import "MyBMKPointAnnotation.h"
 #import "DetailViewController.h"
-#import "MapUpView.h"
 #import "DataSingleton.h"
 #import "Location.h"
 #import "HttpTool.h"
@@ -72,7 +71,7 @@
     [self.navigationBar.rightBtn setHidden:YES];
     
     
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, 414, screenHeight-64)];
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight-64)];
     _mapView.delegate = self;
     //[mapView setMapType:BMKMapTypeSatellite];
     _mapView.showsUserLocation = YES;//显示定位图层
@@ -116,6 +115,8 @@
     
     [self.view addSubview:_inputTF];
     _inputTF.delegate = self;
+    _mapUpView = [[MapUpView alloc]init];
+    
     
 }
 
@@ -197,16 +198,23 @@
 
 - (void)translucentBtnClick:(UIButton *)btn{
     
+
+    [UIView animateWithDuration:0.25 animations:^{
+        btn.alpha = 0;
+        _mySearchBar.alpha = 0;
+    }completion:^(BOOL finished) {
+        _inputTF.text = @"";
+        [_inputTF resignFirstResponder];
+        [_mySearchBar removeFromSuperview];
+        [btn removeFromSuperview];
+    }];
     
-    [UIView beginAnimations:@"" context:nil];
-    [UIView setAnimationDuration:1.8];
-    btn.alpha = 0.0;
-    [UIView commitAnimations];
-    
-    _inputTF.text = @"";
-    [_inputTF resignFirstResponder];
-    [_mySearchBar removeFromSuperview];
-    [btn removeFromSuperview];
+//    [UIView beginAnimations:@"" context:nil];
+//    [UIView setAnimationDuration:1.8];
+//    btn.alpha = 0.0;
+//    [UIView commitAnimations];
+//    
+
     
 //    CABasicAnimation *animaTranslucentBtn = [CABasicAnimation animationWithKeyPath:@"opacity"];
 //    animaTranslucentBtn.fromValue = [NSNumber numberWithFloat:1.0f];
@@ -223,23 +231,33 @@
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    _mySearchBar = [[MySearchBar alloc]init];
+    
+    _mySearchBar.alpha = 0;
+    _mySearchBar.delegate = self;
+    
     
     _translucentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kInputTFHeight+64, screenWidth, screenHeight-kInputTFHeight)];
-    _translucentBtn.backgroundColor = [UIColor colorWithRed:(40/255.0f) green:(40/255.0f) blue:(40/255.0f) alpha:1.0f];
-    _translucentBtn.alpha = 0.4;
+    _translucentBtn.backgroundColor = [UIColor blackColor];
+//    _translucentBtn.alpha = 0;
     
     [_translucentBtn addTarget:self action:@selector(translucentBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    _translucentBtn.alpha = 0;
+    [UIView animateWithDuration:0.25 animations:^{
+        _mySearchBar.alpha = 1;
+        _translucentBtn.alpha = 0.4;
+    }];
     
-    
-    CABasicAnimation *animaTranslucentBtn = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animaTranslucentBtn.fromValue = [NSNumber numberWithFloat:1.0f];
-    animaTranslucentBtn.toValue = [NSNumber numberWithFloat:0.2f];
-    animaTranslucentBtn.duration = 0.125f;
-    [_translucentBtn.layer addAnimation:animaTranslucentBtn forKey:@"opacityAniamtion"];
+//    CABasicAnimation *animaTranslucentBtn = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//    animaTranslucentBtn.fromValue = [NSNumber numberWithFloat:0];
+//    animaTranslucentBtn.toValue = [NSNumber numberWithFloat:0.4f];
+//    animaTranslucentBtn.duration = 1.125f;
+//    [_translucentBtn.layer addAnimation:animaTranslucentBtn forKey:@"opacityAniamtion"];
     
     [self.view addSubview:_translucentBtn];
+    [self.view addSubview:_mySearchBar];
 //    [textField resignFirstResponder];
-    _mySearchBar = [[MySearchBar alloc]init];
+    
     
 //    [self.view addSubview:mapUpView];
 //    [UIView animateWithDuration:0.4 animations:^{
@@ -247,8 +265,7 @@
 //    }];
     
     
-    [self.view addSubview:_mySearchBar];
-    _mySearchBar.delegate = self;
+    
     return YES;
 }
 
@@ -291,14 +308,7 @@
 #pragma mark- 导航栏左buttom
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
-    NSLog(@"MAP leftBtnDidClick");
-//    NSLog(@"点击goToBtn");
-//    DetailViewController *deVC = [[DetailViewController alloc]init];
-//    deVC.titleText = @"卧龙海";
-//    deVC.detailImg = @"卧龙海.jpeg";
-//    deVC.detailText = @"卧龙海海拔2215米，深22米。小巧玲珑的卧龙海是蓝色湖泊典型的代表，极浓重的蓝色醉人心田。湖面水波不兴，宁静祥和，像一块光滑平整、晶莹剔透的蓝宝石。透过波平如镜的水面，一条乳白色钙华长堤横卧湖心，宛若一条蛟龙潜游海底。";
-//    
-//    [self.navigationController pushViewController:deVC animated:YES];
+//    NSLog(@"MAP leftBtnDidClick");
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -374,41 +384,31 @@
     
     if(!_isPoi){
         _isPoi = YES;
-//        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
-//        annotation.coordinate = coordinate;
-//        annotation.title = obj.name;
-//        annotation.subtitle = obj.phone;
-//        BMKPointAnnotation *myLocationAnnotation = [[BMKPointAnnotation alloc]init];
-//        myLocationAnnotation.coordinate = userLocation.location.coordinate;
-//        myLocationAnnotation.title = userLocation.title;
-//        myLocationAnnotation.subtitle = userLocation.subtitle;
-//        
-//        [_mapView addAnnotation:myLocationAnnotation];
         _mapView.centerCoordinate = userLocation.location.coordinate;
-//        //初始化检索对象
-//        _searcher =[[BMKPoiSearch alloc]init];
-//        _searcher.delegate = self;
-//        //发起检索
-//        BMKNearbySearchOption *option = [[BMKNearbySearchOption alloc]init];
-//        option.pageIndex = 0;
-//        option.pageCapacity = 50;
-//        option.radius = 100000;
-//    
-//        option.location = userLocation.location.coordinate;
-//        option.keyword = @"旅游景点";
-//        BOOL flag = [_searcher poiSearchNearBy:option];
-//        //    [option release];
-//        if(flag)
-//        {
-//            NSLog(@"周边检索发送成功");
-//        }
-//        else
-//        {
-//            NSLog(@"周边检索发送失败");
-//        }
     }
     
 //    [_locService stopUserLocationService];//取消定位
+}
+
+
+/**
+ *点中底图空白处会回调此接口
+ *@param mapview 地图View
+ *@param coordinate 空白处坐标点的经纬度
+ */
+- (void)mapView:(BMKMapView *)mapView onClickedMapBlank:(CLLocationCoordinate2D)coordinate{
+    if (_isUpViewPop) {
+        _isUpViewPop = NO;
+        //1.执行动画
+        [UIView animateWithDuration:0.3 animations:^{
+            _mapUpView.transform = CGAffineTransformIdentity;
+        }completion:^(BOOL finished) {
+            [_mapUpView removeFromSuperview];
+        }];
+
+    }else{
+//        _isUpViewPop = YES;
+    }
 }
 
 #pragma mark 定义每个标注样式
@@ -577,41 +577,34 @@
         }
     }
     
-    MapUpView * mapUpView = [[MapUpView alloc]init];
-    mapUpView.locationNameLabel.text = view.annotation.title;
-    mapUpView.title = self.navigationBar.titleLabel.text;
+    
+    _mapUpView.locationNameLabel.text = view.annotation.title;
+    _mapUpView.title = self.navigationBar.titleLabel.text;
     
     BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
     BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(view.annotation.coordinate.latitude,view.annotation.coordinate.longitude));
     CGFloat distance = BMKMetersBetweenMapPoints(point1,point2);
-    [mapUpView getDataWithOwnLocation:CLLocationCoordinate2D(_locService.userLocation.location.coordinate)];
-    [mapUpView getDataWithGoToLocation:view.annotation.coordinate];
+    [_mapUpView getDataWithOwnLocation:CLLocationCoordinate2D(_locService.userLocation.location.coordinate)];
+    [_mapUpView getDataWithGoToLocation:view.annotation.coordinate];
 
     if (distance>1000.0) {
         distance/=1000.0;
-        mapUpView.distanceLabel.text = [NSString stringWithFormat:@"%.4g",distance];
-        mapUpView.distanceLabel.text = [mapUpView.distanceLabel.text stringByAppendingString:@"km"];
+        _mapUpView.distanceLabel.text = [NSString stringWithFormat:@"%.4g",distance];
+        _mapUpView.distanceLabel.text = [_mapUpView.distanceLabel.text stringByAppendingString:@"km"];
     }else{
-        mapUpView.distanceLabel.text = [NSString stringWithFormat:@"%g",distance];
-        mapUpView.distanceLabel.text = [mapUpView.distanceLabel.text stringByAppendingString:@"m"];
+        _mapUpView.distanceLabel.text = [NSString stringWithFormat:@"%g",distance];
+        _mapUpView.distanceLabel.text = [_mapUpView.distanceLabel.text stringByAppendingString:@"m"];
     }
     
     if (_isUpViewPop) {
-        mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
-        
-        [self.view addSubview:mapUpView];
     }else{
         _isUpViewPop = YES;
     //1.执行动画
-        [self.view addSubview:mapUpView];
-        [UIView animateWithDuration:0.4 animations:^{
-            mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
+        [self.view addSubview:_mapUpView];
+        [UIView animateWithDuration:0.3 animations:^{
+//            mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
+            _mapUpView.transform = CGAffineTransformMakeTranslation(0, -kUpViewHeight);
         }];
-//    mapUpView.locationNameLabel.text = view.paopaoView.annotation.title;
-//    [UIView animateWithDuration:1 animations:^{
-//        //将view.frame 设置在屏幕上方
-//        [self.view addSubview:mapUpView];
-//    }];
         
         
     }

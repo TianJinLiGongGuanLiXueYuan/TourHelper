@@ -26,7 +26,7 @@
     self = [super init];
     if (self) {
 //        self.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
-        self.frame = CGRectMake(0, 64+kUpViewHeight, 0, 0);
+        self.frame = CGRectMake(0, screenHeight, screenWidth, kUpViewHeight);
         self.backgroundColor = [UIColor whiteColor];
         
         self.goToBtn = [[UIButton alloc]initWithFrame:CGRectMake(screenWidth-kLeftAndRightMargins-kgoToBtnLen, kTopMargins, kgoToBtnLen, kgoToBtnLen)];

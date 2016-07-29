@@ -153,7 +153,7 @@
 
 - (void)footerRefresh
 {
-    if (_cnt!=!_sum){
+    if (_cnt!=_sum){
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (_cnt+3<=_sum) {
                 _cnt += 3;
@@ -161,6 +161,10 @@
                 _cnt = _sum;
             [self.mainTVC.tableView reloadData];
             [self.refreshFooter endRefreshing];
+        });
+    }else{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
         });
     }
 }

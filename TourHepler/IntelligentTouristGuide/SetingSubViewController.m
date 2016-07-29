@@ -65,7 +65,7 @@
     
     _subBtn = [[UIButton alloc]init];
     _subBtn.frame = CGRectMake(kBtnWeight, kTVTopMargins+kTVheight+kViewAndInput, kBtnWeight, kBtnHeight);
-    _subBtn.backgroundColor = [UIColor grayColor];
+    _subBtn.backgroundColor = [UIColor colorWithRed:81.0/255.0 green:132.0/255.0 blue:254.0/255.0 alpha:1];
     [_subBtn setTitle:@"提交" forState:UIControlStateNormal];
     _subBtn.titleLabel.textColor = [UIColor whiteColor];
     

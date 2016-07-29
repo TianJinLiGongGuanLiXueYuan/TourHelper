@@ -25,6 +25,7 @@
 
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
 #import "MySearchBar.h"
+#import "MapUpView.h"
 
 @interface MapViewController : BaseViewController<BMKLocationServiceDelegate,BMKPoiSearchDelegate,BMKGeoCodeSearchDelegate,BMKMapViewDelegate,UITextFieldDelegate,MySearchBarDelegate>
 
@@ -37,6 +38,7 @@
 @property (nonatomic,strong) UITextField *inputTF;
 @property (nonatomic,strong) MySearchBar *mySearchBar;
 @property (nonatomic,strong) UIButton *translucentBtn;
+@property (nonatomic,strong) MapUpView *mapUpView;
 
 
 @end
