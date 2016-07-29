@@ -18,7 +18,7 @@
 
 
 
-@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,IFlySpeechSynthesizerDelegate,BMKLocationServiceDelegate>
+@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate>
 
 @property (nonatomic ,strong) NSMutableArray *dataArr;
 @property (nonatomic,strong) BMKLocationService* locService;
@@ -71,7 +71,7 @@
     _mainTVC = [[UITableViewController alloc]init];
     CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
     self.mainTVC.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
-    UIColor *mainTVColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
+//    UIColor *mainTVColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
     self.mainTVC.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.mainTVC.tableView.backgroundColor = [UIColor whiteColor];
     self.mainTVC.tableView.allowsSelection = NO;
@@ -130,14 +130,15 @@
     __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
     __weak typeof(self) weakSelf = self;
     refreshHeader.beginRefreshingOperation = ^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (weakSelf.cnt+3<=weakSelf.sum) {
-                weakSelf.cnt += 3;
-            }else
-                weakSelf.cnt = weakSelf.sum;
-            [self.mainTVC.tableView reloadData];
-            [weakRefreshHeader endRefreshing];
-        });
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            
+//        });
+        if (weakSelf.cnt+3<=weakSelf.sum) {
+            weakSelf.cnt += 3;
+        }else
+            weakSelf.cnt = weakSelf.sum;
+        [self.mainTVC.tableView reloadData];
+        [weakRefreshHeader endRefreshing];
     };
     // 进入页面自动加载一次数据
     [refreshHeader autoRefreshWhenViewDidAppear];
@@ -154,18 +155,27 @@
 - (void)footerRefresh
 {
     if (_cnt!=_sum){
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (_cnt+3<=_sum) {
-                _cnt += 3;
-            }else
-                _cnt = _sum;
-            [self.mainTVC.tableView reloadData];
-            [self.refreshFooter endRefreshing];
-        });
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            if (_cnt+3<=_sum) {
+//                _cnt += 3;
+//            }else
+//                _cnt = _sum;
+//            [self.mainTVC.tableView reloadData];
+//            [self.refreshFooter endRefreshing];
+//        });
+        if (_cnt+3<=_sum) {
+            _cnt += 3;
+        }else
+            _cnt = _sum;
+        [self.mainTVC.tableView reloadData];
+        [self.refreshFooter endRefreshing];
     }else{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-        });
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            
+//        });
+        [self.refreshFooter setSDRefreshViewRefreshingStateText:@"已到最低"];
+        [self.refreshFooter setSDRefreshViewWillRefreshStateText:@"已到最底"];
+        [self.refreshFooter endRefreshing];
     }
 }
 #pragma mark - 地图坐标更新
@@ -298,7 +308,10 @@
 }
 
 ////结束代理
-//- (void) onCompleted:(IFlySpeechError *) error{}
+//- (void) onCompleted:(IFlySpeechError *) error{
+//    [_iFlySpeechSynthesizer stopSpeaking];
+//    _iFlySpeechSynthesizer.delegate = nil;
+//}
 ////合成开始
 //- (void) onSpeakBegin{}
 ////合成缓冲进度
@@ -317,11 +330,16 @@
 //控制每一行样式
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
 //    NSLog(@"path");
+    DataSingleton *dataSL = [DataSingleton shareInstance];
+    dataSL.allVoiceIsPlaying = [[NSMutableArray alloc]initWithArray:dataSL.allVoiceIsPlaying];
     static NSString *cellIdentifier = @"LocationInfoCell";
     LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.voiceBtn.tag = indexPath.row;
+    NSNumber *ok = [[NSNumber alloc]initWithBool:NO];
+    [dataSL.allVoiceIsPlaying addObject:ok];
     if (cell == nil) {
         cell = [[NSBundle mainBundle]loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
-        
+        cell.voiceBtn.tag = indexPath.row;
         [cell setImageViewClickBlock:^(UIButton *btn,NSString *locationName,NSString* img,NSString* locationText) {
             DetailViewController *deVC = [[DetailViewController alloc]init];
             deVC.titleText = locationName;
@@ -359,7 +377,7 @@
     NSLog(@"HOME leftBtnDidClick");
     
 //    if (_state==Playing) {
-        [_iFlySpeechSynthesizer stopSpeaking];
+//        [_iFlySpeechSynthesizer stopSpeaking];
 //        _state = NotStart;
 //    }
     
@@ -448,8 +466,8 @@
     NSDictionary *para = @{@"scenic_area_name":@"测试景区"};
     
     [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotWordInfoWithAreaName" andParam:para success:^(id responseObject) {
-        NSData *data = [[NSData alloc]initWithData:responseObject];
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//        NSData *data = [[NSData alloc]initWithData:responseObject];
+//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 //        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_spot_name"]);
         
     } failure:^(NSError *error) {

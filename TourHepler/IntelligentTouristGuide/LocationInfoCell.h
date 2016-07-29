@@ -12,6 +12,13 @@
 #import "iflyMSC/IFlySpeechSynthesizer.h"
 #import "iflyMSC/IFlySpeechSynthesizerDelegate.h"
 #import <QuartzCore/QuartzCore.h>
+
+@protocol LocationInfoCellDelegate <NSObject>
+
+
+@end
+
+
 @interface LocationInfoCell : UITableViewCell<IFlySpeechSynthesizerDelegate>{
     IFlySpeechSynthesizer * _iFlySpeechSynthesizer;
 }
@@ -20,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *locationImage;
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
+- (IBAction)voiceBtnClick:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (nonatomic,strong) NSString *cellText;
@@ -27,7 +35,7 @@
 @property (nonatomic) CGFloat cellHeight;
 @property (weak, nonatomic) IBOutlet UIView *upBarView;
 
-- (IBAction)voiceBtnClick:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIImageView *rightWithBarImg;
 
 - (IBAction)imageBtnClick:(id)sender;

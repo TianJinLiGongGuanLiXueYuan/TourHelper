@@ -208,6 +208,9 @@
 //    NSLog(@"speak progress %2d%%.", progress);
 }
 
+- (void) onCompleted:(IFlySpeechError *)error{
+    [_iFlySpeechSynthesizer stopSpeaking];
+}
 
 - (void)rightBtnDidClick:(UIButton *)rightBtn{
     if (!_isPlaying) {

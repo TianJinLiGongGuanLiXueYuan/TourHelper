@@ -32,13 +32,16 @@ typedef enum {
 // ---------------------------配置----------------------------------
 
 // 进入刷新状态时的提示文字
-#define SDRefreshViewRefreshingStateText @"正在加载最新数据,请稍候"
+//#define SDRefreshViewRefreshingStateText @"正在加载最新数据,请稍候"
 // 进入即将刷新状态时的提示文字
-#define SDRefreshViewWillRefreshStateText @"松开即可加载最新数据"
+//#define SDRefreshViewWillRefreshStateText @"松开即可加载最新数据"
 
 // ---------------------------配置----------------------------------
 
 @interface SDRefreshView : UIView
+
+@property (nonatomic,strong) NSString * sDRefreshViewRefreshingStateText;
+@property (nonatomic,strong) NSString * sDRefreshViewWillRefreshStateText;
 
 @property (nonatomic, copy) void(^beginRefreshingOperation)();
 @property (nonatomic, weak) id beginRefreshingTarget;
@@ -71,5 +74,10 @@ typedef enum {
 @property (nonatomic, assign) BOOL isManuallyRefreshing;
 
 - (UIEdgeInsets)syntheticalEdgeInsetsWithEdgeInsets:(UIEdgeInsets)edgeInsets;
+
+- (void)setSDRefreshViewRefreshingStateText:(NSString*)str;
+- (void)setSDRefreshViewWillRefreshStateText:(NSString*)str;
+
+
 
 @end

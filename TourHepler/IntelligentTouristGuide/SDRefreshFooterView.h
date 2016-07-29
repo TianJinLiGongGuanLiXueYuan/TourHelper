@@ -10,4 +10,6 @@
 
 @interface SDRefreshFooterView : SDRefreshView
 
+
+
 @end

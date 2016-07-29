@@ -21,16 +21,16 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" id="8Tw-tK-4hK">
-                        <rect key="frame" x="82" y="86" width="240" height="128"/>
+                        <rect key="frame" x="214" y="122" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PBo-VG-YC5">
-                        <rect key="frame" x="205" y="113" width="44" height="33"/>
+                        <rect key="frame" x="134" y="59" width="115" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <connections>
-                            <action selector="voiceBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4HC-dy-3oM"/>
+                            <action selector="voiceBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pMu-Se-XKT"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2nb-IY-HeA">
@@ -41,10 +41,6 @@
                         <color key="textColor" red="0.96849447720000004" green="1" blue="0.99873208309999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="J6D-M9-deJ">
-                        <rect key="frame" x="2" y="-1" width="414" height="155"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I5x-aU-Y2S">
                         <rect key="frame" x="341" y="163" width="62" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -53,7 +49,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="旅游助手－首页下面的地图icon.png" id="6jz-Kj-MJF">
-                        <rect key="frame" x="229" y="116" width="164" height="116"/>
+                        <rect key="frame" x="267" y="83" width="164" height="116"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="J6D-M9-deJ">
+                        <rect key="frame" x="32" y="2" width="414" height="155"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>

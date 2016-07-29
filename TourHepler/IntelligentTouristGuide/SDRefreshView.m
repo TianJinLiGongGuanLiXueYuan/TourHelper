@@ -38,7 +38,8 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        _sDRefreshViewRefreshingStateText = @"正在加载最新数据,请稍候";
+        _sDRefreshViewWillRefreshStateText = @"松开即可加载最新数据";
         UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] init];
         activity.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
         [activity startAnimating];
@@ -73,6 +74,15 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
     }
     return self;
 }
+
+- (void)setSDRefreshViewRefreshingStateText:(NSString*)str{
+    _sDRefreshViewRefreshingStateText = [[NSString alloc]initWithString:str];
+    
+}
+- (void)setSDRefreshViewWillRefreshStateText:(NSString*)str{
+    _sDRefreshViewWillRefreshStateText = [[NSString alloc]initWithString:str];
+}
+
 
 + (instancetype)refreshView
 {
@@ -163,7 +173,7 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
             _stateIndicatorView.hidden = YES;
             _activityIndicatorView.hidden = NO;
             _lastRefreshingTimeString = [self refreshingTimeString];
-            _textIndicator.text = SDRefreshViewRefreshingStateText;
+            _textIndicator.text = _sDRefreshViewRefreshingStateText;
             
             if (self.beginRefreshingOperation) {
                 self.beginRefreshingOperation();
@@ -181,7 +191,7 @@ CGFloat const SDTimeIndicatorMargin = 10.0f;
             
         case SDRefreshViewStateWillRefresh:
         {
-            _textIndicator.text = SDRefreshViewWillRefreshStateText;
+            _textIndicator.text = _sDRefreshViewWillRefreshStateText;
             [UIView animateWithDuration:0.5 animations:^{
                 _stateIndicatorView.transform = CGAffineTransformMakeRotation(self.stateIndicatorViewWillRefreshStateTransformAngle);
             }];

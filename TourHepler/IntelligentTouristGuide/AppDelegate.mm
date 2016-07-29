@@ -30,7 +30,7 @@
     self.window.rootViewController = nav;
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"jtmPXZOGPbx6eHaw3kLGSu3LoP8yjvku"  generalDelegate:nil];
+    BOOL ret = [_mapManager start:@"ZScNu4SDdw4faWXQaQNODHjZ2gFRNDt2"  generalDelegate:nil];
     if (!ret) {
         NSLog(@"manager start failed!");
     }

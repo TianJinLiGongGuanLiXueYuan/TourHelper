@@ -13,7 +13,7 @@
 - (void)locationBtnClick:(UIButton *)btn;
 - (void)wcBtnClick:(UIButton *)btn;
 - (void)foodBtnClick:(UIButton *)btn;
-- (void)returnBtnClick:(UIButton*)btn;
+//- (void)returnBtnClick:(UIButton*)btn;
 
 @end
 
