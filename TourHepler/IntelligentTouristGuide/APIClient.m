@@ -17,7 +17,7 @@
     dispatch_once(&onceToken, ^{
         //服务器IP
         _sharedClient = [[APIClient alloc]initWithBaseURL:
-                         [NSURL URLWithString:@"http://127.0.0.1"]];
+                         [NSURL URLWithString:@"http://115.28.204.112"]];
         _sharedClient.responseSerializer = [AFHTTPResponseSerializer serializer];
         _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [_sharedClient.requestSerializer setValue:@"2" forHTTPHeaderField:@"Accept"];

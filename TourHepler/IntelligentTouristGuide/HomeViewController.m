@@ -18,13 +18,14 @@
 
 
 
-@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate>
+@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate,LocationInfoCellDelegate>
 
 @property (nonatomic ,strong) NSMutableArray *dataArr;
 @property (nonatomic,strong) BMKLocationService* locService;
 @property (nonatomic, weak) SDRefreshFooterView *refreshFooter;
 @property (nonatomic) NSInteger cnt;
 @property (nonatomic) NSInteger sum;
+@property (nonatomic) NSInteger isPlaying;
 //@property (readonly, nonatomic,strong) CLLocation *homeLocation;
 
 @end
@@ -44,6 +45,7 @@
     [super viewDidLoad];
     _cnt = 3;
     _sum = 0;
+    _isPlaying = -1;
     // Do any additional setup after loading the view.
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
@@ -86,36 +88,7 @@
     
 //    [self addChildViewController:_mainTVC];
     [self.view addSubview:self.mainTVC.tableView];
-    
-    
-    
-    
-//    UIRefreshControl *mainRC = [[UIRefreshControl alloc]init];
-//    mainRC.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-//    [mainRC addTarget:self action:@selector(refreshTableView) forControlEvents:UIControlEventValueChanged];
-    
-    
-    
-//    DataSingleton* dataSL = [DataSingleton shareInstance];
-//    dataSL.homeCenterCC2D.latitude = _homeCenterCC2D.latitude;
-//    dataSL.homeCenterCC2D.longitude = _homeCenterCC2D.longitude;
-    
-    
-//    语音
-//    //1.创建合成对象
-//    _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
-//    self;
-//    
-//    //设置在线工作方式
-//    [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
-//                                  forKey:[IFlySpeechConstant ENGINE_TYPE]];
-//    //音量,取值范围 0~100
-//    [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
-//    [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
-//    //3.启动合成会话
-//    [_iFlySpeechSynthesizer startSpeaking: @"你好,我是科大讯飞的小燕"];
-    
-    
+
     
 }
 #pragma mark - 刷新控件
@@ -137,6 +110,7 @@
             weakSelf.cnt += 3;
         }else
             weakSelf.cnt = weakSelf.sum;
+        [_iFlySpeechSynthesizer stopSpeaking];
         [self.mainTVC.tableView reloadData];
         [weakRefreshHeader endRefreshing];
     };
@@ -167,6 +141,7 @@
             _cnt += 3;
         }else
             _cnt = _sum;
+        [_iFlySpeechSynthesizer stopSpeaking];
         [self.mainTVC.tableView reloadData];
         [self.refreshFooter endRefreshing];
     }else{
@@ -319,6 +294,80 @@
 //- (void) onSpeakProgress:(int) progress{}
 //
 
+#pragma mark - LocationInfoCell的代理
+
+- (IBAction)voiceBtnClick:(UIButton*)btn{
+    //    NSLog(@"%ld",self.voiceBtn.tag);
+//    DataSingleton *dataSL = [DataSingleton shareInstance];
+//    _isPlaying = 0;
+//    int cnt = 0;
+//    NSNumber *ok =[[NSNumber alloc]initWithBool:YES];
+//    for (NSNumber *obj in dataSL.allVoiceIsPlaying) {
+//        if ([obj isEqual:ok]) {
+//            if (cnt==self.voiceBtn.tag) {
+//                _isPlaying = 1;
+//            }else
+//                _isPlaying = 2;
+//            break;
+//        }
+//        cnt++;
+//    }
+    if (_isPlaying==-1) {
+//        DataSingleton *dataSL = [DataSingleton shareInstance];
+//        long key = self.voiceBtn.tag;
+//        NSNumber *ok =[[NSNumber alloc]initWithBool:YES];
+//        [dataSL.allVoiceIsPlaying replaceObjectAtIndex:key withObject:ok];
+        //1.创建合成对象
+        _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
+        self;
+        
+        //设置在线工作方式
+        [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
+                                      forKey:[IFlySpeechConstant ENGINE_TYPE]];
+        //音量,取值范围 0~100
+        [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
+        [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
+        //3.启动合成会话
+        //    [IFlySpeechUtility createUtility:@"你好,我是科大讯飞的小燕"];
+        [_iFlySpeechSynthesizer startSpeaking: btn.titleLabel.text];
+//
+        [btn setBackgroundImage:[UIImage imageNamed:@"54C5D57F9705BCC1D0486DB7D059E2E3.png"] forState:UIControlStateNormal];
+        _isPlaying = btn.tag;
+        
+    }else if(_isPlaying==btn.tag){
+        [_iFlySpeechSynthesizer stopSpeaking];
+        
+        NSIndexPath *index = [NSIndexPath indexPathForRow:_isPlaying inSection:0];
+        LocationInfoCell *preCell = [_mainTVC.tableView cellForRowAtIndexPath:index];
+        [preCell.voiceBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+        _isPlaying = -1;
+    }else{
+        [_iFlySpeechSynthesizer stopSpeaking];
+        
+        NSIndexPath *index = [NSIndexPath indexPathForRow:_isPlaying inSection:0];
+        LocationInfoCell *preCell = [_mainTVC.tableView cellForRowAtIndexPath:index];
+        [preCell.voiceBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+        
+        //1.创建合成对象
+        _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
+        self;
+        
+        //设置在线工作方式
+        [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
+                                      forKey:[IFlySpeechConstant ENGINE_TYPE]];
+        //音量,取值范围 0~100
+        [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
+        [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
+        //3.启动合成会话
+        //    [IFlySpeechUtility createUtility:@"你好,我是科大讯飞的小燕"];
+        [_iFlySpeechSynthesizer startSpeaking: btn.titleLabel.text];
+        //
+        [btn setBackgroundImage:[UIImage imageNamed:@"54C5D57F9705BCC1D0486DB7D059E2E3.png"] forState:UIControlStateNormal];
+        _isPlaying = btn.tag;
+    }
+}
+
+
 #pragma mark - tableView相关代理
 
 //控制行数
@@ -330,13 +379,14 @@
 //控制每一行样式
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
 //    NSLog(@"path");
-    DataSingleton *dataSL = [DataSingleton shareInstance];
-    dataSL.allVoiceIsPlaying = [[NSMutableArray alloc]initWithArray:dataSL.allVoiceIsPlaying];
+//    DataSingleton *dataSL = [DataSingleton shareInstance];
+//    dataSL.allVoiceIsPlaying = [[NSMutableArray alloc]initWithArray:dataSL.allVoiceIsPlaying];
     static NSString *cellIdentifier = @"LocationInfoCell";
     LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.voiceBtn.tag = indexPath.row;
-    NSNumber *ok = [[NSNumber alloc]initWithBool:NO];
-    [dataSL.allVoiceIsPlaying addObject:ok];
+    cell.delegate = self;
+//    NSNumber *ok = [[NSNumber alloc]initWithBool:NO];
+//    [dataSL.allVoiceIsPlaying addObject:ok];
     if (cell == nil) {
         cell = [[NSBundle mainBundle]loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
         cell.voiceBtn.tag = indexPath.row;

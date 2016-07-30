@@ -14,7 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @protocol LocationInfoCellDelegate <NSObject>
-
+- (IBAction)voiceBtnClick:(UIButton*)btn;
 
 @end
 
@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *locationImage;
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
-- (IBAction)voiceBtnClick:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (nonatomic,strong) NSString *cellText;
@@ -35,7 +35,7 @@
 @property (nonatomic) CGFloat cellHeight;
 @property (weak, nonatomic) IBOutlet UIView *upBarView;
 
-
+@property (nonatomic,weak) id<LocationInfoCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIImageView *rightWithBarImg;
 
 - (IBAction)imageBtnClick:(id)sender;
