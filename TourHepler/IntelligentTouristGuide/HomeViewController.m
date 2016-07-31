@@ -15,6 +15,7 @@
 #import "DataSingleton.h"
 #import "HttpTool.h"
 #import "SDRefresh.h"
+#import "UIImageView+WebCache.h"
 
 
 
@@ -87,7 +88,7 @@
     //或者 refreshHeader.beginRefreshingOperation = ^{} 任选其中一种即可
     
 //    [self addChildViewController:_mainTVC];
-    [self.view addSubview:self.mainTVC.tableView];
+    
 
     
 }
@@ -162,6 +163,7 @@
 //    _homeCenterCC2D.longitude = userLocation.location.coordinate.longitude;
 //    _homeLocation = userLocation.location;
     [self getAreaName];
+    [self.view addSubview:self.mainTVC.tableView];
     [_locService stopUserLocationService];//取消定位
 }
 
@@ -181,7 +183,8 @@
         NSMutableArray *teamArr= [[NSMutableArray alloc]initWithArray:[dict objectForKey:@"data"]];
         NSMutableArray *Img = [[NSMutableArray alloc]init];
         for (NSDictionary *obj in teamArr) {
-            [Img addObject:obj[@"scenic_spot_picture"]];
+            
+            [Img addObject:[[NSURL alloc] initWithString:[obj[@"scenic_spot_picture"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
         }
         [dataSL.allImgWithLocation addObject:Img];
     }

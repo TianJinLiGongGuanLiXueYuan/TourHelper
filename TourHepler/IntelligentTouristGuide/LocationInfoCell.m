@@ -9,6 +9,7 @@
 #import "LocationInfoCell.h"
 #import "DetailViewController.h"
 #import "DataSingleton.h"
+#import "UIImageView+WebCache.h"
 #define screenWidth ([UIScreen mainScreen].bounds.size.width)
 #define screenHeight ([UIScreen mainScreen].bounds.size.height)
 #define kImgLeftAndRightMargins (28.0/1080.0*screenWidth)
@@ -51,7 +52,14 @@
 
 - (void)setCellData:(Location*)location{
     self.currentLocation = location;
-    [self.locationImage setImage:[UIImage imageNamed:location.locationImageName]];
+    if (location==nil) {
+        return;
+    }
+//    NSLog(@"%@",location.locationImageName);
+//    NSURL *url = [[NSURL alloc]initWithString:location.locationImageName];
+    NSURL * nurl=[[NSURL alloc] initWithString:[location.locationImageName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [self.locationImage sd_setImageWithURL:nurl  placeholderImage:[UIImage imageNamed:@"defaultImage.png"]];
+//    [self.locationImage setImage:[UIImage imageNamed:location.locationImageName]];
     _isPlaying = NO;
     
     self.imgName = location.locationImageName;

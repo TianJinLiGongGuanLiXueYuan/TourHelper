@@ -69,6 +69,7 @@
         }
     }
     imageNames = [dataSL.allImgWithLocation objectAtIndex:i];
+    
     _sum = [imageNames count];
     NSString *display = @"-";
     display=[display stringByAppendingString:[NSString stringWithFormat:@"%d",1]];
@@ -84,7 +85,7 @@
     
     
     //本地加载 --- 创建不带标题的图片轮播器
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, -12, w, h+12) shouldInfiniteLoop:YES imageNamesGroup:imageNames];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, -12, w, h+12) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
     cycleScrollView.autoScroll = NO;
@@ -92,6 +93,7 @@
     cycleScrollView.titlesGroup = locatianNames;
     cycleScrollView.titleLabelHeight = (574.0/1920.0)*h;
     cycleScrollView.showPageControl = NO;
+    cycleScrollView.imageURLStringsGroup = imageNames;
     [self.view addSubview:cycleScrollView];
     
 //    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
