@@ -14,7 +14,7 @@
 #define kViewHeight (40)
 #define kViewAndInput (8)
 #define kBtnWeight (2.0/9.0*screenWidth)
-#define kBtenHeight (20)
+#define kBtenHeight (30)
 #define kInputTFWeight (15.0/16.0*screenWidth)
 #define kInputTFHeight (40)
 #define kBtnCnt (3)
@@ -70,10 +70,14 @@
     if (_locationBtn==Nil) {
         _locationBtn = [[UIButton alloc]init];
         _locationBtn.frame = CGRectMake((screenWidth - (kBtnWeight*kBtnCnt+kViewLeftAndRightMargins*(kBtnCnt-1)))/2.0, kInputTFHeight+kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
-        _locationBtn.backgroundColor = [UIColor colorWithRed:204.0/255.0 green:166.0/255.0 blue:176.0/2555.0 alpha:1];
+        _locationBtn.backgroundColor = [UIColor colorWithRed:43.0/255.0 green:162.0/255.0 blue:145.0/255.0 alpha:1];
         _locationBtn.layer.masksToBounds = YES;
-        _locationBtn.layer.cornerRadius = 6.0;
-        _locationBtn.layer.borderWidth = 0;
+//        _locationBtn.layer.cornerRadius = 6.0;
+        _locationBtn.layer.borderWidth = 1;
+        _locationBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+//        [_locationBtn.layer setBorderColor:(__bridge CGColorRef _Nullable)([UIColor whiteColor])];
+//        _locationBtn.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor whiteColor]);
+        [_locationBtn.layer setCornerRadius:30.0/3.1415926];
         //        _locationBtn.titleLabel.textColor = [UIColor blackColor];
         [_locationBtn setTitle:@"景点" forState:UIControlStateNormal];
         [_locationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -87,10 +91,12 @@
     if (_wcBtn==Nil) {
         _wcBtn = [[UIButton alloc]init];
         _wcBtn.frame = CGRectMake(kViewLeftAndRightMargins+kBtnWeight+(screenWidth - (kBtnWeight*kBtnCnt+kViewLeftAndRightMargins*(kBtnCnt-1)))/2.0, kInputTFHeight+kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
-        _wcBtn.backgroundColor = [UIColor colorWithRed:236.0/255.0 green:206.0/255.0 blue:176.0/255.0 alpha:1];
+        _wcBtn.backgroundColor = [UIColor colorWithRed:43.0/255.0 green:162.0/255.0 blue:145.0/255.0 alpha:1];
         _wcBtn.layer.masksToBounds = YES;
-        _wcBtn.layer.cornerRadius = 6.0;
-        _wcBtn.layer.borderWidth = 0;
+//        _wcBtn.layer.cornerRadius = 6.0;
+        _wcBtn.layer.borderWidth = 1;
+        _wcBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+        [_wcBtn.layer setCornerRadius:30.0/3.1415926];
         [_wcBtn setTitle:@"厕所" forState:UIControlStateNormal];
         [_wcBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
@@ -103,10 +109,12 @@
     if (_foodBtn==Nil) {
         _foodBtn = [[UIButton alloc]init];
         _foodBtn.frame = CGRectMake(kViewLeftAndRightMargins*2+kBtnWeight*2+(screenWidth - (kBtnWeight*kBtnCnt+kViewLeftAndRightMargins*(kBtnCnt-1)))/2.0, kInputTFHeight+kViewLeftAndRightMargins, kBtnWeight, kBtenHeight);
-        _foodBtn.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:225.0/255.0 blue:205.0/255.0 alpha:1];
+        _foodBtn.backgroundColor = [UIColor colorWithRed:43.0/255.0 green:162.0/255.0 blue:145.0/255.0 alpha:1];
         _foodBtn.layer.masksToBounds = YES;
-        _foodBtn.layer.cornerRadius = 6.0;
-        _foodBtn.layer.borderWidth = 0;
+//        _foodBtn.layer.cornerRadius = 6.0;
+        _foodBtn.layer.borderWidth = 1;
+        _foodBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+        [_foodBtn.layer setCornerRadius:30.0/3.1415926];
         [_foodBtn setTitle:@"饭店" forState:UIControlStateNormal];
         [_foodBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         

@@ -27,6 +27,8 @@
 @property (nonatomic) NSInteger cnt;
 @property (nonatomic) NSInteger sum;
 @property (nonatomic) NSInteger isPlaying;
+@property (nonatomic) CGFloat tableViewPosPre;
+@property (nonatomic) BOOL isNavigationBarDisplay;
 //@property (readonly, nonatomic,strong) CLLocation *homeLocation;
 
 @end
@@ -47,6 +49,8 @@
     _cnt = 3;
     _sum = 0;
     _isPlaying = -1;
+    _isNavigationBarDisplay = 1;
+    _tableViewPosPre = 64;
     // Do any additional setup after loading the view.
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
@@ -76,7 +80,7 @@
     self.mainTVC.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
 //    UIColor *mainTVColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
     self.mainTVC.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTVC.tableView.backgroundColor = [UIColor whiteColor];
+    self.mainTVC.tableView.backgroundColor = [UIColor colorWithRed:0.865 green:1.000 blue:0.991 alpha:1.000];
     self.mainTVC.tableView.allowsSelection = NO;
     self.mainTVC.tableView.delegate = self;
     self.mainTVC.tableView.dataSource = self;
@@ -85,6 +89,7 @@
     [self setupHeader];
     [self setupFooter];
     
+    [self.view addSubview:self.mainTVC.tableView];
     //或者 refreshHeader.beginRefreshingOperation = ^{} 任选其中一种即可
     
 //    [self addChildViewController:_mainTVC];
@@ -92,6 +97,17 @@
 
     
 }
+#pragma mark - 语音合成
+- (void)onCompleted:(IFlySpeechError *)error{
+    [_iFlySpeechSynthesizer stopSpeaking];
+    NSIndexPath *index = [NSIndexPath indexPathForRow:_isPlaying inSection:0];
+    LocationInfoCell *preCell = [_mainTVC.tableView cellForRowAtIndexPath:index];
+    [preCell.voiceBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+    _isPlaying = -1;
+}
+
+
+
 #pragma mark - 刷新控件
 
 - (void)setupHeader
@@ -163,7 +179,7 @@
 //    _homeCenterCC2D.longitude = userLocation.location.coordinate.longitude;
 //    _homeLocation = userLocation.location;
     [self getAreaName];
-    [self.view addSubview:self.mainTVC.tableView];
+    
     [_locService stopUserLocationService];//取消定位
 }
 
@@ -301,20 +317,6 @@
 
 - (IBAction)voiceBtnClick:(UIButton*)btn{
     //    NSLog(@"%ld",self.voiceBtn.tag);
-//    DataSingleton *dataSL = [DataSingleton shareInstance];
-//    _isPlaying = 0;
-//    int cnt = 0;
-//    NSNumber *ok =[[NSNumber alloc]initWithBool:YES];
-//    for (NSNumber *obj in dataSL.allVoiceIsPlaying) {
-//        if ([obj isEqual:ok]) {
-//            if (cnt==self.voiceBtn.tag) {
-//                _isPlaying = 1;
-//            }else
-//                _isPlaying = 2;
-//            break;
-//        }
-//        cnt++;
-//    }
     if (_isPlaying==-1) {
 //        DataSingleton *dataSL = [DataSingleton shareInstance];
 //        long key = self.voiceBtn.tag;
@@ -426,6 +428,50 @@
     
 }
 
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    
+}
+
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView  {
+//    NSLog(@"%@",scrollView);
+//    NSLog(@"_tableViewPosPre = %f",_tableViewPosPre);
+//    //向下滑动
+//    if (scrollView.contentOffset.y==_tableViewPosPre) {
+//        return;
+//    }
+//    
+//    if (scrollView.contentOffset.y-_tableViewPosPre>1) {
+//        //1.执行动画
+//        self.navigationBar.alpha = 1;
+//        [UIView animateWithDuration:1 animations:^{
+//            self.navigationBar.alpha = 0;
+//        }];
+//        
+//    }
+//    //向上滑动
+//    else if(_tableViewPosPre-scrollView.contentOffset.y>1){
+//        [self.view addSubview:self.navigationBar];
+//        [UIView animateWithDuration:0.5 animations:^{
+//                //            mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
+//                self.navigationBar.transform = CGAffineTransformMakeTranslation(0, 0);
+//            }];
+//    }
+//    
+//    _tableViewPosPre = scrollView.contentOffset.y;
+////    [self.view addSubview:_mapUpView];
+////    [UIView animateWithDuration:0.3 animations:^{
+////        //            mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
+////        _mapUpView.transform = CGAffineTransformMakeTranslation(0, -kUpViewHeight);
+////    }];
+//    
+//    
+//    
+//    
+//}
+
+
+#pragma mark - 导航栏按钮点击事件
+
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
     NSLog(@"HOME leftBtnDidClick");
     
@@ -467,7 +513,7 @@
 
 
 
-#pragma merk -----网络接口-----
+#pragma mark - 网络接口
 
 
 - (void) getAreaName{

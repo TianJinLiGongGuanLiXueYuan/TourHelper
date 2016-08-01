@@ -18,7 +18,7 @@
 #define kTVTopMargins (200.0/1920.0*screenHeight)
 #define kTVLeftMargins (120.0/1080.0*screenWidth)
 #define kTVWidth (831.0/1080.0*screenWidth)
-#define kTVheight (861.0/1920.0*screenHeight)
+#define kTVheight (600.0/1920.0*screenHeight)
 #define kLineMargins (40.0/1080.0*screenWidth)
 
 @interface SetingSubViewController ()
