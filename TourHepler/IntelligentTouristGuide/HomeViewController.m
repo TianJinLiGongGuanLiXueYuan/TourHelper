@@ -89,7 +89,17 @@
     [self setupHeader];
     [self setupFooter];
     
+    if([self.mainTVC.tableView respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)])
+    {
+        self.mainTVC.automaticallyAdjustsScrollViewInsets = NO;
+        UIEdgeInsets insets = self.mainTVC.tableView.contentInset;
+        insets.top =self.navigationBar.bounds.size.height;
+        self.mainTVC.tableView.contentInset =insets;
+        self.mainTVC.tableView.scrollIndicatorInsets = insets;
+    }
+    self.view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.mainTVC.tableView];
+    [self.view addSubview:self.navigationBar];
     //或者 refreshHeader.beginRefreshingOperation = ^{} 任选其中一种即可
     
 //    [self addChildViewController:_mainTVC];
@@ -383,11 +393,21 @@
 }
 //控制每一行样式
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"LocationInfoCell";
+    LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    if (indexPath.row==0) {
+//        if (cell==nil) {
+//            cell = [[NSBundle mainBundle]loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
+//        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
 //    NSLog(@"path");
 //    DataSingleton *dataSL = [DataSingleton shareInstance];
 //    dataSL.allVoiceIsPlaying = [[NSMutableArray alloc]initWithArray:dataSL.allVoiceIsPlaying];
-    static NSString *cellIdentifier = @"LocationInfoCell";
-    LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    
     cell.voiceBtn.tag = indexPath.row;
     cell.delegate = self;
 //    NSNumber *ok = [[NSNumber alloc]initWithBool:NO];
@@ -415,6 +435,11 @@
 }
 //行高
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"%@",indexPath);
+//    NSLog(@"%ld",(long)indexPath.row);
+//    if (indexPath.row==0) {
+//        return 64;
+//    }
     return [LocationInfoCell returnCellHeight];
 }
 //点击事件
@@ -429,7 +454,53 @@
 }
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-    
+    printf("velocity.x = %f,velocity.y = %f\n",velocity.x,velocity.y);
+    printf("targetContentOffset->x = %f,targetContentOffset->y = %f\n",targetContentOffset->x,targetContentOffset->y);
+//    NSLog(@"%@",targetContentOffset);
+    CGFloat time = 0.5;
+    if (targetContentOffset->y==0.0&&velocity.y<0) {
+        if (self.navigationBar.hidden == NO) {
+            return;
+        }else{
+            self.navigationBar.hidden = NO;
+            self.navigationBar.alpha = 0;
+            [UIView animateWithDuration:time animations:^{
+                self.navigationBar.alpha = 1;
+                self.mainTVC.tableView.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
+                
+            }completion:^(BOOL finished) {
+                
+                
+            }];
+            return;
+        }
+    }
+    if(velocity.y>0)
+    {
+        self.navigationBar.alpha = 1;
+        [UIView animateWithDuration:time animations:^{
+            self.mainTVC.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+            self.navigationBar.alpha = 0;
+        }completion:^(BOOL finished) {
+            
+            self.navigationBar.hidden = YES;
+        }];
+        
+    }
+    else if(velocity.y<0)
+    {
+        self.navigationBar.hidden = NO;
+        self.navigationBar.alpha = 0;
+        [UIView animateWithDuration:time animations:^{
+            self.navigationBar.alpha = 1;
+            self.mainTVC.tableView.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
+            
+        }completion:^(BOOL finished) {
+            
+            
+        }];
+        
+    }
 }
 
 //-(void)scrollViewDidScroll:(UIScrollView *)scrollView  {

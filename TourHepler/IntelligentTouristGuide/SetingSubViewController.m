@@ -102,7 +102,7 @@
     [self.inputTV resignFirstResponder];
     if (![self.inputTV.text isEqualToString:@""]) {
         NSDictionary *para = @{@"opinion_content":self.inputTV.text};
-        [HttpTool postWithparamsWithURL:@"subinfo/SubInfoForWeb" andParam:para success:^(id responseObject) {
+        [HttpTool postWithparamsWithURL:@"subInfo/SubInfoForWeb" andParam:para success:^(id responseObject) {
             
             
             
