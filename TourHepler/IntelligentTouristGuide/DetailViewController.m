@@ -64,7 +64,7 @@
     int i;
     for (i = 0; i<[dataSL.allDetail count]; i++) {
         Location* tem = [dataSL.allDetail objectAtIndex:i];
-        if (self.detailImg == tem.locationImageName) {
+        if ([self.detailImg isEqualToString: tem.locationImageName]) {
             break;
         }
     }
@@ -88,12 +88,15 @@
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, -12, w, h+12) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
-    cycleScrollView.autoScroll = NO;
+//    cycleScrollView.autoScroll = NO;
 //    cycleScrollView.showPageControl = NO;
     cycleScrollView.titlesGroup = locatianNames;
     cycleScrollView.titleLabelHeight = (574.0/1920.0)*h;
     cycleScrollView.showPageControl = NO;
     cycleScrollView.imageURLStringsGroup = imageNames;
+//    cycleScrollView.autoScroll = YES;
+    cycleScrollView.autoScrollTimeInterval = 2.5;
+    
     [self.view addSubview:cycleScrollView];
     
 //    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -212,6 +215,9 @@
 
 - (void) onCompleted:(IFlySpeechError *)error{
     [_iFlySpeechSynthesizer stopSpeaking];
+    [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+    _isPlaying = NO;
+    
 }
 
 - (void)rightBtnDidClick:(UIButton *)rightBtn{
@@ -249,6 +255,7 @@
         [_iFlySpeechSynthesizer stopSpeaking];
         _state = NotStart;
     }
+    _iFlySpeechSynthesizer.delegate = nil;
     if([self.navigationController popViewControllerAnimated:YES])
         ;
     else

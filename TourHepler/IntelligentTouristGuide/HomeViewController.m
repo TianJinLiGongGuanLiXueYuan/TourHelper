@@ -230,6 +230,7 @@
         
 //        NSLog(@"%f %f",_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude);
 //        NSLog(@"%f %f",latitudeDou,longitudeDou);
+        //算距离
         BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
         BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(latitudeDou,longitudeDou));
         CGFloat distance = BMKMetersBetweenMapPoints(point1,point2);
@@ -249,6 +250,7 @@
         
         [_dataArr addObject:location];
         [dataSL.allDetail addObject:location];
+        
         
         NSDictionary *para = @{@"scenic_spot_name":location.locationName};
         [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotImgInfoWithSpotName" andParam:para success:^(id responseObject) {
@@ -454,8 +456,8 @@
 }
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-    printf("velocity.x = %f,velocity.y = %f\n",velocity.x,velocity.y);
-    printf("targetContentOffset->x = %f,targetContentOffset->y = %f\n",targetContentOffset->x,targetContentOffset->y);
+//    printf("velocity.x = %f,velocity.y = %f\n",velocity.x,velocity.y);
+//    printf("targetContentOffset->x = %f,targetContentOffset->y = %f\n",targetContentOffset->x,targetContentOffset->y);
 //    NSLog(@"%@",targetContentOffset);
     CGFloat time = 0.5;
     if (targetContentOffset->y==0.0&&velocity.y<0) {
@@ -477,6 +479,10 @@
     }
     if(velocity.y>0)
     {
+        
+        if (self.navigationBar.hidden==YES) {
+            return;
+        }
         self.navigationBar.alpha = 1;
         [UIView animateWithDuration:time animations:^{
             self.mainTVC.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
@@ -489,6 +495,9 @@
     }
     else if(velocity.y<0)
     {
+        if (self.navigationBar.hidden==NO) {
+            return;
+        }
         self.navigationBar.hidden = NO;
         self.navigationBar.alpha = 0;
         [UIView animateWithDuration:time animations:^{
@@ -502,44 +511,6 @@
         
     }
 }
-
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView  {
-//    NSLog(@"%@",scrollView);
-//    NSLog(@"_tableViewPosPre = %f",_tableViewPosPre);
-//    //向下滑动
-//    if (scrollView.contentOffset.y==_tableViewPosPre) {
-//        return;
-//    }
-//    
-//    if (scrollView.contentOffset.y-_tableViewPosPre>1) {
-//        //1.执行动画
-//        self.navigationBar.alpha = 1;
-//        [UIView animateWithDuration:1 animations:^{
-//            self.navigationBar.alpha = 0;
-//        }];
-//        
-//    }
-//    //向上滑动
-//    else if(_tableViewPosPre-scrollView.contentOffset.y>1){
-//        [self.view addSubview:self.navigationBar];
-//        [UIView animateWithDuration:0.5 animations:^{
-//                //            mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
-//                self.navigationBar.transform = CGAffineTransformMakeTranslation(0, 0);
-//            }];
-//    }
-//    
-//    _tableViewPosPre = scrollView.contentOffset.y;
-////    [self.view addSubview:_mapUpView];
-////    [UIView animateWithDuration:0.3 animations:^{
-////        //            mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
-////        _mapUpView.transform = CGAffineTransformMakeTranslation(0, -kUpViewHeight);
-////    }];
-//    
-//    
-//    
-//    
-//}
-
 
 #pragma mark - 导航栏按钮点击事件
 
