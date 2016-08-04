@@ -68,6 +68,13 @@
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－首页设置.png"] forState:UIControlStateNormal];
     
     
+//    [self returnNetStatus];
+    [self AFNetworkStatus];
+
+    
+    
+    
+    
     //测试网络接口
 //    [self testWebServer];
 //    [self getSpotInfoWordForWeb];
@@ -257,10 +264,10 @@
             NSData *data = [[NSData alloc]initWithData:responseObject];
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             [self reLoadImgDetail:dict];
-            NSLog(@"成功调用,%@",dict);
+//            NSLog(@"成功调用,%@",dict);
             
         } failure:^(NSError *error) {
-            NSLog(@"景点没有图片");
+//            NSLog(@"景点没有图片");
             
         }];
         
@@ -299,7 +306,7 @@
 //        NSLog(@"--------------------成功调用,%@",[dict objectForKey:@"data"]);
         //        return dict[@"data"][0][@"scenic_area_name"];
     } failure:^(NSError *error) {
-        NSLog(@"附近没有景区");
+//        NSLog(@"附近没有景区");
         
     }];
 //    NSLog(@"%@",_mainDict);
@@ -596,7 +603,7 @@
 //        NSLog(@"成功调用,%@",dict[@"data"][0]);
 //        return dict[@"data"][0][@"scenic_area_name"];
     } failure:^(NSError *error) {
-        NSLog(@"网络数据接受错误");
+        NSLog(@"getAreaName：网络数据接受错误");
 
     }];
     
@@ -612,7 +619,7 @@
 //        NSLog(@"成功调用,%@",dict[@"data"][0][@"scenic_spot_name"]);
         
     } failure:^(NSError *error) {
-        NSLog(@"附近没有景区");
+//        NSLog(@"附近没有景区");
         
     }];
     
@@ -623,12 +630,12 @@
     NSDictionary *para = @{@"scenic_spot_name":@"测试景点"};
     
     [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotImgInfoWithSpotName" andParam:para success:^(id responseObject) {
-        NSData *data = [[NSData alloc]initWithData:responseObject];
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"成功调用,%@",dict);
+//        NSData *data = [[NSData alloc]initWithData:responseObject];
+//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//        NSLog(@"成功调用,%@",dict);
         
     } failure:^(NSError *error) {
-        NSLog(@"景点没有图片");
+//        NSLog(@"景点没有图片");
         
     }];
     

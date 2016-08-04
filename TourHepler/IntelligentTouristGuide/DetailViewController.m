@@ -157,7 +157,7 @@
     opt.endPoint = end;
     
     BMKOpenErrorCode code = [BMKOpenRoute openBaiduMapWalkingRoute:opt];
-    NSLog(@"%d", code);
+//    NSLog(@"%d", code);
     return;
 }
 

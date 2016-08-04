@@ -73,7 +73,6 @@
     
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight-64)];
     _mapView.delegate = self;
-    //[mapView setMapType:BMKMapTypeSatellite];
     _mapView.showsUserLocation = YES;//显示定位图层
     _mapView.showMapScaleBar = YES;//显示比例尺
     _mapView.zoomLevel=19;//地图显示的级别
@@ -559,7 +558,7 @@
 //当点击annotation view弹出的泡泡时，调用此接口
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view
 {
-    NSLog(@"点击annotation view弹出的泡泡");
+//    NSLog(@"点击annotation view弹出的泡泡");
 }
 
 //当选中一个annotation views时，调用此接口

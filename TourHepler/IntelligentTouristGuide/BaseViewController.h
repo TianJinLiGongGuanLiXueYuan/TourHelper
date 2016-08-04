@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomNavigationBar.h"
+#import "AFHTTPSessionManager.h"
 
 @interface BaseViewController : UIViewController<CustomNavigationBarDelegate>
 
 @property (nonatomic,strong) CustomNavigationBar* navigationBar;
+@property (nonatomic,strong) AFHTTPSessionManager *sessionManager;
+
+- (void) AFNetworkStatus;
 
 @end
