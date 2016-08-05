@@ -55,6 +55,7 @@
     if (location==nil) {
         return;
     }
+    
 //    NSLog(@"%@",location.locationImageName);
 //    NSURL *url = [[NSURL alloc]initWithString:location.locationImageName];
     NSURL * nurl=[[NSURL alloc] initWithString:[location.locationImageName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -80,8 +81,23 @@
     [_iFlySpeechSynthesizer stopSpeaking];
 }
 
+- (void)btnClick{
+    
+}
+
 - (void) layoutSubviews{
     [super layoutSubviews];
+    
+    
+//    UIButton *btn = [[UIButton alloc]init];
+//    btn.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+//    btn.backgroundColor = [UIColor colorWithRed:0.635 green:0.198 blue:0.251 alpha:1.000];
+//    
+//    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+//    [self addSubview:btn];
 //    [UIScreen mainScreen].bounds.size.width
 //    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     self.locationImage.frame = CGRectMake(kImgLeftAndRightMargins, kImgTopMargins, screenWidth-2*kImgLeftAndRightMargins, kImgHeight);
