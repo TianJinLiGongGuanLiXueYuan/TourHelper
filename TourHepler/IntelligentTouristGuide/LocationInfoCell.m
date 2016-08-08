@@ -52,6 +52,7 @@
 
 - (void)setCellData:(Location*)location{
     self.currentLocation = location;
+    
     if (location==nil) {
         return;
     }

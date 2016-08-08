@@ -41,7 +41,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES];
-    self.navigationBar.titleLabel.text = @"提出意见";
+    [self.navigationBar.titleBtn setTitle:@"提出意见" forState:UIControlStateNormal];
+//    self.navigationBar.titleBtn.titleLabel.text = @"提出意见";
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setHidden:YES];
     

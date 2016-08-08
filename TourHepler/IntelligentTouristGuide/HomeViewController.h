@@ -19,12 +19,6 @@
 
 - (void) reLoad:(NSDictionary*)Dict;
 
-//typedef NS_OPTIONS(NSInteger, Status) {
-//    NotStart            = 0,
-//    Playing             = 2, //高异常分析需要的级别
-//    Paused              = 4,
-//};
 
-//@property (nonatomic, assign) Status state;
 
 @end

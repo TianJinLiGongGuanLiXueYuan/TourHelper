@@ -27,7 +27,7 @@
     if (self) {
         UIColor *navigationColor = [UIColor colorWithRed:43.0/255.0 green:162.0/255.0 blue:145.0/255.0 alpha:1];
         self.backgroundColor = navigationColor;
-        [self addSubview:self.titleLabel];
+        [self addSubview:self.titleBtn];
         [self addSubview:self.leftBtn];
         [self addSubview:self.rightBtn];
         self.leftBtn.backgroundColor =navigationColor;
@@ -40,9 +40,9 @@
     [super layoutSubviews];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     self.bgImageView.frame = CGRectMake(0, TOP, screenWidth, 30);
-    self.titleLabel.frame = CGRectMake(0, TOP, screenWidth, 30);
+    self.titleBtn.frame = CGRectMake(0, TOP, screenWidth, 30);
     //让text居中
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    self.titleBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     self.leftBtn.frame = CGRectMake(10, TOP, ICONSIZE, ICONSIZE);
     
@@ -60,12 +60,12 @@
     [self.delegate rightBtnDidClick:btn];
 }
 
-- (UILabel *)titleLabel{
-    if (_titleLabel==Nil) {
-        _titleLabel = [[UILabel alloc]init];
-        _titleLabel.textColor = [UIColor whiteColor];
+- (UIButton *)titleBtn{
+    if (_titleBtn==Nil) {
+        _titleBtn = [[UIButton alloc]init];
+        _titleBtn.tintColor = [UIColor whiteColor];
     }
-    return _titleLabel;
+    return _titleBtn;
 }
 
 - (UIButton *)leftBtn{

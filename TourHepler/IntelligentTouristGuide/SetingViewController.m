@@ -33,7 +33,8 @@
     self = [super init];
     if (self) {
         [self.navigationController setNavigationBarHidden:YES];
-        self.navigationBar.titleLabel.text = @"个人设置";
+        [self.navigationBar.titleBtn setTitle:@"个人设置" forState:UIControlStateNormal];
+//        self.navigationBar.titleBtn.titleLabel.text = @"个人设置";
         [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
 //        [self.navigationBar.rightBtn setHidden:YES];
         [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"分享.png"] forState:UIControlStateNormal];

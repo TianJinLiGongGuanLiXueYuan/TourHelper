@@ -4,6 +4,9 @@ use Think\Controller;
 class HomeInfoController extends Controller {
 //1根据景区坐标返回景区名字
 	//http://localhost/TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName?scenic_area_latitude=33.273342&scenic_area_longitude=103.924245
+	// http://123.207.171.72/TourHelperServer/index.php/Home/homeInfo/GetScenicAreaName?scenic_area_latitude=30.134117&scenic_area_longitude=118.176913
+
+	//http://123.207.171.72/TourHelperServer/index.php/Home/homeInfo/GetSpotInfoWithAreaName?scenic_area_name=黄山风景区
 	public function GetScenicAreaName(){	
 		$scenic_area_latitude=I('scenic_area_latitude');
 		$scenic_area_longitude=I('scenic_area_longitude');

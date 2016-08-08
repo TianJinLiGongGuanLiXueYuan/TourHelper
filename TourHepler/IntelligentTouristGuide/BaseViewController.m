@@ -24,48 +24,7 @@
 }
 
 
-- (void)AFNetworkStatus{
-    
-    //1.创建网络监测者
-    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-    [manager startMonitoring];
-    
-    /*枚举里面四个状态  分别对应 未知 无网络 数据 WiFi
-     typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
-     AFNetworkReachabilityStatusUnknown          = -1,      未知
-     AFNetworkReachabilityStatusNotReachable     = 0,       无网络
-     AFNetworkReachabilityStatusReachableViaWWAN = 1,       蜂窝数据网络
-     AFNetworkReachabilityStatusReachableViaWiFi = 2,       WiFi
-     };
-     */
-    
-    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        //这里是监测到网络改变的block  可以写成switch方便
-        //在里面可以随便写事件
-        NSLog(@"%ld",(long)status);
-        switch (status) {
-            case AFNetworkReachabilityStatusUnknown:
-                NSLog(@"AFNetworkStatus:未知网络状态");
-                break;
-            case AFNetworkReachabilityStatusNotReachable:
-                NSLog(@"AFNetworkStatus:无网络");
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-                NSLog(@"AFNetworkStatus:蜂窝数据网");
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-                NSLog(@"AFNetworkStatus:WiFi网络");
-                
-                break;
-                
-            default:
-                break;
-        }
-        
-    }] ;
-}
+
 
 
 - (void)didReceiveMemoryWarning {

@@ -16,10 +16,10 @@
 #import "HttpTool.h"
 #import "SDRefresh.h"
 #import "UIImageView+WebCache.h"
+#import "NotNetView.h"
 
 
-
-@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate,LocationInfoCellDelegate>
+@interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate,LocationInfoCellDelegate,NotNetViewDelegate>
 
 @property (nonatomic ,strong) NSMutableArray *dataArr;
 @property (nonatomic,strong) BMKLocationService* locService;
@@ -29,23 +29,27 @@
 @property (nonatomic) NSInteger isPlaying;
 @property (nonatomic) CGFloat tableViewPosPre;
 @property (nonatomic) BOOL isNavigationBarDisplay;
-//@property (readonly, nonatomic,strong) CLLocation *homeLocation;
+@property (nonatomic) AFNetworkReachabilityStatus netStatus;
+@property (nonatomic) BOOL isNotNetViewDisplay;
+
+
 
 @end
 
 @interface HomeViewController ()
 
 @property (nonatomic ,strong) UITableViewController *mainTVC;
-//@property (nonatomic,strong) NSMutableArray *mainDict;
-//@property (nonatomic ,strong) MapViewController *mapViewController;
-//@property (nonatomic ,strong) DetailViewController *deVC;
-
+@property (nonatomic ,strong) NotNetView *notNetView;
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _isNotNetViewDisplay = NO;
+    [self AFNetworkStatus];
+    NSLog(@"%ld",(long)_netStatus);
+    
     _cnt = 3;
     _sum = 0;
     _isPlaying = -1;
@@ -61,27 +65,11 @@
     
 #pragma mark - 导航栏初始化
     
-//    NSLog(@"%@",self.mainDict);
     [self.navigationController setNavigationBarHidden:YES];
-//    self.navigationBar.titleLabel.text = @"九寨沟";
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－首页导航栏左地图icon.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－首页设置.png"] forState:UIControlStateNormal];
-    
-    
-//    [self returnNetStatus];
-    [self AFNetworkStatus];
 
     
-    
-    
-    
-    //测试网络接口
-//    [self testWebServer];
-//    [self getSpotInfoWordForWeb];
-//    [self GetSpotImgInfoWithSpotName];
-    
-    
-//    self.mainTableView.bo
     _mainTVC = [[UITableViewController alloc]init];
     CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
     self.mainTVC.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
@@ -91,7 +79,7 @@
     self.mainTVC.tableView.allowsSelection = NO;
     self.mainTVC.tableView.delegate = self;
     self.mainTVC.tableView.dataSource = self;
-    self.mainTVC.tableView.tableFooterView = [[UIView alloc]init];
+//    self.mainTVC.tableView.tableFooterView = [[UIView alloc]init];
     
     [self setupHeader];
     [self setupFooter];
@@ -114,6 +102,114 @@
 
     
 }
+#pragma mark - 排序
+
+- (NSMutableArray *)sort:(NSMutableArray *)arr{
+    int i,j;
+    for (i = 0; i<arr.count; i++) {
+        Location * location1 = [arr objectAtIndex:i];
+        for(j = i+1;j<arr.count;j++){
+            
+            Location * location2 = [arr objectAtIndex:j];
+            
+            if ([location1.distance doubleValue]>[location2.distance doubleValue]) {
+                [arr exchangeObjectAtIndex:i withObjectAtIndex:j];
+            }
+            
+        }
+    }
+    
+    return  arr;
+    
+}
+
+
+
+
+#pragma mark - 监测网络状态
+
+- (void)AFNetworkStatus{
+    
+    //1.创建网络监测者
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager startMonitoring];
+    
+    /*枚举里面四个状态  分别对应 未知 无网络 数据 WiFi
+     typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+     AFNetworkReachabilityStatusUnknown          = -1,      未知
+     AFNetworkReachabilityStatusNotReachable     = 0,       无网络
+     AFNetworkReachabilityStatusReachableViaWWAN = 1,       蜂窝数据网络
+     AFNetworkReachabilityStatusReachableViaWiFi = 2,       WiFi
+     };
+     */
+    
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        //这里是监测到网络改变的block  可以写成switch方便
+        //在里面可以随便写事件
+        NSLog(@"%ld",(long)status);
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                NSLog(@"AFNetworkStatus:未知网络状态");
+                break;
+            case AFNetworkReachabilityStatusNotReachable:{
+                NSLog(@"AFNetworkStatus:无网络");
+                
+                
+            }
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                NSLog(@"AFNetworkStatus:蜂窝数据网");
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                NSLog(@"AFNetworkStatus:WiFi网络");
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        if (status==AFNetworkReachabilityStatusNotReachable) {
+            if (_isNotNetViewDisplay==NO) {
+//                if (_notNetView==nil) {
+                    _notNetView = [[NotNetView alloc]init];
+                    _notNetView.delegate = self;
+//                }
+                _isNotNetViewDisplay = YES;
+                self.navigationBar.hidden = NO;
+                self.navigationBar.alpha = 1;
+                [self.view addSubview:_notNetView];
+            }
+        }else{
+            if (_isNotNetViewDisplay==YES) {
+                [_notNetView removeFromSuperview];
+                _isNotNetViewDisplay=NO;
+                [self getAreaName];
+                [_mainTVC.tableView reloadData];
+            }
+        }
+        
+        
+        self.netStatus = status;
+    }] ;
+}
+
+#pragma mark - 无网刷新点击
+
+- (void)updataBtnClick:(UIButton *)btn{
+//    [btn setImage:[UIImage @"5-121204193R0.gif"] forState:UIControlStateNormal];
+    [btn setTitle:@"刷新中......" forState:UIControlStateNormal];
+    [self getAreaName];
+    [_mainTVC.tableView reloadData];
+    
+    
+}
+
+
+
 #pragma mark - 语音合成
 - (void)onCompleted:(IFlySpeechError *)error{
     [_iFlySpeechSynthesizer stopSpeaking];
@@ -136,20 +232,23 @@
     refreshHeader.isEffectedByNavigationController = NO;
     __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
     __weak typeof(self) weakSelf = self;
+    // 进入页面自动加载一次数据
+    
     refreshHeader.beginRefreshingOperation = ^{
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //            
 //        });
-        if (weakSelf.cnt+3<=weakSelf.sum) {
-            weakSelf.cnt += 3;
-        }else
-            weakSelf.cnt = weakSelf.sum;
+//        if (weakSelf.cnt+3<=weakSelf.sum) {
+//            weakSelf.cnt += 3;
+//        }else
+//            weakSelf.cnt = weakSelf.sum;
+        [weakSelf sort:weakSelf.dataArr];
         [_iFlySpeechSynthesizer stopSpeaking];
         [self.mainTVC.tableView reloadData];
         [weakRefreshHeader endRefreshing];
     };
-    // 进入页面自动加载一次数据
     [refreshHeader autoRefreshWhenViewDidAppear];
+    
 }
 
 - (void)setupFooter
@@ -217,7 +316,7 @@
         NSMutableArray *Img = [[NSMutableArray alloc]init];
         for (NSDictionary *obj in teamArr) {
             
-            [Img addObject:[[NSURL alloc] initWithString:[obj[@"scenic_spot_picture"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+            [Img addObject:[[NSURL alloc] initWithString:[obj[@"scenic_spot_picture"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
         }
         [dataSL.allImgWithLocation addObject:Img];
     }
@@ -291,7 +390,7 @@
 //    Location *Location3 = [[Location alloc]initWithlocationName:@"芦苇海" voice:@""locationImageName:@"芦苇海.jpg" distance:@"1.4KM" locationText:@"“芦苇海”海拔2140米，全长2.2公里，是一个半沼泽湖泊。海中芦苇丛生，水鸟飞翔，清溪碧流，漾绿摇翠，蜿蜒空行，好一派泽国风光。“芦苇海”中，荡荡芦苇，一片青葱，微风徐来，绿浪起伏。飒飒之声，委婉抒情，使人心旷神怡。"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
 //    Location *Location4 = [[Location alloc]initWithlocationName:@"双龙海" voice:@""locationImageName:@"双龙海.jpg" distance:@"1.5KM" locationText:@"“双龙海”在火花海瀑布下的树丛中。海中有两条带状的生物钙华礁堤隐隐潜伏于海底，活像两条蛟龙藏于海中，蠕蠕欲动。还有一个黑龙与白龙打斗的传说。那条白龙本是双龙海的守护神，黑龙是天将，黑龙因触犯天条，被玉帝贬下界，在双龙海与白龙夺龙王大权……"coor:(CLLocationCoordinate2D){103.879475,33.144499}];
 //    NSLog(@"%@",self.navigationBar.titleLabel.text);
-    NSDictionary *para = @{@"scenic_area_name":self.navigationBar.titleLabel.text};
+    NSDictionary *para = @{@"scenic_area_name":self.navigationBar.titleBtn.titleLabel.text};
 //    NSDictionary *test;
 //    NSDictionary *dictWithAreaName = [[NSDictionary alloc]init];
     [HttpTool postWithparamsWithURL:@"homeInfo/GetSpotInfoWithAreaName" andParam:para success:^(id responseObject) {
@@ -402,8 +501,8 @@
 }
 //控制每一行样式
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"LocationInfoCell";
-    LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    static NSString *cellIdentifier = @"LocationInfoCell";
+    LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationInfoCell"];
 //    LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 //    if (indexPath.row==0) {
 //        if (cell==nil) {
@@ -436,7 +535,7 @@
 //        cell = [[NSBundle mainBundle] loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
         
     }
-    Location *currentLocation =self.dataArr[indexPath.row];
+    Location *currentLocation = self.dataArr[indexPath.row];
     //        CellFrameInfo *currentFrameInfo = [[CellFrameInfo alloc]initWithStudent:currentStudent];
     [cell setCellData:currentLocation];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -454,12 +553,12 @@
 //点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    DetailViewController *detailViewController = [[DetailViewController alloc]init];
-//    detailViewController.titleText = locationName;
-//    detailViewController.detailImg = img;
-//    detailViewController.detailText = locationText;
-    [self.navigationController pushViewController:detailViewController animated:YES ];
-    
+//    DetailViewController *detailViewController = [[DetailViewController alloc]init];
+////    detailViewController.titleText = locationName;
+////    detailViewController.detailImg = img;
+////    detailViewController.detailText = locationText;
+//    [self.navigationController pushViewController:detailViewController animated:YES ];
+//    
 }
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
@@ -532,7 +631,7 @@
     MapViewController *mapViewController;
     mapViewController = [[MapViewController alloc]init];
     mapViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    mapViewController.titleText = self.navigationBar.titleLabel.text;
+    mapViewController.titleText = self.navigationBar.titleBtn.titleLabel.text;
     
     [self presentViewController:mapViewController animated:YES completion:nil];
 
@@ -593,7 +692,7 @@
             [alertView show];
             
         }else{
-            [self.navigationBar.titleLabel setText:dict[@"data"][0][@"scenic_area_name"]];
+            [self.navigationBar.titleBtn setTitle:dict[@"data"][0][@"scenic_area_name"] forState:UIControlStateNormal];
             [self loadDataFromWeb];
         }
         

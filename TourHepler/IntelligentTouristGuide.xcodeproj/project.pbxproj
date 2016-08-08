@@ -28,6 +28,9 @@
 		5F5030F21D3B4D7200ACE15D /* PcmPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030ED1D3B4D7200ACE15D /* PcmPlayer.m */; };
 		5F5030F31D3B4D7200ACE15D /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030F01D3B4D7200ACE15D /* PopupView.m */; };
 		5F5030F91D3B4E9000ACE15D /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5030F81D3B4E9000ACE15D /* AlertView.m */; };
+		5F5636FE1D55ADB800327A3B /* NotNetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5636FD1D55ADB800327A3B /* NotNetView.m */; };
+		5F58DABB1D55B1DE00B5140D /* 警告.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F58DABA1D55B1DE00B5140D /* 警告.png */; };
+		5F58DABD1D55C57500B5140D /* 5-121204193R0.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */; };
 		5F5D944C1D40CA310000DAE0 /* MySearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5D944B1D40CA310000DAE0 /* MySearchBar.m */; };
 		5F6A652F1D3F7727004B6AB0 /* MyBMKPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */; };
 		5F6A65311D3F78B1004B6AB0 /* 定位.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65301D3F78B1004B6AB0 /* 定位.png */; };
@@ -231,6 +234,10 @@
 		5F5030F01D3B4D7200ACE15D /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
 		5F5030F71D3B4E9000ACE15D /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		5F5030F81D3B4E9000ACE15D /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		5F5636FC1D55ADB800327A3B /* NotNetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotNetView.h; sourceTree = "<group>"; };
+		5F5636FD1D55ADB800327A3B /* NotNetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotNetView.m; sourceTree = "<group>"; };
+		5F58DABA1D55B1DE00B5140D /* 警告.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "警告.png"; sourceTree = "<group>"; };
+		5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "5-121204193R0.gif"; sourceTree = "<group>"; };
 		5F5D944A1D40CA310000DAE0 /* MySearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchBar.h; sourceTree = "<group>"; };
 		5F5D944B1D40CA310000DAE0 /* MySearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchBar.m; sourceTree = "<group>"; };
 		5F6A652D1D3F7727004B6AB0 /* MyBMKPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBMKPointAnnotation.h; sourceTree = "<group>"; };
@@ -907,6 +914,8 @@
 				F11B67D71D361BE80065E7CD /* CustomNavigationBar.m */,
 				5F5030F71D3B4E9000ACE15D /* AlertView.h */,
 				5F5030F81D3B4E9000ACE15D /* AlertView.m */,
+				5F5636FC1D55ADB800327A3B /* NotNetView.h */,
+				5F5636FD1D55ADB800327A3B /* NotNetView.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1008,6 +1017,8 @@
 		F11B67DE1D3641B50065E7CD /* image */ = {
 			isa = PBXGroup;
 			children = (
+				5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */,
+				5F58DABA1D55B1DE00B5140D /* 警告.png */,
 				5FD1FE8E1D51FEA300955E18 /* 分享.png */,
 				5F75AB6E1D4E3D3D00CEFAC6 /* defaultImage.png */,
 				F151F2251D48836200E1AA92 /* 54C5D57F9705BCC1D0486DB7D059E2E3.png */,
@@ -1228,6 +1239,7 @@
 				F1C8A0501D4B68BB0069809D /* icon-50@2x.png in Resources */,
 				F1C8A0581D4B68BB0069809D /* icon-76@2x.png in Resources */,
 				F1C8A0541D4B68BB0069809D /* icon-60@3x.png in Resources */,
+				5F58DABD1D55C57500B5140D /* 5-121204193R0.gif in Resources */,
 				5FD1FE751D51FDE900955E18 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				5FD1FE761D51FDE900955E18 /* RennSDK.bundle in Resources */,
 				5F6AE6BA1D37584500B9BAC1 /* 芦苇海.jpg in Resources */,
@@ -1261,6 +1273,7 @@
 				F1C8A05B1D4B68BB0069809D /* iTunesArtwork@2x.png in Resources */,
 				5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */,
 				5F6A65351D3F8071004B6AB0 /* 定位2_meitu_1.jpg in Resources */,
+				5F58DABB1D55B1DE00B5140D /* 警告.png in Resources */,
 				5FC174791D39DEB100365D25 /* pageControlDot@3x.png in Resources */,
 				F1D4C04E1D41B33B000B2ACE /* 旅游助手－首页设置.png in Resources */,
 				5F6A65331D3F7EA5004B6AB0 /* 定位_meitu_1.jpg in Resources */,
@@ -1310,6 +1323,7 @@
 				5F1418601D4851BA007EEC4B /* UIView+SDExtension.m in Sources */,
 				F1DC9E861D37603800C1ADA8 /* DetailUIView.m in Sources */,
 				5FC174661D39DDB400365D25 /* SDCollectionViewCell.m in Sources */,
+				5F5636FE1D55ADB800327A3B /* NotNetView.m in Sources */,
 				F1D4C05F1D41FD18000B2ACE /* MapUpView.m in Sources */,
 				5FC174A81D39DF0100365D25 /* UIButton+WebCache.m in Sources */,
 				F11B67CF1D361B2C0065E7CD /* BaseViewController.m in Sources */,

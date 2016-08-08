@@ -15,6 +15,4 @@
 @property (nonatomic,strong) CustomNavigationBar* navigationBar;
 @property (nonatomic,strong) AFHTTPSessionManager *sessionManager;
 
-- (void) AFNetworkStatus;
-
 @end

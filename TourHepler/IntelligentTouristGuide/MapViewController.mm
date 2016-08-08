@@ -66,7 +66,8 @@
     // Do any additional setup after loading the view.
     
     [self.navigationController setNavigationBarHidden:YES];
-    self.navigationBar.titleLabel.text = self.titleText;
+    [self.navigationBar.titleBtn setTitle:self.titleText forState:UIControlStateNormal];
+//    self.navigationBar.titleBtn.titleLabel.text = self.titleText;
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setHidden:YES];
     
@@ -578,7 +579,7 @@
     
     
     _mapUpView.locationNameLabel.text = view.annotation.title;
-    _mapUpView.title = self.navigationBar.titleLabel.text;
+    _mapUpView.title = self.navigationBar.titleBtn.titleLabel.text;
     
     BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
     BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(view.annotation.coordinate.latitude,view.annotation.coordinate.longitude));

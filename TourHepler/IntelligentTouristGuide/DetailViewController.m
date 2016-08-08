@@ -64,6 +64,7 @@
     int i;
     for (i = 0; i<[dataSL.allDetail count]; i++) {
         Location* tem = [dataSL.allDetail objectAtIndex:i];
+//        NSLog(@"%@ %@",self.detailImg ,tem.locationImageName);
         if ([self.detailImg isEqualToString: tem.locationImageName]) {
             break;
         }
@@ -76,8 +77,8 @@
     display=[display stringByAppendingString:@"/"];
     display=[display stringByAppendingString:[NSString stringWithFormat:@"%ld",_sum]];
     display=[display stringByAppendingString:@"-"];
-    self.navigationBar.titleLabel.font = [UIFont systemFontOfSize:23];
-    self.navigationBar.titleLabel.text = display;
+    self.navigationBar.titleBtn.titleLabel.font = [UIFont systemFontOfSize:23];
+    [self.navigationBar.titleBtn setTitle:display forState:UIControlStateNormal];
     for (int j = 0; j<[imageNames count]; j++) {
         Location* tem = [dataSL.allDetail objectAtIndex:i];
         [locatianNames addObject:tem.locationText];
@@ -115,7 +116,8 @@
     display=[display stringByAppendingString:@"/"];
     display=[display stringByAppendingString:[NSString stringWithFormat:@"%ld",_sum]];
     display=[display stringByAppendingString:@"-"];
-    self.navigationBar.titleLabel.text = display;
+    [self.navigationBar.titleBtn setTitle:display forState:UIControlStateNormal];
+//    self.navigationBar.titleBtn.titleLabel.text = display;
 //    NSLog(@"%ld",(long)index);
 }
 

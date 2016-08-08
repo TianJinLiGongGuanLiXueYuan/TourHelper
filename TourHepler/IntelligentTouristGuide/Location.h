@@ -18,6 +18,7 @@
 @property (nonatomic ,strong)NSString *locationText;
 @property (nonatomic) CLLocationCoordinate2D coor;
 
+//数据源初始化全能方法
 - (instancetype)initWithlocationName:(NSString *)locationName voice:(NSString *) voice locationImageName: (NSString *)locationImageName distance:(NSString *)distance locationText:(NSString*)locationText coor:(CLLocationCoordinate2D)coor;
 
 @end

@@ -18,7 +18,7 @@
 
 @interface CustomNavigationBar : UIView
 
-@property (nonatomic,strong) UILabel *titleLabel;
+@property (nonatomic,strong) UIButton *titleBtn;
 @property (nonatomic,strong) UIButton *leftBtn;
 @property (nonatomic,strong) UIButton *rightBtn;
 @property (nonatomic,strong) UIImageView *bgImageView;
