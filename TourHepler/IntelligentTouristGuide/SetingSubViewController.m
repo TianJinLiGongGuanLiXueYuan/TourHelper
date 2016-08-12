@@ -103,6 +103,7 @@
     //    [self.searchBar sizeToFit];
     [self.inputTV resignFirstResponder];
     if (![self.inputTV.text isEqualToString:@""]) {
+        NSLog(@"%@",self.inputTV.text);
         NSDictionary *para = @{@"opinion_content":self.inputTV.text};
         [HttpTool postWithparamsWithURL:@"subInfo/SubInfoForWeb" andParam:para success:^(id responseObject) {
             
@@ -119,7 +120,8 @@
                                       ];
             //
             [alertView show];
-            NSLog(@"成功调用");
+//            [self.navigationController popViewControllerAnimated:YES];
+//            NSLog(@"成功调用");
             
         } failure:^(NSError *error) {
             NSLog(@"发送失败");

@@ -29,6 +29,8 @@
 @implementation SetingViewController
 
 
+
+@synthesize leftSwipeGestureRecognizer,rightSwipeGestureRecognizer;
 static SetingViewController* _instance = nil;
 
 
@@ -99,6 +101,12 @@ static SetingViewController* _instance = nil;
         aboutBtn.backgroundColor = [UIColor clearColor];
         [aboutBtn addTarget:self action:@selector(aboutBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:aboutBtn];
+        
+        
+        
+        
+        
+       
     }
     return self;
 }
@@ -107,8 +115,35 @@ static SetingViewController* _instance = nil;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //增加手势
+    self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
+    self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
     
+    self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     
+    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
+    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
+    
+}
+
+
+
+#pragma mark - 滑动手势
+- (void)handleSwipes:(UISwipeGestureRecognizer *)sender
+{
+    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+        //左滑
+        [self rightBtnDidClick:nil];
+        
+    }
+    
+    if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
+        //右滑
+        
+        
+        [self leftBtnDidClick:nil];
+    }
 }
 
 - (void)aboutBtnClick:(UIButton*)sender{

@@ -40,14 +40,23 @@
 
 @property (nonatomic ,strong) UITableViewController *mainTVC;
 @property (nonatomic ,strong) NotNetView *notNetView;
+@property (nonatomic ,strong) UIView *statusBarDIY;
+
+
+
 @end
 
 @implementation HomeViewController
+
+@synthesize leftSwipeGestureRecognizer,rightSwipeGestureRecognizer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _isNotNetViewDisplay = NO;
     [self AFNetworkStatus];
+    
+    _statusBarDIY = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+    _statusBarDIY.backgroundColor = [UIColor clearColor];
 //    NSLog(@"%ld",(long)_netStatus);
     
     _cnt = 3;
@@ -93,8 +102,28 @@
         self.mainTVC.tableView.scrollIndicatorInsets = insets;
     }
     self.view.backgroundColor = [UIColor clearColor];
+    
+    
+    
+    
+    
+    //增加手势
+    self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
+    self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
+    
+    self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
+    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
+    
+    
+    
+    
+    
     [self.view addSubview:self.mainTVC.tableView];
     [self.view addSubview:self.navigationBar];
+    [self.view addSubview:_statusBarDIY];
     //或者 refreshHeader.beginRefreshingOperation = ^{} 任选其中一种即可
     
 //    [self addChildViewController:_mainTVC];
@@ -102,6 +131,36 @@
 
     
 }
+
+
+#pragma mark - 滑动手势
+- (void)handleSwipes:(UISwipeGestureRecognizer *)sender
+{
+    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+        //左滑
+        [self rightBtnDidClick:nil];
+//        SetingViewController *setingVC = [SetingViewController shareInstance];
+//        setingVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+//        [self.navigationController pushViewController:setingVC animated:YES];
+//        
+    }
+    
+    if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
+        //右滑
+        [self leftBtnDidClick:nil];
+//        MapViewController *mapViewController;
+//        mapViewController = [MapViewController shareInstance];
+//        mapViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//        mapViewController.titleText = self.navigationBar.titleBtn.titleLabel.text;
+//        //    [UIColor whiteColor]
+//        
+//        [self presentViewController:mapViewController animated:YES completion:nil];
+    }
+}
+
+
+
+
 #pragma mark - 排序
 
 - (NSMutableArray *)sort:(NSMutableArray *)arr{
@@ -590,10 +649,13 @@
             [UIView animateWithDuration:time animations:^{
                 self.navigationBar.alpha = 1;
                 self.mainTVC.tableView.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
+                _statusBarDIY.backgroundColor = [UIColor clearColor];
+                _statusBarDIY.alpha = 0;
                 
             }completion:^(BOOL finished) {
                 
                 
+
             }];
             return;
         }
@@ -605,8 +667,11 @@
             return;
         }
         self.navigationBar.alpha = 1;
+        _statusBarDIY.alpha = 0;
         [UIView animateWithDuration:time animations:^{
-            self.mainTVC.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+            self.mainTVC.tableView.frame = CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height);
+            _statusBarDIY.backgroundColor = [UIColor colorWithRed:43.0/255.0 green:162.0/255.0 blue:145.0/255.0 alpha:1];
+            _statusBarDIY.alpha = 1;
             self.navigationBar.alpha = 0;
         }completion:^(BOOL finished) {
             
@@ -624,9 +689,10 @@
         [UIView animateWithDuration:time animations:^{
             self.navigationBar.alpha = 1;
             self.mainTVC.tableView.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
+            _statusBarDIY.backgroundColor = [UIColor clearColor];
+            _statusBarDIY.alpha = 0;
             
         }completion:^(BOOL finished) {
-            
             
         }];
         
@@ -647,6 +713,7 @@
     mapViewController = [MapViewController shareInstance];
     mapViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     mapViewController.titleText = self.navigationBar.titleBtn.titleLabel.text;
+//    [UIColor whiteColor]
     
     [self presentViewController:mapViewController animated:YES completion:nil];
 
@@ -654,6 +721,7 @@
 
 - (void)rightBtnDidClick:(UIButton *)rightBtn{
     SetingViewController *setingVC = [SetingViewController shareInstance];
+    setingVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
     [self.navigationController pushViewController:setingVC animated:YES];
 //    [self.navigationController pushViewController:setingVC animated:YES ];
 }

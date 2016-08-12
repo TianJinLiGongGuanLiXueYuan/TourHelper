@@ -16,6 +16,9 @@
     IFlySpeechSynthesizer * _iFlySpeechSynthesizer;
 }
 
+@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
+@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
+
 
 - (void) reLoad:(NSDictionary*)Dict;
 
