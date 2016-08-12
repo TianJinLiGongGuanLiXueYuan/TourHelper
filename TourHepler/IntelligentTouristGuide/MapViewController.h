@@ -41,4 +41,6 @@
 @property (nonatomic,strong) MapUpView *mapUpView;
 
 
++(instancetype) shareInstance;
+
 @end

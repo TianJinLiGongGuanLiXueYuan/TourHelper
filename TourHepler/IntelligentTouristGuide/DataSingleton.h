@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 //#import "Location.h"
 
 @interface DataSingleton : NSObject
@@ -17,6 +18,7 @@
 @property(nonatomic,strong) NSString* title;
 @property(nonatomic,strong) NSDictionary* dataDict;
 @property(nonatomic,strong) NSMutableArray* allVoiceIsPlaying;
+@property (nonatomic,strong) BMKMapView* mapView;
 //bool allVoiceIsPlaying[100];
 
 //@property(nonatomic,strong) NSArray* allDetailText;

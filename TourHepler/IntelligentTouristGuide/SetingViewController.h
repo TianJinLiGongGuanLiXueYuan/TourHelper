@@ -12,4 +12,7 @@
 
 @interface SetingViewController : BaseViewController<UIAlertViewDelegate>
 
++(instancetype) shareInstance;
+
+
 @end

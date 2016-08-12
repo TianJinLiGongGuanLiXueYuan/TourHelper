@@ -32,6 +32,7 @@
 		5F58DABB1D55B1DE00B5140D /* 警告.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F58DABA1D55B1DE00B5140D /* 警告.png */; };
 		5F58DABD1D55C57500B5140D /* 5-121204193R0.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */; };
 		5F5D944C1D40CA310000DAE0 /* MySearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5D944B1D40CA310000DAE0 /* MySearchBar.m */; };
+		5F695CC91D5B2BA20024D004 /* 等待.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F695CC81D5B2BA20024D004 /* 等待.png */; };
 		5F6A652F1D3F7727004B6AB0 /* MyBMKPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */; };
 		5F6A65311D3F78B1004B6AB0 /* 定位.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65301D3F78B1004B6AB0 /* 定位.png */; };
 		5F6A65331D3F7EA5004B6AB0 /* 定位_meitu_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65321D3F7EA5004B6AB0 /* 定位_meitu_1.jpg */; };
@@ -240,6 +241,7 @@
 		5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "5-121204193R0.gif"; sourceTree = "<group>"; };
 		5F5D944A1D40CA310000DAE0 /* MySearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchBar.h; sourceTree = "<group>"; };
 		5F5D944B1D40CA310000DAE0 /* MySearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchBar.m; sourceTree = "<group>"; };
+		5F695CC81D5B2BA20024D004 /* 等待.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待.png"; sourceTree = "<group>"; };
 		5F6A652D1D3F7727004B6AB0 /* MyBMKPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBMKPointAnnotation.h; sourceTree = "<group>"; };
 		5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBMKPointAnnotation.m; sourceTree = "<group>"; };
 		5F6A65301D3F78B1004B6AB0 /* 定位.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定位.png"; sourceTree = "<group>"; };
@@ -1017,6 +1019,7 @@
 		F11B67DE1D3641B50065E7CD /* image */ = {
 			isa = PBXGroup;
 			children = (
+				5F695CC81D5B2BA20024D004 /* 等待.png */,
 				5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */,
 				5F58DABA1D55B1DE00B5140D /* 警告.png */,
 				5FD1FE8E1D51FEA300955E18 /* 分享.png */,
@@ -1189,6 +1192,7 @@
 				TargetAttributes = {
 					F11B67A81D3619DB0065E7CD = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = KYAM7RSDN2;
 					};
 				};
 			};
@@ -1243,6 +1247,7 @@
 				5FD1FE751D51FDE900955E18 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				5FD1FE761D51FDE900955E18 /* RennSDK.bundle in Resources */,
 				5F6AE6BA1D37584500B9BAC1 /* 芦苇海.jpg in Resources */,
+				5F695CC91D5B2BA20024D004 /* 等待.png in Resources */,
 				F11B67DD1D3631F70065E7CD /* LOGO.png in Resources */,
 				5F1243961D3C850B00477E00 /* 箭竹海2.jpeg in Resources */,
 				5F1243A01D3C860200477E00 /* 双龙海2.jpeg in Resources */,
@@ -1426,7 +1431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -1465,7 +1470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
@@ -1477,6 +1482,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1500,6 +1507,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MuChen.IntelligentTouristGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1507,6 +1516,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1530,6 +1541,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MuChen.IntelligentTouristGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

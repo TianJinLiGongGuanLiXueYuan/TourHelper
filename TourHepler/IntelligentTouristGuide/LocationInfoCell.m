@@ -26,12 +26,21 @@
 
 @property (strong, nonatomic) Location *currentLocation;
 @property (strong, nonatomic) DetailViewController *detailViewController;
-@property (nonatomic) int isPlaying;
+@property (nonatomic) NSInteger isPlaying;
 
 
 @end
 
 @implementation LocationInfoCell
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _isPlaying = 0;
+    }
+    return self;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -50,7 +59,7 @@
     
 }
 
-- (void)setCellData:(Location*)location{
+- (void)setCellData:(Location*)location curPlaying:(NSInteger)curPlaying{
     self.currentLocation = location;
     
     if (location==nil) {
@@ -60,9 +69,8 @@
 //    NSLog(@"%@",location.locationImageName);
 //    NSURL *url = [[NSURL alloc]initWithString:location.locationImageName];
     NSURL * nurl=[[NSURL alloc] initWithString:[location.locationImageName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    [self.locationImage sd_setImageWithURL:nurl  placeholderImage:[UIImage imageNamed:@"defaultImage.png"]];
+    [self.locationImage sd_setImageWithURL:nurl  placeholderImage:[UIImage imageNamed:@"等待.png"]];
 //    [self.locationImage setImage:[UIImage imageNamed:location.locationImageName]];
-    _isPlaying = NO;
     
     self.imgName = location.locationImageName;
     self.cellText = location.locationText;
@@ -70,6 +78,11 @@
     self.distanceLabel.text = self.currentLocation.distance;
     UIColor *selfViewColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
     self.backgroundColor = selfViewColor;
+    
+    if (_voiceBtn.tag==curPlaying) {
+        [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"54C5D57F9705BCC1D0486DB7D059E2E3.png"] forState:UIControlStateNormal];
+    }else
+        [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
     [self layoutSubviews];
     
 }
@@ -118,7 +131,12 @@
 //    self.locationNameLabel.backgroundColor = [UIColor redColor];
     
 //    CGSize voiceSize = [self.voiceBtn.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}];
-    [self.voiceBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+//    if (_isPlaying==0) {
+//
+//        _isPlaying++;
+//    }
+    
+    
     self.voiceBtn.frame = CGRectMake(kBarLeftAndRightMargins+kImgLeftAndRightMargins, kImgHeight+kImgWithBarMargins,kVioceWidth , kVioceHeight);
 //    self.voiceBtn.backgroundColor = [UIColor grayColor];
     
@@ -141,8 +159,8 @@
 
 - (IBAction)voiceBtnClick:(UIButton*)btn {
     btn.titleLabel.text = self.currentLocation.locationText;
-    [self.delegate voiceBtnClick:btn];
     
+    [self.delegate voiceBtnClick:btn];
 
 }
 @end

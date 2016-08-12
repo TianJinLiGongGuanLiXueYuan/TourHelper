@@ -28,6 +28,21 @@
 
 @implementation SetingViewController
 
+
+static SetingViewController* _instance = nil;
+
+
+
++(instancetype) shareInstance
+{
+    static dispatch_once_t onceToken ;
+    dispatch_once(&onceToken, ^{
+        _instance = [[self alloc] init] ;
+    }) ;
+    
+    return _instance ;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -38,6 +53,7 @@
         [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
 //        [self.navigationBar.rightBtn setHidden:YES];
         [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"分享.png"] forState:UIControlStateNormal];
+        
         //背景
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight-64)];
         UIColor *backViewColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];

@@ -15,7 +15,7 @@
 #define kViewAndInput 8
 #define kBtnWeight (1.0/3.0*screenWidth)
 #define kBtnHeight (30)
-#define kTVTopMargins (200.0/1920.0*screenHeight)
+#define kTVTopMargins (20.0/1920.0*screenHeight)
 #define kTVLeftMargins (120.0/1080.0*screenWidth)
 #define kTVWidth (831.0/1080.0*screenWidth)
 #define kTVheight (600.0/1920.0*screenHeight)
@@ -45,6 +45,7 @@
 //    self.navigationBar.titleBtn.titleLabel.text = @"提出意见";
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setHidden:YES];
+    [self.navigationBar.rightClickBtn setHidden:YES];
     
     UIColor *Color = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
     self.view.backgroundColor = Color;
@@ -55,7 +56,7 @@
 
     _inputTV.delegate =self;
     _inputTV = [[UITextView alloc]init];
-    _inputTV.frame = CGRectMake(kTVLeftMargins, kTVTopMargins, kTVWidth, kTVheight);
+    _inputTV.frame = CGRectMake(kTVLeftMargins, kTVTopMargins+64, kTVWidth, kTVheight);
 //    _inputTV.frame = CGRectMake(kViewLeftAndRightMargins,64+kViewLeftAndRightMargins, screenWidth-kViewLeftAndRightMargins*2, kViewHeight);
     _inputTV.backgroundColor = [UIColor whiteColor];
     _inputTV.layer.masksToBounds = YES;
@@ -65,7 +66,7 @@
     _inputTV.returnKeyType = UIReturnKeyNext;
     
     _subBtn = [[UIButton alloc]init];
-    _subBtn.frame = CGRectMake(kBtnWeight, kTVTopMargins+kTVheight+kViewAndInput, kBtnWeight, kBtnHeight);
+    _subBtn.frame = CGRectMake(kBtnWeight, kTVTopMargins+kTVheight+kViewAndInput+64, kBtnWeight, kBtnHeight);
     _subBtn.backgroundColor = [UIColor colorWithRed:81.0/255.0 green:132.0/255.0 blue:254.0/255.0 alpha:1];
     [_subBtn setTitle:@"提交" forState:UIControlStateNormal];
     _subBtn.titleLabel.textColor = [UIColor whiteColor];

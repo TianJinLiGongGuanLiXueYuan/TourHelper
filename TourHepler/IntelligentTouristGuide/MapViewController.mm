@@ -26,9 +26,23 @@
 @property (nonatomic) BOOL isUpViewPop;
 @property (nonatomic,strong) Location* curlocation;
 
+
+
 @end
 
 @implementation MapViewController
+
+static MapViewController* _instance = nil;
+
++(instancetype) shareInstance
+{
+    static dispatch_once_t onceToken ;
+    dispatch_once(&onceToken, ^{
+        _instance = [[self alloc] init] ;
+    }) ;
+    
+    return _instance ;
+}
 
 - (instancetype)init
 {
@@ -37,7 +51,7 @@
         _isPoi = NO;
         _isUpViewPop = NO;
         
-        if (_inputTF==Nil) {
+        if (_inputTF==nil) {
             _inputTF = [[UITextField alloc]init];
             _inputTF.frame = CGRectMake(0, 64, screenWidth, kInputTFHeight);
             _inputTF.backgroundColor = [UIColor whiteColor];
@@ -51,11 +65,19 @@
             [inputView setImage:[UIImage imageNamed:@"旅游助手－搜索.png"]];
             _inputTF.leftView=inputView;
             _inputTF.leftViewMode = UITextFieldViewModeAlways;
-            //        //        _locationBtn.titleLabel.textColor = [UIColor blackColor];
-            //        [_locationBtn setTitle:@"景点" forState:UIControlStateNormal];
-            //        [_locationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            //
-            //        [_locationBtn addTarget:self action:@selector(locationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            
+            
+            
+            
+        }
+        
+        DataSingleton *dataSL = [DataSingleton shareInstance];
+        if (dataSL.mapView==nil) {
+            _mapView = dataSL.mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight-64)];
+        }else{
+            _mapView = dataSL.mapView;
         }
     }
     return self;
@@ -70,9 +92,10 @@
 //    self.navigationBar.titleBtn.titleLabel.text = self.titleText;
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setHidden:YES];
+    [self.navigationBar.rightClickBtn setHidden:YES];
     
     
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight-64)];
+    
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;//显示定位图层
     _mapView.showMapScaleBar = YES;//显示比例尺
@@ -94,9 +117,9 @@
     
     _mapView.userTrackingMode = BMKUserTrackingModeNone;
     
-    _geoCodeSearch = [[BMKGeoCodeSearch alloc] init];
-    //编码服务的初始化(就是获取经纬度,或者获取地理位置服务)
-    _geoCodeSearch.delegate = self;//设置代理为self
+//    _geoCodeSearch = [[BMKGeoCodeSearch alloc] init];
+//    //编码服务的初始化(就是获取经纬度,或者获取地理位置服务)
+//    _geoCodeSearch.delegate = self;//设置代理为self
     
 //    [_mapView updateLocationData:_locService.userLocation];
 //    CLLocationCoordinate2D tem;
@@ -379,13 +402,15 @@
 {
 //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
 //    [self passLocationValue];
-    [_mapView updateLocationData:userLocation];
+    
 //    [_mapView updateLocationData:userLocation];
     
     if(!_isPoi){
         _isPoi = YES;
         _mapView.centerCoordinate = userLocation.location.coordinate;
     }
+    
+    [_mapView updateLocationData:userLocation];
     
 //    [_locService stopUserLocationService];//取消定位
 }

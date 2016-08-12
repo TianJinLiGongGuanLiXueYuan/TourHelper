@@ -20,6 +20,7 @@
 
 @property (nonatomic,strong) BMKLocationService* locService;
 @property(readonly, nonatomic) CLLocationCoordinate2D homeCenterCC2D;
+//@property(nonatomic,strong) NSString *star;
 @property(nonatomic) BOOL isPlaying;
 
 
@@ -55,6 +56,8 @@
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－返回.png"] forState:UIControlStateNormal];
     UIColor *navigationBarColor = [UIColor colorWithWhite:0.6 alpha:0.6];
     self.navigationBar.backgroundColor = navigationBarColor;
+    
+//    _star = [[NSString alloc]initWithString:self.navigationBar.titleBtn.titleLabel.text];
 //    self.navigationBar.titleLabel.text = _titleText;
     
     // 采用本地图片和景点介绍实现
@@ -144,7 +147,8 @@
     
     start.pt = coor1;
     //指定起点名称
-    start.name = @"九寨沟";
+    DataSingleton *dataSL = [DataSingleton shareInstance];
+    start.name = dataSL.title;
     //指定起点
     opt.startPoint = start;
     
@@ -158,7 +162,7 @@
     end.name = _titleText;
     opt.endPoint = end;
     
-    BMKOpenErrorCode code = [BMKOpenRoute openBaiduMapWalkingRoute:opt];
+    [BMKOpenRoute openBaiduMapWalkingRoute:opt];
 //    NSLog(@"%d", code);
     return;
 }

@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @protocol LocationInfoCellDelegate <NSObject>
+
 - (IBAction)voiceBtnClick:(UIButton*)btn;
 
 @end
@@ -39,7 +40,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *rightWithBarImg;
 
 - (IBAction)imageBtnClick:(id)sender;
-- (void)setCellData:(Location*)location;
+- (void)setCellData:(Location*)location curPlaying:(NSInteger)curPlaying;
+
+
 
 + (CGFloat) returnCellHeight;
 

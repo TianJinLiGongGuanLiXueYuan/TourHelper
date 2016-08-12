@@ -77,7 +77,7 @@
     end.name = _locationNameLabel.text;
     opt.endPoint = end;
     
-    BMKOpenErrorCode code = [BMKOpenRoute openBaiduMapWalkingRoute:opt];
+    [BMKOpenRoute openBaiduMapWalkingRoute:opt];
 //    NSLog(@"%d", code);
 }
 

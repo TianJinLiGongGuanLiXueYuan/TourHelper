@@ -48,7 +48,7 @@
     [super viewDidLoad];
     _isNotNetViewDisplay = NO;
     [self AFNetworkStatus];
-    NSLog(@"%ld",(long)_netStatus);
+//    NSLog(@"%ld",(long)_netStatus);
     
     _cnt = 3;
     _sum = 0;
@@ -242,8 +242,15 @@
 //            weakSelf.cnt += 3;
 //        }else
 //            weakSelf.cnt = weakSelf.sum;
-        [weakSelf sort:weakSelf.dataArr];
+        
         [_iFlySpeechSynthesizer stopSpeaking];
+        
+        NSIndexPath *index = [NSIndexPath indexPathForRow:_isPlaying inSection:0];
+        LocationInfoCell *preCell = [_mainTVC.tableView cellForRowAtIndexPath:index];
+        [preCell.voiceBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－播放语音.png"] forState:UIControlStateNormal];
+        _isPlaying = -1;
+        [weakSelf sort:weakSelf.dataArr];
+        
         [self.mainTVC.tableView reloadData];
         [weakRefreshHeader endRefreshing];
     };
@@ -441,14 +448,16 @@
 //        NSNumber *ok =[[NSNumber alloc]initWithBool:YES];
 //        [dataSL.allVoiceIsPlaying replaceObjectAtIndex:key withObject:ok];
         //1.创建合成对象
-        _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance]; _iFlySpeechSynthesizer.delegate =
+        _iFlySpeechSynthesizer = [IFlySpeechSynthesizer sharedInstance];
+        _iFlySpeechSynthesizer.delegate =
         self;
         
         //设置在线工作方式
         [_iFlySpeechSynthesizer setParameter:[IFlySpeechConstant TYPE_CLOUD]
                                       forKey:[IFlySpeechConstant ENGINE_TYPE]];
         //音量,取值范围 0~100
-        [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]]; //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
+        [_iFlySpeechSynthesizer setParameter:@"50" forKey: [IFlySpeechConstant VOLUME]];
+        //发音人,默认为”xiaoyan”,可以设置的参数列表可参考“合成发音人列表” [_iFlySpeechSynthesizer setParameter:@" xiaoyan " forKey: [IFlySpeechConstant VOICE_NAME]]; //保存合成文件名,如不再需要,设置设置为nil或者为空表示取消,默认目录位于 library/cache下
         [_iFlySpeechSynthesizer setParameter:@" tts.pcm" forKey: [IFlySpeechConstant TTS_AUDIO_PATH]];
         //3.启动合成会话
         //    [IFlySpeechUtility createUtility:@"你好,我是科大讯飞的小燕"];
@@ -515,7 +524,7 @@
 //    DataSingleton *dataSL = [DataSingleton shareInstance];
 //    dataSL.allVoiceIsPlaying = [[NSMutableArray alloc]initWithArray:dataSL.allVoiceIsPlaying];
     
-    
+//    NSLog(@"%ld",(long)indexPath.row);
     cell.voiceBtn.tag = indexPath.row;
     cell.delegate = self;
 //    NSNumber *ok = [[NSNumber alloc]initWithBool:NO];
@@ -529,6 +538,7 @@
             deVC.detailImg = img;
             deVC.detailText = locationText;
             
+            
             [self.navigationController pushViewController:deVC animated:YES];
         }];
         
@@ -537,8 +547,13 @@
     }
     Location *currentLocation = self.dataArr[indexPath.row];
     //        CellFrameInfo *currentFrameInfo = [[CellFrameInfo alloc]initWithStudent:currentStudent];
-    [cell setCellData:currentLocation];
+    [cell setCellData:currentLocation curPlaying:_isPlaying];
+//    NSLog(@"indexPath.row = %ld",(long)indexPath.row);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    if (_isPlaying==indexPath.row) {
+//        [cell.voiceBtn setBackgroundImage:[UIImage imageNamed:@"54C5D57F9705BCC1D0486DB7D059E2E3.png"] forState:UIControlStateNormal];
+//    }
+    
     return cell;
 }
 //行高
@@ -629,8 +644,8 @@
 //    }
     
     MapViewController *mapViewController;
-    mapViewController = [[MapViewController alloc]init];
-    mapViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    mapViewController = [MapViewController shareInstance];
+    mapViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     mapViewController.titleText = self.navigationBar.titleBtn.titleLabel.text;
     
     [self presentViewController:mapViewController animated:YES completion:nil];
@@ -638,7 +653,7 @@
 }
 
 - (void)rightBtnDidClick:(UIButton *)rightBtn{
-    SetingViewController *setingVC = [[SetingViewController alloc]init];
+    SetingViewController *setingVC = [SetingViewController shareInstance];
     [self.navigationController pushViewController:setingVC animated:YES];
 //    [self.navigationController pushViewController:setingVC animated:YES ];
 }
@@ -692,6 +707,8 @@
             [alertView show];
             
         }else{
+            DataSingleton *dataSL = [DataSingleton shareInstance];
+            dataSL.title = [[NSString alloc]initWithString:dict[@"data"][0][@"scenic_area_name"]];
             [self.navigationBar.titleBtn setTitle:dict[@"data"][0][@"scenic_area_name"] forState:UIControlStateNormal];
             [self loadDataFromWeb];
         }
