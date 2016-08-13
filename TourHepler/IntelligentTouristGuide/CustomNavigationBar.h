@@ -10,6 +10,7 @@
 
 @protocol CustomNavigationBarDelegate <NSObject>
 
+- (void)titleBtnClick:(UIButton *)btn;
 - (void)leftBtnDidClick:(UIButton *)leftBtn;
 - (void)rightBtnDidClick:(UIButton *)rightBtn;
 

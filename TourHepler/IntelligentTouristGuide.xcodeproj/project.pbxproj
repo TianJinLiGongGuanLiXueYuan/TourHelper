@@ -45,6 +45,9 @@
 		5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */; };
 		5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */; };
 		5F6AE6BA1D37584500B9BAC1 /* 芦苇海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */; };
+		5F6C249E1D5F01E100ADF71A /* AreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6C249D1D5F01E100ADF71A /* AreaTableViewCell.m */; };
+		5F6C24A11D5F035200ADF71A /* AreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6C24A01D5F035200ADF71A /* AreaViewController.m */; };
+		5F6C24A41D5F0F8000ADF71A /* AreaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6C24A31D5F0F8000ADF71A /* AreaInfo.m */; };
 		5F75AB6F1D4E3D3D00CEFAC6 /* defaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F75AB6E1D4E3D3D00CEFAC6 /* defaultImage.png */; };
 		5FC174621D39DDB400365D25 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174551D39DDB400365D25 /* TAAbstractDotView.m */; };
 		5FC174631D39DDB400365D25 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174571D39DDB400365D25 /* TAAnimatedDotView.m */; };
@@ -255,6 +258,12 @@
 		5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "箭竹海.jpg"; sourceTree = "<group>"; };
 		5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海.jpg"; sourceTree = "<group>"; };
 		5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "芦苇海.jpg"; sourceTree = "<group>"; };
+		5F6C249C1D5F01E100ADF71A /* AreaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaTableViewCell.h; sourceTree = "<group>"; };
+		5F6C249D1D5F01E100ADF71A /* AreaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaTableViewCell.m; sourceTree = "<group>"; };
+		5F6C249F1D5F035200ADF71A /* AreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaViewController.h; sourceTree = "<group>"; };
+		5F6C24A01D5F035200ADF71A /* AreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaViewController.m; sourceTree = "<group>"; };
+		5F6C24A21D5F0F8000ADF71A /* AreaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaInfo.h; sourceTree = "<group>"; };
+		5F6C24A31D5F0F8000ADF71A /* AreaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaInfo.m; sourceTree = "<group>"; };
 		5F75AB6E1D4E3D3D00CEFAC6 /* defaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultImage.png; sourceTree = "<group>"; };
 		5FC174541D39DDB400365D25 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
 		5FC174551D39DDB400365D25 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
@@ -609,6 +618,43 @@
 			name = Mode;
 			sourceTree = "<group>";
 		};
+		5F6C24951D5F012F00ADF71A /* Area */ = {
+			isa = PBXGroup;
+			children = (
+				5F6C24961D5F014300ADF71A /* M */,
+				5F6C24971D5F014A00ADF71A /* V */,
+				5F6C24981D5F015000ADF71A /* C */,
+			);
+			name = Area;
+			sourceTree = "<group>";
+		};
+		5F6C24961D5F014300ADF71A /* M */ = {
+			isa = PBXGroup;
+			children = (
+				5F6C24A21D5F0F8000ADF71A /* AreaInfo.h */,
+				5F6C24A31D5F0F8000ADF71A /* AreaInfo.m */,
+			);
+			name = M;
+			sourceTree = "<group>";
+		};
+		5F6C24971D5F014A00ADF71A /* V */ = {
+			isa = PBXGroup;
+			children = (
+				5F6C249C1D5F01E100ADF71A /* AreaTableViewCell.h */,
+				5F6C249D1D5F01E100ADF71A /* AreaTableViewCell.m */,
+			);
+			name = V;
+			sourceTree = "<group>";
+		};
+		5F6C24981D5F015000ADF71A /* C */ = {
+			isa = PBXGroup;
+			children = (
+				5F6C249F1D5F035200ADF71A /* AreaViewController.h */,
+				5F6C24A01D5F035200ADF71A /* AreaViewController.m */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
 		5FC174521D39DDB400365D25 /* SDCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +926,7 @@
 				F11B67C81D361AC60065E7CD /* Detail */,
 				F11B67C71D361ABB0065E7CD /* Map */,
 				F11B67C61D361A8E0065E7CD /* Home */,
+				5F6C24951D5F012F00ADF71A /* Area */,
 				F11B67C41D361A770065E7CD /* Base */,
 				F1C8A02E1D4B68BB0069809D /* ios */,
 				F11B67B81D3619DB0065E7CD /* Assets.xcassets */,
@@ -1346,6 +1393,7 @@
 				5FC174AD1D39DF0100365D25 /* UIImageView+WebCache.m in Sources */,
 				F1C97C201D3A1D790006B637 /* DataSingleton.m in Sources */,
 				5F5030F91D3B4E9000ACE15D /* AlertView.m in Sources */,
+				5F6C249E1D5F01E100ADF71A /* AreaTableViewCell.m in Sources */,
 				5FC174631D39DDB400365D25 /* TAAnimatedDotView.m in Sources */,
 				7DF116861D42747B00FDA0DA /* APIClient.m in Sources */,
 				5FC174A01D39DF0100365D25 /* NSData+ImageContentType.m in Sources */,
@@ -1369,12 +1417,14 @@
 				5F14185E1D4851BA007EEC4B /* SDRefreshView.m in Sources */,
 				F1D5A41E1D366A3A00F48A48 /* Location.mm in Sources */,
 				7DF1167E1D42743D00FDA0DA /* AFURLRequestSerialization.m in Sources */,
+				5F6C24A41D5F0F8000ADF71A /* AreaInfo.m in Sources */,
 				5FC174A71D39DF0100365D25 /* SDWebImagePrefetcher.m in Sources */,
 				F1DC9E831D375E7500C1ADA8 /* Detail.m in Sources */,
 				5FC174A51D39DF0100365D25 /* SDWebImageDownloaderOperation.m in Sources */,
 				F1DC9E921D3783DD00C1ADA8 /* SetingAboutViewController.m in Sources */,
 				5FC174A61D39DF0100365D25 /* SDWebImageManager.m in Sources */,
 				5FC174AB1D39DF0100365D25 /* UIImage+WebP.m in Sources */,
+				5F6C24A11D5F035200ADF71A /* AreaViewController.m in Sources */,
 				F11B67DB1D361EE90065E7CD /* HomeViewController.m in Sources */,
 				5FC174A11D39DF0100365D25 /* SDImageCache.m in Sources */,
 			);

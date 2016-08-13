@@ -17,6 +17,7 @@
 #import "SDRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "NotNetView.h"
+#import "AreaViewController.h"
 
 
 @interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate,LocationInfoCellDelegate,NotNetViewDelegate>
@@ -700,6 +701,13 @@
 }
 
 #pragma mark - 导航栏按钮点击事件
+
+- (void)titleBtnClick:(UIButton *)btn{
+    AreaViewController *areaVC = [[AreaViewController alloc]init];
+    areaVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:areaVC animated:YES completion:nil];
+}
+
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
     NSLog(@"HOME leftBtnDidClick");

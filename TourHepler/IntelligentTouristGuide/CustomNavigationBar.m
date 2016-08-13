@@ -54,6 +54,12 @@
     
 }
 
+
+- (void)titleBtnClick:(UIButton *)btn
+{
+    [self.delegate titleBtnClick:btn];
+}
+
 - (void)leftBtnClick:(UIButton *)btn
 {
     [self.delegate leftBtnDidClick:btn];
@@ -70,6 +76,7 @@
     if (_titleBtn==Nil) {
         _titleBtn = [[UIButton alloc]init];
         _titleBtn.tintColor = [UIColor whiteColor];
+        [_titleBtn addTarget:self action:@selector(titleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _titleBtn;
 }
