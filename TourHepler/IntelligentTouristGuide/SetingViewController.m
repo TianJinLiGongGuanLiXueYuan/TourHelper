@@ -163,12 +163,22 @@ static SetingViewController* _instance = nil;
 
 - (void)subBtnClick:(UIButton*)sender{
     SetingSubViewController * subVC = [[SetingSubViewController alloc]init];
-    [self.navigationController pushViewController:subVC animated:YES ];
+//    if (self.navigationController==nil) {
+//        subVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+//        [self presentViewController:subVC animated:YES completion:nil];
+//    }else
+        [self.navigationController pushViewController:subVC animated:YES ];
+}
+
+-(void) titleBtnClick:(UIButton *)btn{
+    
 }
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
 //    NSLog(@"leftBtnDidClick");
-    [self.navigationController popViewControllerAnimated:YES];
+    if([self.navigationController popViewControllerAnimated:YES]);
+    else
+        [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)rightBtnDidClick:(UIButton *)rightBtn{

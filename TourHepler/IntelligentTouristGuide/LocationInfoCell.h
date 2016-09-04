@@ -46,6 +46,6 @@
 
 + (CGFloat) returnCellHeight;
 
-@property (nonatomic, copy) void(^imageViewClickBlock)(UIButton *btn,NSString *locationName,NSString* img,NSString* locationText);
+@property (nonatomic, copy) void(^imageViewClickBlock)(UIButton *btn,NSString *locationName,NSString* img,NSString* locationText,CLLocationCoordinate2D coor);
 
 @end

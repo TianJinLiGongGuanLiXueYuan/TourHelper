@@ -80,7 +80,6 @@
     [BMKOpenRoute openBaiduMapWalkingRoute:opt];
 //    NSLog(@"%d", code);
 }
-
 - (void) getDataWithOwnLocation:(CLLocationCoordinate2D)mapPoint{
     _ownLocation.latitude = mapPoint.latitude;
     _ownLocation.longitude = mapPoint.longitude;

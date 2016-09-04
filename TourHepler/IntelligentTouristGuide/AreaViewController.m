@@ -19,8 +19,13 @@
 #import "NotNetView.h"
 #import "AreaInfo.h"
 #import "AreaTableViewCell.h"
+#import "HomeViewController.h"
 
-@interface AreaViewController ()
+#define screenHeight ([UIScreen mainScreen].bounds.size.height)
+#define screenWidth ([UIScreen mainScreen].bounds.size.width)
+#define kSignImg (30)
+
+@interface AreaViewController ()<AreaTableViewCellDelegate>
 
 @property (nonatomic) NSInteger isPlaying;
 @property (nonatomic ,strong) UITableViewController *mainTVC;
@@ -41,6 +46,7 @@
     if (self) {
         _CNT = 0;
         _curSum = 0;
+        
     }
     return self;
 }
@@ -49,24 +55,33 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+   
     
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationBar.leftBtn setImage:[UIImage imageNamed:@"旅游助手－首页导航栏左地图icon.png"] forState:UIControlStateNormal];
     [self.navigationBar.rightBtn setImage:[UIImage imageNamed:@"旅游助手－首页设置.png"] forState:UIControlStateNormal];
     [self.navigationBar.titleBtn setTitle:@"热门景区" forState:UIControlStateNormal];
+    [self addTitleRightImg];
     
+//    self.view.backgroundColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
     
     _mainTVC = [[UITableViewController alloc]init];
     CGRect tableViewFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
     self.mainTVC.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
     //    UIColor *mainTVColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
     self.mainTVC.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTVC.tableView.backgroundColor = [UIColor colorWithRed:0.865 green:1.000 blue:0.991 alpha:1.000];
+    self.mainTVC.tableView.backgroundColor = [UIColor colorWithRed:35.0/255.0 green:35.0/255.0 blue:35.0/255.0 alpha:1];
     self.mainTVC.tableView.allowsSelection = NO;
     self.mainTVC.tableView.delegate = self;
     self.mainTVC.tableView.dataSource = self;
-    [self.view addSubview:self.mainTVC.tableView];
+    self.mainTVC.tableView.bounces = NO;
+    
+    
+    
+    
     [self getAreaName];
+    [self.view addSubview:self.mainTVC.tableView];
+    
     
 }
 
@@ -75,6 +90,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - CellBtn点击事件
+- (void)BtnClick:(UIButton *)btn{
+    HomeViewController *homeVC = [[HomeViewController alloc]initWithAreaName:btn.titleLabel.text];
+    homeVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self.navigationController pushViewController:homeVC animated:YES];
+//    [self presentViewController:homeVC animated:YES completion:nil];
+}
 
 #pragma mark - 网络接口
 
@@ -103,12 +125,13 @@
             NSMutableArray *teamArr= [[NSMutableArray alloc]initWithArray:[dict objectForKey:@"data"]];
             _dataArr = [[NSMutableArray alloc]init];
             for (NSDictionary *obj in teamArr) {
-                [_dataArr addObject:obj[@"scenic_area_name"]];
+                AreaInfo *areaInfo = [[AreaInfo alloc]initWithAreaName:obj[@"scenic_area_name"] img:obj[@"scenic_area_picture"]];
+                [_dataArr addObject:areaInfo];
             }
             if (teamArr.count%3) {
                 _CNT = teamArr.count/3;
             }else{
-                _CNT = teamArr.count/3 + 1;
+                _CNT = teamArr.count/3+1;
             }
             _SUM = teamArr.count;
             [_mainTVC.tableView reloadData];
@@ -130,13 +153,24 @@
     
 }
 
+#pragma mark - 提示图像
 
+- (void)addTitleRightImg{
+    CGSize size = [self.navigationBar.titleBtn.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}];
+    
+    self.navigationBar.signImg.frame = CGRectMake((screenWidth+size.width)/2.0+5, 25, kSignImg, kSignImg);
+    //    [self.navigationBar.signImg setImage:[UIImage imageNamed:@"用户指引.png"]];
+    self.navigationBar.signImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"用户指引.png"]];
+    [self.navigationBar addSubview:self.navigationBar.signImg];
+    
+}
 
 
 #pragma mark - 导航栏相关设置
 
 - (void)titleBtnClick:(UIButton *)btn{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
@@ -151,8 +185,11 @@
 
 - (void)rightBtnDidClick:(UIButton *)rightBtn{
     SetingViewController *setingVC = [SetingViewController shareInstance];
-    setingVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    [self.navigationController pushViewController:setingVC animated:YES];
+    setingVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    if (self.navigationController==nil) {
+//        [self presentViewController:setingVC animated:YES completion:nil];
+//    }else
+        [self.navigationController pushViewController:setingVC animated:YES];
 }
 
 
@@ -169,44 +206,11 @@
     if (_CNT==0) {
         return cell;
     }
-    //    static NSString *cellIdentifier = @"LocationInfoCell";
-    
-    //    LocationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    //    if (indexPath.row==0) {
-    //        if (cell==nil) {
-    //            cell = [[NSBundle mainBundle]loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
-    //        }
-    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //        return cell;
-    //    }
-    //    NSLog(@"path");
-    //    DataSingleton *dataSL = [DataSingleton shareInstance];
-    //    dataSL.allVoiceIsPlaying = [[NSMutableArray alloc]initWithArray:dataSL.allVoiceIsPlaying];
-    
-    //    NSLog(@"%ld",(long)indexPath.row);
-//    cell.voiceBtn.tag = indexPath.row;
-//    cell.delegate = self;
-    //    NSNumber *ok = [[NSNumber alloc]initWithBool:NO];
-    //    [dataSL.allVoiceIsPlaying addObject:ok];
-    if (cell == nil) {
-//        cell = [[NSBundle mainBundle]loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
-//        cell.voiceBtn.tag = indexPath.row;
-//        [cell setImageViewClickBlock:^(UIButton *btn,NSString *locationName,NSString* img,NSString* locationText) {
-//            DetailViewController *deVC = [[DetailViewController alloc]init];
-//            deVC.titleText = locationName;
-//            deVC.detailImg = img;
-//            deVC.detailText = locationText;
-//            
-//            
-//            [self.navigationController pushViewController:deVC animated:YES];
-//        }];
-        
-        //        cell = [[NSBundle mainBundle] loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
-        
-    }
+//    cell.mainVC = self;
+    cell.delegate =self;
     if(indexPath.row==_CNT-1){
         int tem = _SUM%3;
-        int row = indexPath.row*3;
+        long row = indexPath.row*3;
         if (tem==1) {
             NSArray *arr = @[_dataArr[row]];
             [cell setCellData:arr sum:1];
@@ -224,7 +228,7 @@
         
         
     }else{
-        int row = indexPath.row*3;
+        long row = indexPath.row*3;
         NSArray *arr = @[_dataArr[row],_dataArr[row+1],_dataArr[row+2]];
     
         [cell setCellData:arr sum:3];

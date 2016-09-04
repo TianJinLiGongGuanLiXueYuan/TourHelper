@@ -14,5 +14,6 @@
 @property(nonatomic,strong)NSString* areaImg;
 
 
+- (instancetype)initWithAreaName:(NSString *)areaTitle img:(NSString *) img;
 
 @end

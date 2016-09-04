@@ -40,6 +40,10 @@
     
 }
 
+-(void) titleBtnClick:(UIButton *)btn{
+    
+}
+
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
     //    NSLog(@"leftBtnDidClick");
     [self.navigationController popViewControllerAnimated:YES];

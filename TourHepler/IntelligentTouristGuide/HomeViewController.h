@@ -23,5 +23,7 @@
 - (void) reLoad:(NSDictionary*)Dict;
 
 
+- (instancetype)initWithAreaName:(NSString*)name;
+
 
 @end

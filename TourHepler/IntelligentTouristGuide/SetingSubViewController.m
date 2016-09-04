@@ -52,10 +52,10 @@
     
     _cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight-64)];
     [_cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_cancelBtn];
+//    [self.view addSubview:_cancelBtn];
 
-    _inputTV.delegate =self;
     _inputTV = [[UITextView alloc]init];
+    _inputTV.delegate =self;
     _inputTV.frame = CGRectMake(kTVLeftMargins, kTVTopMargins+64, kTVWidth, kTVheight);
 //    _inputTV.frame = CGRectMake(kViewLeftAndRightMargins,64+kViewLeftAndRightMargins, screenWidth-kViewLeftAndRightMargins*2, kViewHeight);
     _inputTV.backgroundColor = [UIColor whiteColor];
@@ -84,7 +84,7 @@
 
 
 -(void)cancelBtnClick:(UIButton*)sender{
-    [_inputTV resignFirstResponder];
+//    [_inputTV resignFirstResponder];
 }
 
 #pragma  mark- 通过委托放弃第一响应者
@@ -140,11 +140,19 @@
     }
 }
 
+-(void) titleBtnClick:(UIButton *)btn{
+    
+}
 
 
 - (void)leftBtnDidClick:(UIButton *)leftBtn{
     //    NSLog(@"leftBtnDidClick");
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        return ;
+//    }
+//     ];
     [self.navigationController popViewControllerAnimated:YES];
+        
 }
 
 - (void)didReceiveMemoryWarning {

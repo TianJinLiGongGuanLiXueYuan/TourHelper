@@ -16,15 +16,17 @@
 #define btnW (335.0/1080*w)
 
 
-@interface DetailViewController ()<BMKLocationServiceDelegate>
+@interface DetailViewController ()<BMKLocationServiceDelegate,UIScrollViewDelegate>
 
 @property (nonatomic,strong) BMKLocationService* locService;
-@property(readonly, nonatomic) CLLocationCoordinate2D homeCenterCC2D;
+@property(nonatomic) CLLocationCoordinate2D homeCenterCC2D;
 //@property(nonatomic,strong) NSString *star;
 @property(nonatomic) BOOL isPlaying;
 
-
 @property(nonatomic) NSInteger sum;
+
+@property (nonatomic,strong) UIScrollView *textSV;
+@property (nonatomic,strong) UILabel *textLabel;
 
 @end
 
@@ -35,6 +37,8 @@
     self = [super init];
     if (self) {
         _isPlaying = NO;
+        _textSV = [[UIScrollView alloc]init];
+        _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, w, 0)];
     }
     return self;
 }
@@ -60,10 +64,11 @@
 //    _star = [[NSString alloc]initWithString:self.navigationBar.titleBtn.titleLabel.text];
 //    self.navigationBar.titleLabel.text = _titleText;
     
-    // 采用本地图片和景点介绍实现
+    
     DataSingleton* dataSL = [DataSingleton shareInstance];
     NSMutableArray *imageNames = [[NSMutableArray alloc]init];
-    NSMutableArray *locatianNames = [[NSMutableArray alloc]init];
+//    NSMutableArray *locatianNames = [[NSMutableArray alloc]init];
+    NSString *locationName = [[NSString alloc]init];
     int i;
     for (i = 0; i<[dataSL.allDetail count]; i++) {
         Location* tem = [dataSL.allDetail objectAtIndex:i];
@@ -84,18 +89,21 @@
     [self.navigationBar.titleBtn setTitle:display forState:UIControlStateNormal];
     for (int j = 0; j<[imageNames count]; j++) {
         Location* tem = [dataSL.allDetail objectAtIndex:i];
-        [locatianNames addObject:tem.locationText];
+        locationName = [NSString stringWithString:tem.locationText];
+//        [locatianNames addObject:tem.locationText];
     }
     
     
-    //本地加载 --- 创建不带标题的图片轮播器
+
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, -12, w, h+12) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+    
 //    cycleScrollView.autoScroll = NO;
 //    cycleScrollView.showPageControl = NO;
-    cycleScrollView.titlesGroup = locatianNames;
-    cycleScrollView.titleLabelHeight = (574.0/1920.0)*h;
+//    cycleScrollView.titlesGroup = locatianNames;
+//    cycleScrollView.titlesGroup = @"";
+//    cycleScrollView.titleLabelHeight = (574.0/1920.0)*h;
     cycleScrollView.showPageControl = NO;
     cycleScrollView.imageURLStringsGroup = imageNames;
 //    cycleScrollView.autoScroll = YES;
@@ -103,8 +111,26 @@
     
     [self.view addSubview:cycleScrollView];
     
+    _textSV.delegate = self;
+    _textSV.frame = CGRectMake(0, h-(574.0/1920.0)*h, w, (574.0/1920.0)*h);
+    _textLabel.text = locationName;
+    _textLabel.font = [UIFont systemFontOfSize:20];
+    _textLabel.numberOfLines = 0;
+    [_textLabel sizeToFit];
+    _textLabel.frame = CGRectMake(0,0, w, _textLabel.frame.size.height);
+    _textSV.contentSize = _textLabel.frame.size;
+    _textSV.scrollsToTop = NO;
+    _textLabel.backgroundColor = [UIColor colorWithRed:0.192 green:0.183 blue:0.189 alpha:0.621];
+    [_textLabel setTextColor:[UIColor whiteColor]];
+    [_textSV addSubview:_textLabel];
+    [self.view addSubview:_textSV];
+    
+//    _textLabel.frame = CGRectMake(0, h-(574.0/1920.0)*h-btnH, w, (574.0/1920.0)*h);
+    
+    
+    
 //    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(w-btnW, h-btnH, btnW, btnH)];
+    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(w-btnW, h-(574.0/1920.0)*h-btnH, btnW, btnH)];
     [_detailBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－现在就去玩.png"] forState:UIControlStateNormal];
 //    [_detailBtn setTitle:@"我要到这里去" forState:UIControlStateNormal];
     [_detailBtn addTarget:self action:@selector(detailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -252,6 +278,10 @@
         [_iFlySpeechSynthesizer stopSpeaking];
     }
     _isPlaying^=1;
+    
+}
+
+-(void) titleBtnClick:(UIButton *)btn{
     
 }
 

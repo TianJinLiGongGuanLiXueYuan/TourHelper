@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class AreaInfo;
+@class AreaViewController;
+
+@protocol AreaTableViewCellDelegate <NSObject>
+
+- (void)BtnClick:(UIButton *)btn;
+
+@end
 
 @interface AreaTableViewCell : UITableViewCell
 
@@ -23,6 +30,11 @@
 @property(nonatomic,strong) UIButton* areaName3;
 
 @property(nonatomic,strong) UIButton* titleBtn;
+
+//@property(nonatomic,strong)AreaViewController *mainVC;
+
+
+@property (nonatomic,weak) id<AreaTableViewCellDelegate> delegate;
 
 - (void)setCellData:(NSArray*)area sum:(NSInteger)sum;
 

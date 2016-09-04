@@ -19,12 +19,14 @@
 #define kInputTFWeight (15.0/16.0*screenWidth)
 #define kInputTFHeight (40)
 #define kViewLeftAndRightMargins (5)
+#define kGPSBtn (50)
 
 @interface MapViewController ()
 
 @property (nonatomic) BOOL isPoi;
 @property (nonatomic) BOOL isUpViewPop;
 @property (nonatomic,strong) Location* curlocation;
+@property (nonatomic) CLLocationCoordinate2D curGPSCoor;
 
 
 
@@ -66,16 +68,22 @@ static MapViewController* _instance = nil;
             _inputTF.leftView=inputView;
             _inputTF.leftViewMode = UITextFieldViewModeAlways;
             
-            
-            
-            
-            
-            
         }
+        
+        if (_locationGPSBtn==nil) {
+            _locationGPSBtn = [[UIButton alloc]init];
+            _locationGPSBtn.frame = CGRectMake(screenWidth - kGPSBtn, 0, kGPSBtn, kGPSBtn);
+//            _inputTF.backgroundColor = [UIColor whiteColor];
+            [_locationGPSBtn setImage:[UIImage imageNamed:@"定位BTN.png"] forState:UIControlStateNormal];
+            [_locationGPSBtn addTarget:self action:@selector(locationGPSBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        
         
         DataSingleton *dataSL = [DataSingleton shareInstance];
         if (dataSL.mapView==nil) {
-            _mapView = dataSL.mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight-64)];
+            _mapView = dataSL.mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64+kInputTFHeight, screenWidth, screenHeight-64-kInputTFHeight)];
+            [_mapView addSubview:_locationGPSBtn];
         }else{
             _mapView = dataSL.mapView;
         }
@@ -141,6 +149,15 @@ static MapViewController* _instance = nil;
     _mapUpView = [[MapUpView alloc]init];
     
     
+}
+
+#pragma mark - 定位按钮
+
+- (void)locationGPSBtnClick:(UIButton*)sender{
+    
+//    - (void)setCenterCoordinate:(CLLocationCoordinate2D)coordinate animated:(BOOL)animated;
+    [_mapView setCenterCoordinate:_curGPSCoor animated:YES];
+//    _mapView.centerCoordinate = _curlocation.coor;
 }
 
 #pragma mark - 搜索相关按钮点击事件
@@ -407,9 +424,9 @@ static MapViewController* _instance = nil;
     
     if(!_isPoi){
         _isPoi = YES;
-        _mapView.centerCoordinate = userLocation.location.coordinate;
+//        _mapView.centerCoordinate = userLocation.location.coordinate;
     }
-    
+    _curGPSCoor=userLocation.location.coordinate;
     [_mapView updateLocationData:userLocation];
     
 //    [_locService stopUserLocationService];//取消定位
@@ -459,7 +476,8 @@ static MapViewController* _instance = nil;
         [mutArr addObject:annotation];
     }
     [_mapView addAnnotations:mutArr];
-    
+    Location *obj = [dataSL.allDetail objectAtIndex:0];
+    _mapView.centerCoordinate = obj.coor;
     /**
      *	设置地图状态
      *	@param	[in]	mapStatus	地图状态信息
@@ -545,6 +563,7 @@ static MapViewController* _instance = nil;
         if (ok) {
             UIButton *goToBtn = [[UIButton alloc]initWithFrame:CGRectMake(popView.frame.size.width-50, 0, 50, 60)];
             [goToBtn setTitle:@"查看详情" forState:UIControlStateNormal];
+//            goToBtn.titleLabel.text = annotation.title;
             goToBtn.backgroundColor = [UIColor redColor];
             goToBtn.titleLabel.numberOfLines = 0;
             [goToBtn addTarget:self action:@selector(goToBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -561,13 +580,22 @@ static MapViewController* _instance = nil;
     return nil;
 }
 
+-(void) titleBtnClick:(UIButton *)btn{
+    
+}
+
 - (void)goToBtnClick:(UIButton*)sender{
     if(_curlocation){
         DetailViewController *deVC = [[DetailViewController alloc]init];
         deVC.titleText = _curlocation.locationName;
         deVC.detailImg = _curlocation.locationImageName;
         deVC.detailText = _curlocation.locationText;
-        [self presentViewController:deVC animated:YES completion:nil];
+        deVC.endCoor = _curlocation.coor;
+//        NSLog(@"%@",self.navigationController);
+        if (self.navigationController) {
+            [self.navigationController pushViewController:deVC animated:YES];
+        }else
+            [self presentViewController:deVC animated:YES completion:nil];
     }
 }
 

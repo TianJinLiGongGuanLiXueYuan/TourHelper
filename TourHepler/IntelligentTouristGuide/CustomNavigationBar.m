@@ -28,12 +28,13 @@
         UIColor *navigationColor = [UIColor colorWithRed:43.0/255.0 green:162.0/255.0 blue:145.0/255.0 alpha:1];
         self.backgroundColor = navigationColor;
         [self addSubview:self.titleBtn];
+        [self addSubview:self.signImg];
         [self addSubview:self.leftBtn];
         [self addSubview:self.rightBtn];
         [self addSubview:self.leftClickBtn];
         [self addSubview:self.rightClickBtn];
-        self.leftBtn.backgroundColor =navigationColor;
-        self.rightBtn.backgroundColor =navigationColor;
+        self.leftBtn.backgroundColor = navigationColor;
+        self.rightBtn.backgroundColor = navigationColor;
     }
     return self;
 }
@@ -45,6 +46,7 @@
     self.titleBtn.frame = CGRectMake(0, TOP, screenWidth, 30);
     //让text居中
 //    self.titleBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.signImg.frame = CGRectMake(0, 0, 0, 0);
     
     self.leftBtn.frame = CGRectMake(10, TOP, ICONSIZE, ICONSIZE);
     self.leftClickBtn.frame = CGRectMake(0, 20, self.leftBtn.frame.origin.x+ICONSIZE, 44);
@@ -71,12 +73,22 @@
 }
 
 
+- (UIImageView *)signImg{
+    if (_signImg==Nil) {
+        _signImg = [[UIImageView alloc]init];
+        [_signImg setImage:[UIImage imageNamed:@"用户指引.png"]];
+        
+    }
+    return _signImg;
+}
+
 
 - (UIButton *)titleBtn{
     if (_titleBtn==Nil) {
         _titleBtn = [[UIButton alloc]init];
         _titleBtn.tintColor = [UIColor whiteColor];
         [_titleBtn addTarget:self action:@selector(titleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _titleBtn.titleLabel.font =  [UIFont systemFontOfSize: 20];
     }
     return _titleBtn;
 }

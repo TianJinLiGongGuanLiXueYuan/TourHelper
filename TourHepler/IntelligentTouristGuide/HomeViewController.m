@@ -19,6 +19,9 @@
 #import "NotNetView.h"
 #import "AreaViewController.h"
 
+#define screenHeight ([UIScreen mainScreen].bounds.size.height)
+#define screenWidth ([UIScreen mainScreen].bounds.size.width)
+#define kSignImg (30)
 
 @interface HomeViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate,LocationInfoCellDelegate,NotNetViewDelegate>
 
@@ -32,7 +35,8 @@
 @property (nonatomic) BOOL isNavigationBarDisplay;
 @property (nonatomic) AFNetworkReachabilityStatus netStatus;
 @property (nonatomic) BOOL isNotNetViewDisplay;
-
+@property (nonatomic) BOOL isGPS;
+@property (nonatomic) NSInteger initStatus;
 
 
 @end
@@ -51,10 +55,40 @@
 
 @synthesize leftSwipeGestureRecognizer,rightSwipeGestureRecognizer;
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _initStatus = 1;
+        _isGPS = NO;
+        
+    }
+    return self;
+}
+
+- (instancetype)initWithAreaName:(NSString*)name{
+    self = [super init];
+    if (self) {
+        _initStatus = 2;
+        DataSingleton *dataSL = [DataSingleton shareInstance];
+        dataSL.title = [[NSString alloc]initWithString:name];
+//        self.navigationController = [[UINavigationController alloc]init];
+        [self.navigationBar.titleBtn setTitle:name forState:UIControlStateNormal];
+        [self addTitleRightImg];
+        [self loadDataFromWeb];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _isNotNetViewDisplay = NO;
     [self AFNetworkStatus];
+    //初始化BMKLocationService
+    _locService = [[BMKLocationService alloc]init];
+    _locService.delegate = self;
+    //启动LocationService
+    [_locService startUserLocationService];
+    _isNotNetViewDisplay = NO;
     
     _statusBarDIY = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
     _statusBarDIY.backgroundColor = [UIColor clearColor];
@@ -66,11 +100,7 @@
     _isNavigationBarDisplay = 1;
     _tableViewPosPre = 64;
     // Do any additional setup after loading the view.
-    //初始化BMKLocationService
-    _locService = [[BMKLocationService alloc]init];
-    _locService.delegate = self;
-    //启动LocationService
-    [_locService startUserLocationService];
+    
 //    [self getAreaName];
     
 #pragma mark - 导航栏初始化
@@ -118,10 +148,6 @@
     [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
     [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
     
-    
-    
-    
-    
     [self.view addSubview:self.mainTVC.tableView];
     [self.view addSubview:self.navigationBar];
     [self.view addSubview:_statusBarDIY];
@@ -129,7 +155,7 @@
     
 //    [self addChildViewController:_mainTVC];
     
-
+    
     
 }
 
@@ -206,24 +232,24 @@
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         //这里是监测到网络改变的block  可以写成switch方便
         //在里面可以随便写事件
-        NSLog(@"%ld",(long)status);
+//        NSLog(@"%ld",(long)status);
         switch (status) {
             case AFNetworkReachabilityStatusUnknown:
-                NSLog(@"AFNetworkStatus:未知网络状态");
+//                NSLog(@"AFNetworkStatus:未知网络状态");
                 break;
             case AFNetworkReachabilityStatusNotReachable:{
-                NSLog(@"AFNetworkStatus:无网络");
+//                NSLog(@"AFNetworkStatus:无网络");
                 
                 
             }
                 break;
                 
             case AFNetworkReachabilityStatusReachableViaWWAN:
-                NSLog(@"AFNetworkStatus:蜂窝数据网");
+//                NSLog(@"AFNetworkStatus:蜂窝数据网");
                 break;
                 
             case AFNetworkReachabilityStatusReachableViaWiFi:
-                NSLog(@"AFNetworkStatus:WiFi网络");
+//                NSLog(@"AFNetworkStatus:WiFi网络");
                 
                 break;
                 
@@ -358,26 +384,38 @@
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
 //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    
+    
+    
 //    _homeCenterCC2D.latitude = userLocation.location.coordinate.latitude;
 //    _homeCenterCC2D.longitude = userLocation.location.coordinate.longitude;
 //    _homeLocation = userLocation.location;
-    [self getAreaName];
+    if (_initStatus==1) {
+        
+        DataSingleton *dataSL = [DataSingleton shareInstance];
+        dataSL.userPoint = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
+        
+        [self getAreaName];
+    }
     
-    [_locService stopUserLocationService];//取消定位
+    if (_isGPS) {
+        [_locService stopUserLocationService];//取消定位
+    }
+    
 }
 
 - (void) reLoadImgDetail:(NSDictionary*)dict{
     DataSingleton* dataSL = [DataSingleton shareInstance];
     dataSL.allImgWithLocation = [[NSMutableArray alloc]initWithArray:dataSL.allImgWithLocation];
     if ([dict[@"data"]isEqual:@""]) {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"提示"
-                                  message:@"附近没有景区"
-                                  delegate:nil
-                                  cancelButtonTitle:@"好的"
-                                  otherButtonTitles:nil
-                                  ];
-        [alertView show];
+//        UIAlertView *alertView = [[UIAlertView alloc]
+//                                  initWithTitle:@"提示"
+//                                  message:@"附近没有景区"
+//                                  delegate:nil
+//                                  cancelButtonTitle:@"好的"
+//                                  otherButtonTitles:nil
+//                                  ];
+//        [alertView show];
     }else{
         NSMutableArray *teamArr= [[NSMutableArray alloc]initWithArray:[dict objectForKey:@"data"]];
         NSMutableArray *Img = [[NSMutableArray alloc]init];
@@ -388,6 +426,9 @@
         [dataSL.allImgWithLocation addObject:Img];
     }
 }
+
+
+
 
 - (void) reLoad:(NSDictionary*)dict{
     NSMutableArray *teamArr= [[NSMutableArray alloc]initWithArray:[dict objectForKey:@"data"]];
@@ -402,9 +443,10 @@
         double longitudeDou = [longitude floatValue];
         
 //        NSLog(@"%f %f",_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude);
-//        NSLog(@"%f %f",latitudeDou,longitudeDou);
+//        NSLog(@"latitudeDou = %f %f",latitudeDou,longitudeDou);
         //算距离
-        BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(_locService.userLocation.location.coordinate.latitude,_locService.userLocation.location.coordinate.longitude));
+        
+        BMKMapPoint point1 = dataSL.userPoint;
         BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(latitudeDou,longitudeDou));
         CGFloat distance = BMKMetersBetweenMapPoints(point1,point2);
         NSString *distanceString;
@@ -559,6 +601,18 @@
     }
 }
 
+#pragma mark - 计算title长度
+
+- (void)addTitleRightImg{
+    CGSize size = [self.navigationBar.titleBtn.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}];
+//    self.navigationBar.titleBtn.frame = CGRectMake(self.navigationBar.titleBtn.frame.origin.x, self.navigationBar.titleBtn.frame.origin.y, size.width, self.navigationBar.titleBtn.frame.size.height);
+    
+    self.navigationBar.signImg.frame = CGRectMake((screenWidth+size.width)/2.0+5, 25, kSignImg, kSignImg);
+//    [self.navigationBar.signImg setImage:[UIImage imageNamed:@"用户指引.png"]];
+    self.navigationBar.signImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"用户指引.png"]];
+//    [self.navigationBar addSubview:self.navigationBar.signImg];
+    
+}
 
 #pragma mark - tableView相关代理
 
@@ -592,14 +646,22 @@
     if (cell == nil) {
         cell = [[NSBundle mainBundle]loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
         cell.voiceBtn.tag = indexPath.row;
-        [cell setImageViewClickBlock:^(UIButton *btn,NSString *locationName,NSString* img,NSString* locationText) {
+        [cell setImageViewClickBlock:^(UIButton *btn,NSString *locationName,NSString* img,NSString* locationText,CLLocationCoordinate2D coor) {
             DetailViewController *deVC = [[DetailViewController alloc]init];
             deVC.titleText = locationName;
             deVC.detailImg = img;
             deVC.detailText = locationText;
+            deVC.endCoor = coor;
             
             
-            [self.navigationController pushViewController:deVC animated:YES];
+//            NSLog(@"%@",self.navigationController);
+            
+            
+//            if (self.navigationController==nil) {
+//                deVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//                [self presentViewController:deVC animated:YES completion:nil];
+//            }else
+                [self.navigationController pushViewController:deVC animated:YES];
         }];
         
 //        cell = [[NSBundle mainBundle] loadNibNamed:@"LocationInfoCell" owner:nil options:nil].lastObject;
@@ -670,7 +732,7 @@
         self.navigationBar.alpha = 1;
         _statusBarDIY.alpha = 0;
         [UIView animateWithDuration:time animations:^{
-            self.mainTVC.tableView.frame = CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height);
+            self.mainTVC.tableView.frame = CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height-20);
             _statusBarDIY.backgroundColor = [UIColor colorWithRed:43.0/255.0 green:162.0/255.0 blue:145.0/255.0 alpha:1];
             _statusBarDIY.alpha = 1;
             self.navigationBar.alpha = 0;
@@ -703,9 +765,19 @@
 #pragma mark - 导航栏按钮点击事件
 
 - (void)titleBtnClick:(UIButton *)btn{
-    AreaViewController *areaVC = [[AreaViewController alloc]init];
-    areaVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:areaVC animated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        return ;
+//    }
+//     ];
+////    [self dismissViewControllerAnimated:YES completion:nil];
+    if([self.navigationController popViewControllerAnimated:YES])
+        ;
+    else{
+        AreaViewController *areaVC = [[AreaViewController alloc]init];
+        areaVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+        [self.navigationController pushViewController:areaVC animated:YES];
+//        [self presentViewController:areaVC animated:YES completion:nil];
+    }
 }
 
 
@@ -729,9 +801,11 @@
 
 - (void)rightBtnDidClick:(UIButton *)rightBtn{
     SetingViewController *setingVC = [SetingViewController shareInstance];
-    setingVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    [self.navigationController pushViewController:setingVC animated:YES];
-//    [self.navigationController pushViewController:setingVC animated:YES ];
+    setingVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    if (self.navigationController==nil) {
+//        [self presentViewController:setingVC animated:YES completion:nil];
+//    }else
+        [self.navigationController pushViewController:setingVC animated:YES];
 }
 
 //- (void)didReceiveMemoryWarning {
@@ -781,12 +855,15 @@
                                       ];
             //
             [alertView show];
-            
+            _isGPS = NO;
         }else{
             DataSingleton *dataSL = [DataSingleton shareInstance];
             dataSL.title = [[NSString alloc]initWithString:dict[@"data"][0][@"scenic_area_name"]];
             [self.navigationBar.titleBtn setTitle:dict[@"data"][0][@"scenic_area_name"] forState:UIControlStateNormal];
+            [self addTitleRightImg];
             [self loadDataFromWeb];
+            _isGPS = YES;
+            
         }
         
         //= dict[@"data"][0][@"scenic_spot_name"];
@@ -796,7 +873,7 @@
 //        return dict[@"data"][0][@"scenic_area_name"];
     } failure:^(NSError *error) {
         NSLog(@"getAreaName：网络数据接受错误");
-
+        _isGPS = NO;
     }];
     
 }

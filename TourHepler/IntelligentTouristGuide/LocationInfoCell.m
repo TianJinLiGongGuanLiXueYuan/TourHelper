@@ -55,7 +55,7 @@
 
 - (IBAction)imageBtnClick:(id)sender {
     
-    self.imageViewClickBlock((UIButton *)sender,[NSString stringWithString:_locationNameLabel.text],[NSString stringWithString:_imgName],[NSString stringWithString:_cellText]);
+    self.imageViewClickBlock((UIButton *)sender,[NSString stringWithString:_locationNameLabel.text],[NSString stringWithString:_imgName],[NSString stringWithString:_cellText],_currentLocation.coor);
     
 }
 
@@ -149,7 +149,7 @@
 //    self.rightWithBarImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"旅游助手－首页下面的地图icon.png"]];
 //    [self.rightWithBarImg setBackgroundImage:[UIImage imageNamed:@"旅游助手－首页下面的地图icon.png"] forState:UIControlStateNormal];
     
-    self.rightWithBarImg.frame = CGRectMake(screenWidth-kImgLeftAndRightMargins*2-kBarLeftAndRightMargins-kUpRightImgWidth-distanceSize.width, kImgHeight+kImgWithBarMargins, kUpRightImgWidth, distanceSize.height);
+    self.rightWithBarImg.frame = CGRectMake(screenWidth-kImgLeftAndRightMargins*2-kBarLeftAndRightMargins-distanceSize.height-distanceSize.width, kImgHeight+kImgWithBarMargins,  distanceSize.height, distanceSize.height);
 //    self.distanceLabel.backgroundColor = [UIColor purpleColor];
 }
 

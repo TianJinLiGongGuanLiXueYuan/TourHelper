@@ -24,7 +24,7 @@
 @property (nonatomic,strong) UIButton *rightBtn;
 @property (nonatomic,strong) UIButton *leftClickBtn;
 @property (nonatomic,strong) UIButton *rightClickBtn;
-
+@property (nonatomic,strong) UIImageView *signImg;
 
 @property (nonatomic,strong) UIImageView *bgImageView;
 

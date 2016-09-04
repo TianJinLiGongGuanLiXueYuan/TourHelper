@@ -12,8 +12,6 @@
 
 static DataSingleton* _instance = nil;
 
-
-
 +(instancetype) shareInstance
 {
     static dispatch_once_t onceToken ;

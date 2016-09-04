@@ -39,6 +39,7 @@
 @property (nonatomic,strong) MySearchBar *mySearchBar;
 @property (nonatomic,strong) UIButton *translucentBtn;
 @property (nonatomic,strong) MapUpView *mapUpView;
+@property (nonatomic,strong) UIButton *locationGPSBtn;
 
 
 +(instancetype) shareInstance;

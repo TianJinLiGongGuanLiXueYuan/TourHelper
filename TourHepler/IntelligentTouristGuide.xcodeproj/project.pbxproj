@@ -7,17 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F1243901D3C827800477E00 /* 卧龙海2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12438D1D3C827800477E00 /* 卧龙海2.jpeg */; };
-		5F1243911D3C827800477E00 /* 卧龙海3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12438E1D3C827800477E00 /* 卧龙海3.jpeg */; };
-		5F1243921D3C827800477E00 /* 卧龙海4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12438F1D3C827800477E00 /* 卧龙海4.jpeg */; };
-		5F1243961D3C850B00477E00 /* 箭竹海2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F1243931D3C850B00477E00 /* 箭竹海2.jpeg */; };
-		5F1243971D3C850B00477E00 /* 箭竹海3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F1243941D3C850B00477E00 /* 箭竹海3.jpeg */; };
-		5F1243981D3C850B00477E00 /* 箭竹海4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F1243951D3C850B00477E00 /* 箭竹海4.jpeg */; };
-		5F12439B1D3C857900477E00 /* 芦苇海2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F1243991D3C857900477E00 /* 芦苇海2.jpeg */; };
-		5F12439C1D3C857900477E00 /* 芦苇海3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12439A1D3C857900477E00 /* 芦苇海3.jpeg */; };
-		5F1243A01D3C860200477E00 /* 双龙海2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12439D1D3C860200477E00 /* 双龙海2.jpeg */; };
-		5F1243A11D3C860200477E00 /* 双龙海3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12439E1D3C860200477E00 /* 双龙海3.jpeg */; };
-		5F1243A21D3C860200477E00 /* 双龙海4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F12439F1D3C860200477E00 /* 双龙海4.jpeg */; };
+		5F12B9FC1D61A40F00A9D1C8 /* 用户指引.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F12B9FB1D61A40F00A9D1C8 /* 用户指引.png */; };
 		5F14185D1D4851BA007EEC4B /* sdRefeshView_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F1418531D4851BA007EEC4B /* sdRefeshView_arrow@2x.png */; };
 		5F14185E1D4851BA007EEC4B /* SDRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1418551D4851BA007EEC4B /* SDRefreshView.m */; };
 		5F14185F1D4851BA007EEC4B /* SDRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1418571D4851BA007EEC4B /* SDRefreshHeaderView.m */; };
@@ -31,40 +21,27 @@
 		5F5636FE1D55ADB800327A3B /* NotNetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5636FD1D55ADB800327A3B /* NotNetView.m */; };
 		5F58DABB1D55B1DE00B5140D /* 警告.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F58DABA1D55B1DE00B5140D /* 警告.png */; };
 		5F58DABD1D55C57500B5140D /* 5-121204193R0.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */; };
+		5F5C4C761D6451B4008D018B /* test副本.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5F5C4C751D6451B4008D018B /* test副本.gpx */; };
 		5F5D944C1D40CA310000DAE0 /* MySearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5D944B1D40CA310000DAE0 /* MySearchBar.m */; };
 		5F695CC91D5B2BA20024D004 /* 等待.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F695CC81D5B2BA20024D004 /* 等待.png */; };
 		5F6A652F1D3F7727004B6AB0 /* MyBMKPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */; };
 		5F6A65311D3F78B1004B6AB0 /* 定位.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65301D3F78B1004B6AB0 /* 定位.png */; };
-		5F6A65331D3F7EA5004B6AB0 /* 定位_meitu_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65321D3F7EA5004B6AB0 /* 定位_meitu_1.jpg */; };
-		5F6A65351D3F8071004B6AB0 /* 定位2_meitu_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65341D3F8071004B6AB0 /* 定位2_meitu_1.jpg */; };
-		5F6A65371D3F8141004B6AB0 /* 定位2_meitu_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65361D3F8141004B6AB0 /* 定位2_meitu_2.jpg */; };
-		5F6A65391D3F87EF004B6AB0 /* 定位3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A65381D3F87EF004B6AB0 /* 定位3.png */; };
-		5F6A653B1D3F889B004B6AB0 /* 定位4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A653A1D3F889B004B6AB0 /* 定位4.png */; };
-		5F6A653D1D3F88F8004B6AB0 /* 定位5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6A653C1D3F88F8004B6AB0 /* 定位5.png */; };
-		5F6AE6B41D37582E00B9BAC1 /* 卧龙海.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */; };
-		5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */; };
-		5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */; };
-		5F6AE6BA1D37584500B9BAC1 /* 芦苇海.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */; };
 		5F6C249E1D5F01E100ADF71A /* AreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6C249D1D5F01E100ADF71A /* AreaTableViewCell.m */; };
 		5F6C24A11D5F035200ADF71A /* AreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6C24A01D5F035200ADF71A /* AreaViewController.m */; };
 		5F6C24A41D5F0F8000ADF71A /* AreaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6C24A31D5F0F8000ADF71A /* AreaInfo.m */; };
 		5F75AB6F1D4E3D3D00CEFAC6 /* defaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F75AB6E1D4E3D3D00CEFAC6 /* defaultImage.png */; };
+		5F8653F01D7C50290064A82D /* 定位BTN.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8653EF1D7C50290064A82D /* 定位BTN.png */; };
 		5FC174621D39DDB400365D25 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174551D39DDB400365D25 /* TAAbstractDotView.m */; };
 		5FC174631D39DDB400365D25 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174571D39DDB400365D25 /* TAAnimatedDotView.m */; };
 		5FC174641D39DDB400365D25 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174591D39DDB400365D25 /* TADotView.m */; };
 		5FC174651D39DDB400365D25 /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1745B1D39DDB400365D25 /* TAPageControl.m */; };
 		5FC174661D39DDB400365D25 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1745D1D39DDB400365D25 /* SDCollectionViewCell.m */; };
 		5FC174681D39DDB400365D25 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174611D39DDB400365D25 /* UIView+SDExtension.m */; };
-		5FC174721D39DEB100365D25 /* 005.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC174691D39DEB100365D25 /* 005.jpg */; };
-		5FC174731D39DEB100365D25 /* h2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1746A1D39DEB100365D25 /* h2.jpg */; };
-		5FC174741D39DEB100365D25 /* h3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1746B1D39DEB100365D25 /* h3.jpg */; };
-		5FC174751D39DEB100365D25 /* h4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1746C1D39DEB100365D25 /* h4.jpg */; };
 		5FC174761D39DEB100365D25 /* pageControlCurrentDot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1746D1D39DEB100365D25 /* pageControlCurrentDot@2x.png */; };
 		5FC174771D39DEB100365D25 /* pageControlCurrentDot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1746E1D39DEB100365D25 /* pageControlCurrentDot@3x.png */; };
 		5FC174781D39DEB100365D25 /* pageControlDot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1746F1D39DEB100365D25 /* pageControlDot@2x.png */; };
 		5FC174791D39DEB100365D25 /* pageControlDot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC174701D39DEB100365D25 /* pageControlDot@3x.png */; };
 		5FC1747A1D39DEB100365D25 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC174711D39DEB100365D25 /* placeholder@2x.png */; };
-		5FC1747C1D39DEBA00365D25 /* h1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1747B1D39DEBA00365D25 /* h1.jpg */; };
 		5FC1749F1D39DF0100365D25 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1747F1D39DF0100365D25 /* MKAnnotationView+WebCache.m */; };
 		5FC174A01D39DF0100365D25 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174811D39DF0100365D25 /* NSData+ImageContentType.m */; };
 		5FC174A11D39DF0100365D25 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC174831D39DF0100365D25 /* SDImageCache.m */; };
@@ -206,17 +183,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5F12438D1D3C827800477E00 /* 卧龙海2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "卧龙海2.jpeg"; sourceTree = "<group>"; };
-		5F12438E1D3C827800477E00 /* 卧龙海3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "卧龙海3.jpeg"; sourceTree = "<group>"; };
-		5F12438F1D3C827800477E00 /* 卧龙海4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "卧龙海4.jpeg"; sourceTree = "<group>"; };
-		5F1243931D3C850B00477E00 /* 箭竹海2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "箭竹海2.jpeg"; sourceTree = "<group>"; };
-		5F1243941D3C850B00477E00 /* 箭竹海3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "箭竹海3.jpeg"; sourceTree = "<group>"; };
-		5F1243951D3C850B00477E00 /* 箭竹海4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "箭竹海4.jpeg"; sourceTree = "<group>"; };
-		5F1243991D3C857900477E00 /* 芦苇海2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "芦苇海2.jpeg"; sourceTree = "<group>"; };
-		5F12439A1D3C857900477E00 /* 芦苇海3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "芦苇海3.jpeg"; sourceTree = "<group>"; };
-		5F12439D1D3C860200477E00 /* 双龙海2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海2.jpeg"; sourceTree = "<group>"; };
-		5F12439E1D3C860200477E00 /* 双龙海3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海3.jpeg"; sourceTree = "<group>"; };
-		5F12439F1D3C860200477E00 /* 双龙海4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海4.jpeg"; sourceTree = "<group>"; };
+		5F12B9FB1D61A40F00A9D1C8 /* 用户指引.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户指引.png"; sourceTree = "<group>"; };
 		5F1418531D4851BA007EEC4B /* sdRefeshView_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sdRefeshView_arrow@2x.png"; sourceTree = "<group>"; };
 		5F1418541D4851BA007EEC4B /* SDRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefreshView.h; sourceTree = "<group>"; };
 		5F1418551D4851BA007EEC4B /* SDRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRefreshView.m; sourceTree = "<group>"; };
@@ -242,22 +209,13 @@
 		5F5636FD1D55ADB800327A3B /* NotNetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotNetView.m; sourceTree = "<group>"; };
 		5F58DABA1D55B1DE00B5140D /* 警告.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "警告.png"; sourceTree = "<group>"; };
 		5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "5-121204193R0.gif"; sourceTree = "<group>"; };
+		5F5C4C751D6451B4008D018B /* test副本.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "test副本.gpx"; path = "IntelligentTouristGuide/test副本.gpx"; sourceTree = "<group>"; };
 		5F5D944A1D40CA310000DAE0 /* MySearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchBar.h; sourceTree = "<group>"; };
 		5F5D944B1D40CA310000DAE0 /* MySearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchBar.m; sourceTree = "<group>"; };
 		5F695CC81D5B2BA20024D004 /* 等待.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待.png"; sourceTree = "<group>"; };
 		5F6A652D1D3F7727004B6AB0 /* MyBMKPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBMKPointAnnotation.h; sourceTree = "<group>"; };
 		5F6A652E1D3F7727004B6AB0 /* MyBMKPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBMKPointAnnotation.m; sourceTree = "<group>"; };
 		5F6A65301D3F78B1004B6AB0 /* 定位.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定位.png"; sourceTree = "<group>"; };
-		5F6A65321D3F7EA5004B6AB0 /* 定位_meitu_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "定位_meitu_1.jpg"; sourceTree = "<group>"; };
-		5F6A65341D3F8071004B6AB0 /* 定位2_meitu_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "定位2_meitu_1.jpg"; sourceTree = "<group>"; };
-		5F6A65361D3F8141004B6AB0 /* 定位2_meitu_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "定位2_meitu_2.jpg"; sourceTree = "<group>"; };
-		5F6A65381D3F87EF004B6AB0 /* 定位3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定位3.png"; sourceTree = "<group>"; };
-		5F6A653A1D3F889B004B6AB0 /* 定位4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定位4.png"; sourceTree = "<group>"; };
-		5F6A653C1D3F88F8004B6AB0 /* 定位5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定位5.png"; sourceTree = "<group>"; };
-		5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "卧龙海.jpeg"; sourceTree = "<group>"; };
-		5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "箭竹海.jpg"; sourceTree = "<group>"; };
-		5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双龙海.jpg"; sourceTree = "<group>"; };
-		5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "芦苇海.jpg"; sourceTree = "<group>"; };
 		5F6C249C1D5F01E100ADF71A /* AreaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaTableViewCell.h; sourceTree = "<group>"; };
 		5F6C249D1D5F01E100ADF71A /* AreaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaTableViewCell.m; sourceTree = "<group>"; };
 		5F6C249F1D5F035200ADF71A /* AreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaViewController.h; sourceTree = "<group>"; };
@@ -265,6 +223,7 @@
 		5F6C24A21D5F0F8000ADF71A /* AreaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaInfo.h; sourceTree = "<group>"; };
 		5F6C24A31D5F0F8000ADF71A /* AreaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaInfo.m; sourceTree = "<group>"; };
 		5F75AB6E1D4E3D3D00CEFAC6 /* defaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultImage.png; sourceTree = "<group>"; };
+		5F8653EF1D7C50290064A82D /* 定位BTN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定位BTN.png"; sourceTree = "<group>"; };
 		5FC174541D39DDB400365D25 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
 		5FC174551D39DDB400365D25 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
 		5FC174561D39DDB400365D25 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
@@ -277,16 +236,11 @@
 		5FC1745D1D39DDB400365D25 /* SDCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewCell.m; sourceTree = "<group>"; };
 		5FC174601D39DDB400365D25 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
 		5FC174611D39DDB400365D25 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
-		5FC174691D39DEB100365D25 /* 005.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 005.jpg; sourceTree = "<group>"; };
-		5FC1746A1D39DEB100365D25 /* h2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h2.jpg; sourceTree = "<group>"; };
-		5FC1746B1D39DEB100365D25 /* h3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h3.jpg; sourceTree = "<group>"; };
-		5FC1746C1D39DEB100365D25 /* h4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h4.jpg; sourceTree = "<group>"; };
 		5FC1746D1D39DEB100365D25 /* pageControlCurrentDot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pageControlCurrentDot@2x.png"; sourceTree = "<group>"; };
 		5FC1746E1D39DEB100365D25 /* pageControlCurrentDot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pageControlCurrentDot@3x.png"; sourceTree = "<group>"; };
 		5FC1746F1D39DEB100365D25 /* pageControlDot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pageControlDot@2x.png"; sourceTree = "<group>"; };
 		5FC174701D39DEB100365D25 /* pageControlDot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pageControlDot@3x.png"; sourceTree = "<group>"; };
 		5FC174711D39DEB100365D25 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
-		5FC1747B1D39DEBA00365D25 /* h1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = h1.jpg; sourceTree = "<group>"; };
 		5FC1747E1D39DF0100365D25 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		5FC1747F1D39DF0100365D25 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		5FC174801D39DF0100365D25 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -901,6 +855,7 @@
 			isa = PBXGroup;
 			children = (
 				F17A93A21D39171B0076D6C2 /* test.gpx */,
+				5F5C4C751D6451B4008D018B /* test副本.gpx */,
 				F11B67AB1D3619DB0065E7CD /* IntelligentTouristGuide */,
 				F11B67AA1D3619DB0065E7CD /* Products */,
 			);
@@ -1066,6 +1021,7 @@
 		F11B67DE1D3641B50065E7CD /* image */ = {
 			isa = PBXGroup;
 			children = (
+				5F12B9FB1D61A40F00A9D1C8 /* 用户指引.png */,
 				5F695CC81D5B2BA20024D004 /* 等待.png */,
 				5F58DABC1D55C57500B5140D /* 5-121204193R0.gif */,
 				5F58DABA1D55B1DE00B5140D /* 警告.png */,
@@ -1077,46 +1033,21 @@
 				F1D4C0601D42031D000B2ACE /* 旅游助手－到这去.png */,
 				F1D4C05B1D41E9DA000B2ACE /* 旅游助手－地图钉子.png */,
 				F1D4C0591D41E1E4000B2ACE /* 旅游助手－搜索.png */,
+				5F8653EF1D7C50290064A82D /* 定位BTN.png */,
 				F1D4C0571D41D55E000B2ACE /* 旅游助手－现在就去玩.png */,
 				F1D4C0531D41C347000B2ACE /* 旅游助手－首页下面的地图icon.png */,
 				F1D4C0511D41BE4E000B2ACE /* 旅游助手－播放语音.png */,
 				F1D4C04F1D41B35A000B2ACE /* 旅游助手－返回.png */,
 				F1D4C04D1D41B33B000B2ACE /* 旅游助手－首页设置.png */,
 				F1D4C04B1D41B332000B2ACE /* 旅游助手－首页导航栏左地图icon.png */,
-				5F6A653C1D3F88F8004B6AB0 /* 定位5.png */,
-				5F6A653A1D3F889B004B6AB0 /* 定位4.png */,
-				5F6A65381D3F87EF004B6AB0 /* 定位3.png */,
-				5F6A65361D3F8141004B6AB0 /* 定位2_meitu_2.jpg */,
-				5F6A65341D3F8071004B6AB0 /* 定位2_meitu_1.jpg */,
-				5F6A65321D3F7EA5004B6AB0 /* 定位_meitu_1.jpg */,
 				5F6A65301D3F78B1004B6AB0 /* 定位.png */,
 				F1BD09131D3D00C800B754E0 /* 主页.png */,
 				F1BD09111D3D003A00B754E0 /* 返回.png */,
-				5F12438D1D3C827800477E00 /* 卧龙海2.jpeg */,
-				5F12438E1D3C827800477E00 /* 卧龙海3.jpeg */,
-				5F12438F1D3C827800477E00 /* 卧龙海4.jpeg */,
-				5F1243931D3C850B00477E00 /* 箭竹海2.jpeg */,
-				5F1243941D3C850B00477E00 /* 箭竹海3.jpeg */,
-				5F1243951D3C850B00477E00 /* 箭竹海4.jpeg */,
-				5F1243991D3C857900477E00 /* 芦苇海2.jpeg */,
-				5F12439A1D3C857900477E00 /* 芦苇海3.jpeg */,
-				5F12439D1D3C860200477E00 /* 双龙海2.jpeg */,
-				5F12439E1D3C860200477E00 /* 双龙海3.jpeg */,
-				5F12439F1D3C860200477E00 /* 双龙海4.jpeg */,
-				5FC1747B1D39DEBA00365D25 /* h1.jpg */,
-				5FC174691D39DEB100365D25 /* 005.jpg */,
-				5FC1746A1D39DEB100365D25 /* h2.jpg */,
-				5FC1746B1D39DEB100365D25 /* h3.jpg */,
-				5FC1746C1D39DEB100365D25 /* h4.jpg */,
 				5FC1746D1D39DEB100365D25 /* pageControlCurrentDot@2x.png */,
 				5FC1746E1D39DEB100365D25 /* pageControlCurrentDot@3x.png */,
 				5FC1746F1D39DEB100365D25 /* pageControlDot@2x.png */,
 				5FC174701D39DEB100365D25 /* pageControlDot@3x.png */,
 				5FC174711D39DEB100365D25 /* placeholder@2x.png */,
-				5F6AE6B31D37582E00B9BAC1 /* 卧龙海.jpeg */,
-				5F6AE6B51D37583700B9BAC1 /* 箭竹海.jpg */,
-				5F6AE6B71D37583D00B9BAC1 /* 双龙海.jpg */,
-				5F6AE6B91D37584500B9BAC1 /* 芦苇海.jpg */,
 				F1DC9E931D378BBF00C1ADA8 /* 语音.ico */,
 				F11B67DC1D3631F70065E7CD /* LOGO.png */,
 				F11B67E51D3643800065E7CD /* homeNabigationLeftIcon.ico */,
@@ -1267,45 +1198,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1C8A0561D4B68BB0069809D /* icon-72@2x.png in Resources */,
-				5F6A653D1D3F88F8004B6AB0 /* 定位5.png in Resources */,
 				F1D4C0611D42031D000B2ACE /* 旅游助手－到这去.png in Resources */,
-				5FC174741D39DEB100365D25 /* h3.jpg in Resources */,
-				5F6A65391D3F87EF004B6AB0 /* 定位3.png in Resources */,
 				F1C8A04E1D4B68BB0069809D /* icon-40@3x.png in Resources */,
 				F1C8A04A1D4B68BB0069809D /* icon-29@2x.png in Resources */,
-				5F12439C1D3C857900477E00 /* 芦苇海3.jpeg in Resources */,
-				5F1243981D3C850B00477E00 /* 箭竹海4.jpeg in Resources */,
 				F1D935B21D4776D700EF5424 /* stop27.png in Resources */,
 				5FC174761D39DEB100365D25 /* pageControlCurrentDot@2x.png in Resources */,
 				F151F2261D48836200E1AA92 /* 54C5D57F9705BCC1D0486DB7D059E2E3.png in Resources */,
 				5FD1FE6E1D51FDE900955E18 /* ShareSDKUI.bundle in Resources */,
 				F1C8A0471D4B68BB0069809D /* icon-29-ipad.png in Resources */,
-				5FC174731D39DEB100365D25 /* h2.jpg in Resources */,
 				5FC174781D39DEB100365D25 /* pageControlDot@2x.png in Resources */,
 				F11B67E61D3643800065E7CD /* homeNabigationLeftIcon.ico in Resources */,
 				5F75AB6F1D4E3D3D00CEFAC6 /* defaultImage.png in Resources */,
-				5F6AE6B41D37582E00B9BAC1 /* 卧龙海.jpeg in Resources */,
+				5F8653F01D7C50290064A82D /* 定位BTN.png in Resources */,
 				F1C8A05A1D4B68BB0069809D /* iTunesArtwork.png in Resources */,
 				F1C8A0591D4B68BB0069809D /* icon-83.5@2x.png in Resources */,
 				F1C8A0501D4B68BB0069809D /* icon-50@2x.png in Resources */,
 				F1C8A0581D4B68BB0069809D /* icon-76@2x.png in Resources */,
 				F1C8A0541D4B68BB0069809D /* icon-60@3x.png in Resources */,
+				5F12B9FC1D61A40F00A9D1C8 /* 用户指引.png in Resources */,
 				5F58DABD1D55C57500B5140D /* 5-121204193R0.gif in Resources */,
 				5FD1FE751D51FDE900955E18 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				5FD1FE761D51FDE900955E18 /* RennSDK.bundle in Resources */,
-				5F6AE6BA1D37584500B9BAC1 /* 芦苇海.jpg in Resources */,
 				5F695CC91D5B2BA20024D004 /* 等待.png in Resources */,
 				F11B67DD1D3631F70065E7CD /* LOGO.png in Resources */,
-				5F1243961D3C850B00477E00 /* 箭竹海2.jpeg in Resources */,
-				5F1243A01D3C860200477E00 /* 双龙海2.jpeg in Resources */,
-				5F1243911D3C827800477E00 /* 卧龙海3.jpeg in Resources */,
 				5FD1FE7E1D51FDE900955E18 /* ShareSDK.bundle in Resources */,
-				5F1243A21D3C860200477E00 /* 双龙海4.jpeg in Resources */,
 				F1DC9E941D378BBF00C1ADA8 /* 语音.ico in Resources */,
+				5F5C4C761D6451B4008D018B /* test副本.gpx in Resources */,
 				F1C8A04F1D4B68BB0069809D /* icon-50.png in Resources */,
-				5F1243921D3C827800477E00 /* 卧龙海4.jpeg in Resources */,
 				F1C8A0481D4B68BB0069809D /* icon-29.png in Resources */,
-				5F6AE6B61D37583700B9BAC1 /* 箭竹海.jpg in Resources */,
 				F1C8A0551D4B68BB0069809D /* icon-72.png in Resources */,
 				F1C8A0511D4B68BB0069809D /* icon-57.png in Resources */,
 				F1D4C04C1D41B332000B2ACE /* 旅游助手－首页导航栏左地图icon.png in Resources */,
@@ -1313,7 +1233,6 @@
 				F1BD09141D3D00C800B754E0 /* 主页.png in Resources */,
 				5F6A65311D3F78B1004B6AB0 /* 定位.png in Resources */,
 				F1D5A41B1D3668F900F48A48 /* LocationInfoCell.xib in Resources */,
-				5F1243A11D3C860200477E00 /* 双龙海3.jpeg in Resources */,
 				F17A93A31D39171B0076D6C2 /* test.gpx in Resources */,
 				5FC1747A1D39DEB100365D25 /* placeholder@2x.png in Resources */,
 				F1D4C05A1D41E1E4000B2ACE /* 旅游助手－搜索.png in Resources */,
@@ -1323,35 +1242,24 @@
 				F1C8A04D1D4B68BB0069809D /* icon-40@2x.png in Resources */,
 				F1C8A04B1D4B68BB0069809D /* icon-29@3x.png in Resources */,
 				F1C8A05B1D4B68BB0069809D /* iTunesArtwork@2x.png in Resources */,
-				5F6AE6B81D37583D00B9BAC1 /* 双龙海.jpg in Resources */,
-				5F6A65351D3F8071004B6AB0 /* 定位2_meitu_1.jpg in Resources */,
 				5F58DABB1D55B1DE00B5140D /* 警告.png in Resources */,
 				5FC174791D39DEB100365D25 /* pageControlDot@3x.png in Resources */,
 				F1D4C04E1D41B33B000B2ACE /* 旅游助手－首页设置.png in Resources */,
-				5F6A65331D3F7EA5004B6AB0 /* 定位_meitu_1.jpg in Resources */,
 				5FD1FE8F1D51FEA300955E18 /* 分享.png in Resources */,
 				F1C8A0521D4B68BB0069809D /* icon-57@2x.png in Resources */,
 				F1DC9EB61D379DA600C1ADA8 /* mapapi.bundle in Resources */,
 				F1C8A0571D4B68BB0069809D /* icon-76.png in Resources */,
-				5F1243971D3C850B00477E00 /* 箭竹海3.jpeg in Resources */,
 				F11B67BC1D3619DB0065E7CD /* LaunchScreen.storyboard in Resources */,
-				5F6A653B1D3F889B004B6AB0 /* 定位4.png in Resources */,
 				F11B67B91D3619DB0065E7CD /* Assets.xcassets in Resources */,
 				F1D4C0501D41B35A000B2ACE /* 旅游助手－返回.png in Resources */,
-				5FC1747C1D39DEBA00365D25 /* h1.jpg in Resources */,
 				F1C8A0491D4B68BB0069809D /* icon-29@2x-ipad.png in Resources */,
 				F1D4C0541D41C347000B2ACE /* 旅游助手－首页下面的地图icon.png in Resources */,
 				F1BD09121D3D003A00B754E0 /* 返回.png in Resources */,
 				5FD1FE791D51FDE900955E18 /* WeiboSDK.bundle in Resources */,
 				F1D4C0581D41D55E000B2ACE /* 旅游助手－现在就去玩.png in Resources */,
-				5F6A65371D3F8141004B6AB0 /* 定位2_meitu_2.jpg in Resources */,
 				F1D4C05C1D41E9DA000B2ACE /* 旅游助手－地图钉子.png in Resources */,
-				5FC174751D39DEB100365D25 /* h4.jpg in Resources */,
 				F1D4C0521D41BE4E000B2ACE /* 旅游助手－播放语音.png in Resources */,
-				5F1243901D3C827800477E00 /* 卧龙海2.jpeg in Resources */,
 				F1C8A0531D4B68BB0069809D /* icon-60@2x.png in Resources */,
-				5FC174721D39DEB100365D25 /* 005.jpg in Resources */,
-				5F12439B1D3C857900477E00 /* 芦苇海2.jpeg in Resources */,
 				F1C8A0461D4B68BB0069809D /* Contents.json in Resources */,
 				5FD1FE7B1D51FDE900955E18 /* README.txt in Resources */,
 				F1C8A04C1D4B68BB0069809D /* icon-40.png in Resources */,
