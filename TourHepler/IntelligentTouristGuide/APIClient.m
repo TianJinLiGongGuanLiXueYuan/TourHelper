@@ -17,7 +17,7 @@
     dispatch_once(&onceToken, ^{
         //服务器IP
         _sharedClient = [[APIClient alloc]initWithBaseURL:
-                         [NSURL URLWithString:@"http://www.zhendehenhaoji.cn"]];
+                         [NSURL URLWithString:@"https://www.zhendehenhaoji.cn"]];
         _sharedClient.responseSerializer = [AFHTTPResponseSerializer serializer];
         _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [_sharedClient.requestSerializer setValue:@"2" forHTTPHeaderField:@"Accept"];

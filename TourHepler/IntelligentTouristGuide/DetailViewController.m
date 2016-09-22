@@ -112,12 +112,17 @@
     [self.view addSubview:cycleScrollView];
     
     _textSV.delegate = self;
-    _textSV.frame = CGRectMake(0, h-(574.0/1920.0)*h, w, (574.0/1920.0)*h);
+    
     _textLabel.text = locationName;
     _textLabel.font = [UIFont systemFontOfSize:20];
     _textLabel.numberOfLines = 0;
     [_textLabel sizeToFit];
     _textLabel.frame = CGRectMake(0,0, w, _textLabel.frame.size.height);
+    if ((574.0/1920.0)*h > _textLabel.frame.size.height) {
+        _textSV.frame = CGRectMake(0, h-_textLabel.frame.size.height, w, _textLabel.frame.size.height);
+    }else
+        _textSV.frame = CGRectMake(0, h-(574.0/1920.0)*h, w, (574.0/1920.0)*h);
+    
     _textSV.contentSize = _textLabel.frame.size;
     _textSV.scrollsToTop = NO;
     _textLabel.backgroundColor = [UIColor colorWithRed:0.192 green:0.183 blue:0.189 alpha:0.621];
@@ -130,7 +135,7 @@
     
     
 //    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(w-btnW, h-(574.0/1920.0)*h-btnH, btnW, btnH)];
+    _detailBtn= [[UIButton alloc]initWithFrame:CGRectMake(w-btnW, h-_textSV.frame.size.height-btnH, btnW, btnH)];
     [_detailBtn setBackgroundImage:[UIImage imageNamed:@"旅游助手－现在就去玩.png"] forState:UIControlStateNormal];
 //    [_detailBtn setTitle:@"我要到这里去" forState:UIControlStateNormal];
     [_detailBtn addTarget:self action:@selector(detailBtnClick:) forControlEvents:UIControlEventTouchUpInside];

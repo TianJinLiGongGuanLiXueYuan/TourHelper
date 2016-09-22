@@ -27,8 +27,7 @@
 @property (nonatomic) BOOL isUpViewPop;
 @property (nonatomic,strong) Location* curlocation;
 @property (nonatomic) CLLocationCoordinate2D curGPSCoor;
-
-
+//@property (nonatomic,strong) BMKAnnotationView *annotationViewDisplay;
 
 @end
 
@@ -478,6 +477,9 @@ static MapViewController* _instance = nil;
     [_mapView addAnnotations:mutArr];
     Location *obj = [dataSL.allDetail objectAtIndex:0];
     _mapView.centerCoordinate = obj.coor;
+    
+//    - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
+//    [_mapView.delegate mapView:_mapView didSelectAnnotationView:_annotationViewDisplay];
     /**
      *	设置地图状态
      *	@param	[in]	mapStatus	地图状态信息
@@ -575,6 +577,10 @@ static MapViewController* _instance = nil;
         pView.frame = CGRectMake(0, 0, screenWidth-100, popViewH);
 //        ((BMKPinAnnotationView*)newAnnotationView).paopaoView = nil;
         ((BMKPinAnnotationView*)newAnnotationView).paopaoView = pView;
+//        if (_annotationViewDisplay==nil) {
+//            _annotationViewDisplay = (BMKPinAnnotationView*)newAnnotationView;
+//        }
+        
         return newAnnotationView;
     }
     return nil;
@@ -598,16 +604,6 @@ static MapViewController* _instance = nil;
             [self presentViewController:deVC animated:YES completion:nil];
     }
 }
-
-///**
-// *设定view的选中状态
-// *该方法被BMKMapView调用
-// *@param selected 如果view需要显示为选中状态，该值为YES
-// *@param animated 如果需要动画效果，该值为YES,暂不支持
-// */
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
-//    
-//}
 
 //当点击annotation view弹出的泡泡时，调用此接口
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view
@@ -655,7 +651,6 @@ static MapViewController* _instance = nil;
     //1.执行动画
         [self.view addSubview:_mapUpView];
         [UIView animateWithDuration:0.3 animations:^{
-//            mapUpView.frame = CGRectMake(0, screenHeight-kUpViewHeight,screenWidth, kUpViewHeight);
             _mapUpView.transform = CGAffineTransformMakeTranslation(0, -kUpViewHeight);
         }];
         
